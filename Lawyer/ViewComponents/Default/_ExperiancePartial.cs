@@ -2,11 +2,11 @@
 
 namespace Lawyer.ViewComponents.Default
 {
-    public class _FeaturePartial:ViewComponent
+    public class _ExperiancePartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
             return View();
         }
-    } 
+    }
 }

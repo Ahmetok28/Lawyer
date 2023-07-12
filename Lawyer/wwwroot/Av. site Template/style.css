@@ -86,6 +86,7 @@ h5 {
 }
 
 .wrapper {
+   
   margin: 0 auto;
   padding: 0 2rem;
   max-width: 1150px;
@@ -143,14 +144,28 @@ h5 {
 
 /*  ------------------------------------------------------------- MAIN NAVIGATION -----------------------------------------------------  */
 
-nav {
-    position: fixed;   
+
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: var(--color-white); 
-    
+    z-index: 9999; /* Navbar'ýn diðer öðelerin üzerine çýkmasýný saðlar */
+   
+}
+
+.sticky {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .navigation {
     
+   
     display: flex;
     align-items: center;
     color: var(--color-black-text);

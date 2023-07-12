@@ -1,4 +1,50 @@
-﻿<nav class="nav">
+﻿
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var navbar = $(".nav");
+        var sticky = navbar.offset().top;
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() >= sticky) {
+                navbar.addClass("sticky");
+            } else {
+                navbar.removeClass("sticky");
+            }
+        });
+    });
+</script>
+
+<nav class="nav">
+    <div class="wrapper">
+        <div class="navigation">
+            <img src="~/Av. site Template/img/logo.png" alt="">
+            <ul>
+                <li>Anasayfa&nbsp;<i class="fa-solid fa-angle-down"></i></li>
+                <li>Hakkımızda&nbsp;<i class="fa-solid fa-angle-down"></i></li>
+                <li>Çalışma Alanlarımız&nbsp;<i class="fa-solid fa-angle-down"></i></li>
+                <li>Attorney&nbsp;<i class="fa-solid fa-angle-down"></i></li>
+                <li>Blog&nbsp;<i class="fa-solid fa-angle-down"></i></li>
+                <li>İletişim&nbsp;<i class="fa-solid fa-angle-down"></i></li>
+                <li class="contact-menu">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <h3>Bizi Arayın</h3>
+                        <a href="#">(099) 896 698 68</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+@*<nav class="nav">
 
     <div class="wrapper">
 
@@ -55,4 +101,4 @@
 
     </div>
 
-</nav>
+</nav>*@
