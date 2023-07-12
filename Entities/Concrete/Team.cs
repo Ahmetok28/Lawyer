@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entities.Abstract;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Concrete
 {
-    public class Team
+    public class Team : IEntity
     {
         [Key]
         public int Id { get; set; }

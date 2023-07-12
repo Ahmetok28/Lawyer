@@ -8,4 +8,5 @@ namespace Lawyer.ViewComponents.Default
         {
             return View();
         }
-    } }
+    } 
+}
