@@ -27,9 +27,4 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewComponents\Default\" />
-    <Folder Include="Views\Shared\Components\" />
-  </ItemGroup>
-
 </Project>

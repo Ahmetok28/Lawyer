@@ -144,14 +144,17 @@ h5 {
 /*  ------------------------------------------------------------- MAIN NAVIGATION -----------------------------------------------------  */
 
 nav {
-  background-color: var(--color-white);
+    position: fixed;   
+    background-color: var(--color-white); 
+    
 }
 
 .navigation {
-  display: flex;
-  align-items: center;
-  color: var(--color-black-text);
-  justify-content: space-between;
+    
+    display: flex;
+    align-items: center;
+    color: var(--color-black-text);
+    justify-content: space-between;
 }
 
 nav ul {
