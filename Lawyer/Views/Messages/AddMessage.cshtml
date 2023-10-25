@@ -1,0 +1,50 @@
+﻿
+<div class="contact__container">
+
+    <form method="post" asp-action="AddMessage" asp-controller="Message" class="contact__form">
+
+        <h2>Bize Mesaj Gönderin</h2>
+
+        <div class="form__container">
+
+            <div class="form__input-half">
+                <input type="text" name="Name" id="username" placeholder="Adınızı Girin*">
+            </div>
+
+            <div class="form__input-half">
+                <input type="text" name="PhoneNumber" id="phone-number"
+                       placeholder="Telefon Numaranızı Girin*">
+            </div>
+
+            <div class="form__input-half">
+                <input type="email" name="Email" id="email" placeholder="E-posta Adresinizi Girin*">
+            </div>
+
+            <select class="form__select" name="IssueId" id="subject">
+                <option value="USA">Konunuzu Seçin*</option>
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+
+
+            </select>
+
+            <div class="form__textarea">
+                <textarea name="Content" id="message" rows="5" placeholder="Mesajınızı Girin*"></textarea>
+            </div>
+
+            <div>
+                <button class="form__button" id="btn1"> Gönder </button>
+            </div>
+
+        </div>
+        <script>
+            $(#'btn1').click(function(){
+                alert("Mesajınız alındı. En kısa sürede sizinle iletişime geçeceğiz.");
+            });
+        </script>
+
+
+    </form>
+</div>

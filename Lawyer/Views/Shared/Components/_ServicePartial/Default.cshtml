@@ -1,81 +1,25 @@
-﻿
+﻿@using Entities.Concrete
+@model List<PracticeArea>
 <section class="services">
-
     <div class="wrapper">
-
         <span>Uygulama Alanı</span>
         <h2>Sunduğumuz Hizmetler.</h2>
 
         <div class="services__container">
 
-            <div class="service__box box-1">
+            @foreach (var service in Model)
+            {
+                <a href="@Url.Action("PracticeAreas", "PracticeArea", new { id = service.Id })" class="service__box box-2 " style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('@service.BackgroundImage')">
 
-                <img src="~/Av. site Template/img/service-icon1.png" alt="Hizmet İkonu">
+                    <img src="@service.LogoImage" alt="Hizmet İkonu">
 
-                <div>
-                    <p>Kişisel</p>
-                    <h3>Aile Hukuku</h3>
-                </div>
+                    <div>
+                        <p style="color:whitesmoke"> @service.Description</p>
+                        <h3 style="color:whitesmoke">@service.Name</h3>
+                    </div>
 
-            </div>
-
-            <div class="service__box box-2">
-
-                <img src="~/Av. site Template/img/service-icon-2.png" alt="Hizmet İkonu">
-
-                <div>
-                    <p>İş</p>
-                    <h3>İş Hukuku</h3>
-                </div>
-
-            </div>
-
-            <div class="service__box box-3">
-
-                <img src="~/Av. site Template/img/service-icon-3.png" alt="Hizmet İkonu">
-
-                <div>
-                    <p>Ceza</p>
-                    <h3>Ceza Hukuku</h3>
-                </div>
-
-            </div>
-
-            <div class="service__box box-4">
-
-                <img src="~/Av. site Template/img/service-icon-4.png" alt="Hizmet İkonu">
-
-                <div>
-                    <p>Kişisel</p>
-                    <h3>Trafik Kazaları</h3>
-                </div>
-
-            </div>
-
-            <div class="service__box box-5">
-
-                <img src="~/Av. site Template/img/service-icon-5.png" alt="Hizmet İkonu">
-
-                <div>
-                    <p>Adalet</p>
-                    <h3>Yaralanma Davaları</h3>
-                </div>
-
-            </div>
-
-            <div class="service__box box-6">
-
-                <img src="~/Av. site Template/img/service-icon-6.png" alt="Hizmet İkonu">
-
-                <div>
-                    <p>İş</p>
-                    <h3>Finans Hukuku</h3>
-                </div>
-
-            </div>
-
+                </a>
+            }
         </div>
-
     </div>
-
 </section>

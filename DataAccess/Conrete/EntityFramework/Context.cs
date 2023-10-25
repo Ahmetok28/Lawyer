@@ -20,6 +20,9 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<AboutText> AboutTexts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<Practice> Practices { get; set; }
+        public DbSet<PracticeArea> Practices { get; set; }
+        public DbSet<HomeServices> HomeServices { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }

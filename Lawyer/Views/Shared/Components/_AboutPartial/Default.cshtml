@@ -1,4 +1,5 @@
-﻿
+﻿@using Entities.Concrete
+@model AboutText
 <section class="about">
 
         <div class="wrapper">
@@ -6,32 +7,30 @@
             <div class="about__container">
 
                 <div class="about__container-imagebox">
-                    <img src="~/Av. site Template/img/about.png" alt="About Photo">
+                    <img src="@Model.Image" alt="About Photo">
                 </div>
 
                 <div class="about__container-textbox">
 
-                    <h2>Mükemmel Hukuki Yetenekler ve Deneyimli Avukatlar Size Hizmet Veriyor.</h2>
+                    <h2>@Model.Title</h2>
 
                     <p>
-                        Avukatlarımız, müşterilere dünya çapında çeşitli entegre yetenekler sunmaktadır.
-                        Bu yetenekler arasında en aktif M&A, gayrimenkul, finansal hizmetler, riskli dava
-                        ve kurumsal risk uygulamaları bulunmaktadır.
+                        @Model.Description
                     </p>
 
-                    <ul>
+                  @*  <ul>
                         <li>&#9673; Şirket ve Endüstri Araştırması</li>
                         <li>&#9673; Makale ve Haber Araştırması</li>
                         <li>&#9673; Endüstri Araştırması ve Pazar Araştırması</li>
-                    </ul>
+                    </ul>*@
 
                     <i>
-                        " Eğer bir suçla suçlanıyorsanız, en iyi ceza avukatlarına ihtiyacınız olacak. "
+                        " @Model.Author "
                     </i>
 
                     <div class="header__ceo-box">
 
-                        <img src="~/Av. site Template/img/image-slider.png" alt="CEO OF ATTORNAY LAW">
+                        @*<img src="~/Av. site Template/img/image-slider.png" alt="CEO OF ATTORNAY LAW">
 
                         <div>
 
@@ -39,9 +38,13 @@
 
                             <h4>CHAIRMAN OF ATTORNA</h4>
 
-                        </div>
+                        </div>*@
 
                     </div>
+
+                <div class="form__button">
+                    <a href="#"> Daha Fazla</a>
+                </div>
 
                 </div>
 

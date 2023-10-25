@@ -1,61 +1,19 @@
-﻿<section class="contact">
+﻿@using Entities.Concrete
+@model Tuple<Contact,List<PracticeArea>>
+<section class="contact">
 
     <div class="wrapper">
 
         <i class="fa-solid fa-phone contact__icon"></i>
 
-        <h1>Çeşitli Davalarda 20 Yıllık Deneyim</h1>
+        <h1>@Model.Item1.Title</h1>
 
-        <h3>7/24 ÜCRETSİZ DANIŞMANLIK RANDEVUSU ALIN</h3>
+        <h3>@Model.Item1.Title2</h3>
 
-        <p>01354-066 457</p>
-
-        <div class="contact__container">
-
-            <form action="#" class="contact__form">
-
-                <span>İletişim Bilgilerimiz</span>
-
-                <h2>Ücretsiz Davalı Değerlendirmesi Alın</h2>
-
-                <div class="form__container">
-
-                    <div class="form__input-half">
-                        <input type="text" name="username" id="username" placeholder="Adınızı Girin*">
-                    </div>
-
-                    <div class="form__input-half">
-                        <input type="text" name="phone-number" id="phone-number"
-                               placeholder="Telefon Numaranızı Girin*">
-                    </div>
-
-                    <div class="form__input-half">
-                        <input type="email" name="email" id="email" placeholder="E-posta Adresinizi Girin*">
-                    </div>
-
-                    <select class="form__select" name="subject" id="subject">
-                        <option value="USA">Konunuzu Seçin*</option>
-                        <option value="Aile Hukuku">Aile Hukuku</option>
-                        <option value="Adli Hukuk">Adli Hukuk</option>
-                        <option value="İş Hukuku">İş Hukuku</option>
-                        <option value="Ceza Hukuku">Ceza Hukuku</option>
-                        <option value="Ticaret Hukuku">Ticaret Hukuku</option>
-                    </select>
-
-                    <div class="form__textarea">
-                        <textarea name="" id="message" rows="5" placeholder="Mesajınızı Girin*"></textarea>
-                    </div>
-
-                    <div class="form__button">
-                        <a href="#"> Mesaj Gönder</a>
-                    </div>
-
-                </div>
-
-            </form>
-
-        </div>
+        
+        <a href="tel:@Model.Item1.PhoneNumber" style="color:white;font-size:25px "  >@Model.Item1.PhoneNumber</a>
 
     </div>
+    @await Html.PartialAsync("~/Views/Messages/AddMessage.cshtml",Model.Item2)
 
 </section>
