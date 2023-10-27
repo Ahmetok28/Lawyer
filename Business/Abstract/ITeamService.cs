@@ -8,5 +8,5 @@ namespace Business.Abstract
 {
     public interface ITeamService
     {
-    }
+    } 
 }
