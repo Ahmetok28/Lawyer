@@ -22,7 +22,7 @@
 			bootstrapTooltip: $("[data-toggle='tooltip']"),
 			captcha: $('.recaptcha'),
 			maps: $(".google-map-container"),
-			rdNavbar: $(".rd-navbar"),
+			
 			wow: $(".wow"),
 			owl: $(".owl-carousel"),
 			swiper: $(".swiper-slider"),
@@ -529,7 +529,9 @@
 		 * Init Bootstrap tooltip
 		 * @description  calls a function when need to init bootstrap tooltips
 		 */
-		function initBootstrapTooltip(tooltipPlacement) {
+
+
+		function initBootstrapTooltip(tooltipPlacement = 'top') {
 			if (window.innerWidth < 576) {
 				plugins.bootstrapTooltip.tooltip('dispose');
 				plugins.bootstrapTooltip.tooltip({
@@ -542,6 +544,19 @@
 				});
 			}
 		}
+		//function initBootstrapTooltip(tooltipPlacement) {
+		//	if (window.innerWidth < 576) {
+		//		plugins.bootstrapTooltip.tooltip('dispose');
+		//		plugins.bootstrapTooltip.tooltip({
+		//			placement: 'bottom'
+		//		});
+		//	} else {
+		//		plugins.bootstrapTooltip.tooltip('dispose');
+		//		plugins.bootstrapTooltip.tooltip({
+		//			placement: tooltipPlacement
+		//		});
+		//	}
+		//}
 
 		/**
 		 * Copyright Year
@@ -702,54 +717,54 @@
 		}
 
 		// RD Navbar
-		if ( plugins.rdNavbar.length ) {
-			var
-				navbar = plugins.rdNavbar,
-				aliases = { '-': 0, '-sm-': 576, '-md-': 768, '-lg-': 992, '-xl-': 1200, '-xxl-': 1600 },
-				responsive = {};
+		//if ( plugins.rdNavbar.length ) {
+		//	var
+		//		navbar = plugins.rdNavbar,
+		//		aliases = { '-': 0, '-sm-': 576, '-md-': 768, '-lg-': 992, '-xl-': 1200, '-xxl-': 1600 },
+		//		responsive = {};
 
-			for ( var alias in aliases ) {
-				var link = responsive[ aliases[ alias ] ] = {};
-				if ( navbar.attr( 'data'+ alias +'layout' ) )          link.layout        = navbar.attr( 'data'+ alias +'layout' );
-				if ( navbar.attr( 'data'+ alias +'device-layout' ) )   link.deviceLayout  = navbar.attr( 'data'+ alias +'device-layout' );
-				if ( navbar.attr( 'data'+ alias +'hover-on' ) )        link.focusOnHover  = navbar.attr( 'data'+ alias +'hover-on' ) === 'true';
-				if ( navbar.attr( 'data'+ alias +'auto-height' ) )     link.autoHeight    = navbar.attr( 'data'+ alias +'auto-height' ) === 'true';
-				if ( navbar.attr( 'data'+ alias +'stick-up-offset' ) ) link.stickUpOffset = navbar.attr( 'data'+ alias +'stick-up-offset' );
-				if ( navbar.attr( 'data'+ alias +'stick-up' ) )        link.stickUp       = navbar.attr( 'data'+ alias +'stick-up' ) === 'true';
-				if ( isNoviBuilder ) link.stickUp = false;
-				else if ( navbar.attr( 'data'+ alias +'stick-up' ) )   link.stickUp       = navbar.attr( 'data'+ alias +'stick-up' ) === 'true';
-			}
+		//	for ( var alias in aliases ) {
+		//		var link = responsive[ aliases[ alias ] ] = {};
+		//		if ( navbar.attr( 'data'+ alias +'layout' ) )          link.layout        = navbar.attr( 'data'+ alias +'layout' );
+		//		if ( navbar.attr( 'data'+ alias +'device-layout' ) )   link.deviceLayout  = navbar.attr( 'data'+ alias +'device-layout' );
+		//		if ( navbar.attr( 'data'+ alias +'hover-on' ) )        link.focusOnHover  = navbar.attr( 'data'+ alias +'hover-on' ) === 'true';
+		//		if ( navbar.attr( 'data'+ alias +'auto-height' ) )     link.autoHeight    = navbar.attr( 'data'+ alias +'auto-height' ) === 'true';
+		//		if ( navbar.attr( 'data'+ alias +'stick-up-offset' ) ) link.stickUpOffset = navbar.attr( 'data'+ alias +'stick-up-offset' );
+		//		if ( navbar.attr( 'data'+ alias +'stick-up' ) )        link.stickUp       = navbar.attr( 'data'+ alias +'stick-up' ) === 'true';
+		//		if ( isNoviBuilder ) link.stickUp = false;
+		//		else if ( navbar.attr( 'data'+ alias +'stick-up' ) )   link.stickUp       = navbar.attr( 'data'+ alias +'stick-up' ) === 'true';
+		//	}
 
-			plugins.rdNavbar.RDNavbar({
-				anchorNav: !isNoviBuilder,
-				stickUpClone: (plugins.rdNavbar.attr("data-stick-up-clone") && !isNoviBuilder) ? plugins.rdNavbar.attr("data-stick-up-clone") === 'true' : false,
-				responsive: responsive,
-				callbacks: {
-					onStuck: function () {
-						var navbarSearch = this.$element.find('.rd-search input');
+		//	plugins.rdNavbar.RDNavbar({
+		//		anchorNav: !isNoviBuilder,
+		//		stickUpClone: (plugins.rdNavbar.attr("data-stick-up-clone") && !isNoviBuilder) ? plugins.rdNavbar.attr("data-stick-up-clone") === 'true' : false,
+		//		responsive: responsive,
+		//		callbacks: {
+		//			onStuck: function () {
+		//				var navbarSearch = this.$element.find('.rd-search input');
 
-						if (navbarSearch) {
-							navbarSearch.val('').trigger('propertychange');
-						}
-					},
-					onDropdownOver: function () {
-						return !isNoviBuilder;
-					},
-					onUnstuck: function () {
-						if (this.$clone === null)
-							return;
+		//				if (navbarSearch) {
+		//					navbarSearch.val('').trigger('propertychange');
+		//				}
+		//			},
+		//			onDropdownOver: function () {
+		//				return !isNoviBuilder;
+		//			},
+		//			onUnstuck: function () {
+		//				if (this.$clone === null)
+		//					return;
 
-						var navbarSearch = this.$clone.find('.rd-search input');
+		//				var navbarSearch = this.$clone.find('.rd-search input');
 
-						if (navbarSearch) {
-							navbarSearch.val('').trigger('propertychange');
-							navbarSearch.trigger('blur');
-						}
+		//				if (navbarSearch) {
+		//					navbarSearch.val('').trigger('propertychange');
+		//					navbarSearch.trigger('blur');
+		//				}
 
-					}
-				}
-			});
-		}
+		//			}
+		//		}
+		//	});
+		//}
 
 
 		/**

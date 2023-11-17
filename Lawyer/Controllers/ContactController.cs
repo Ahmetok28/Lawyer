@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Conrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,16 @@ namespace Lawyer.Controllers
 {
     public class ContactController : Controller
     {
-        ContactPageManager contactPageManager = new ContactPageManager(new EfContactPageDal());
+        IContactPageService _contactPageService;
+
+        public ContactController(IContactPageService contactPageService)
+        {
+            _contactPageService = contactPageService;
+        }
+
         public IActionResult Index()
         {
-            var options = contactPageManager.GetContactPage();
+            var options = _contactPageService.GetContactPage();
             return PartialView(options);
         }
     }

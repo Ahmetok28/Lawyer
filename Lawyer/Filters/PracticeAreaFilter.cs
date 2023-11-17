@@ -4,15 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
 using Entities.DTOs;
+using Business.Abstract;
 
 namespace Lawyer.Filters
 {
     public class PracticeAreaFilter : IActionFilter
     {
-        PracticeAreaManager practiceAreaManager = new PracticeAreaManager(new EfPracticeAreaDal());
+        IPracticeAreaService _practiceAreaService;
+
+        public PracticeAreaFilter(IPracticeAreaService practiceAreaService)
+        {
+            _practiceAreaService = practiceAreaService;
+        }
+
+       
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            var model = practiceAreaManager.GetTitleAndId(); // Model verisi
+            var model = _practiceAreaService.GetTitleAndId(); // Model verisi
             var controller = (Controller)context.Controller;
             controller.ViewData["Model1"] = model; // ViewData'ya ekleyin
             controller.ViewBag.Model2 = model;

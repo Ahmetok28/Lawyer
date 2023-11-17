@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Conrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -7,15 +8,23 @@ namespace Lawyer.Controllers
 {
     public class MessageController : Controller
     {
-        MessageManager messageManager = new MessageManager(new EfMessageDal());
-        PracticeAreaManager practiceAreaManager =new PracticeAreaManager(new EfPracticeAreaDal());
+        IMessageService _messageService;
+        IPracticeAreaService _practiceAreaService;
+
+        public MessageController(IPracticeAreaService practiceAreaService, IMessageService messageService)
+        {
+            _practiceAreaService = practiceAreaService;
+            _messageService = messageService;
+        }
+
+       
 
   
 
         [HttpGet]
         public IActionResult AddMessage()    
         {
-            var options = practiceAreaManager.GetAll();
+            var options = _practiceAreaService.GetAll();
             return PartialView(options);
         } 
         [HttpPost]
@@ -24,7 +33,7 @@ namespace Lawyer.Controllers
             message.SendTime= Convert.ToDateTime(DateTime.Now.ToShortDateString());
             message.Status = false;
             message.IsImportant= false;
-            messageManager.Add(message);
+            _messageService.Add(message);
             return RedirectToAction("Index", "Default");
         }
     }

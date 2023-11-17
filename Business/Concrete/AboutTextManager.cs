@@ -30,6 +30,7 @@ namespace Business.Concrete
 
         public AboutText GetAboutText()
         {
+         
            return _aboutTextDal.GetAll().First();
         }
 
@@ -37,5 +38,7 @@ namespace Business.Concrete
         {
             _aboutTextDal.Update(aboutText);
         }
+
+      
     }
 }

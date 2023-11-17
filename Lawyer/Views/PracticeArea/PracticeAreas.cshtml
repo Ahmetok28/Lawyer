@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" href="~/judge-master/css/flaticon.css">
     <link rel="stylesheet" href="~/judge-master/css/icomoon.css">
-    <link rel="stylesheet" href="~/judge-master/css/style.css">
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
 
 <body>
@@ -53,25 +53,9 @@
 
                 </div> <!-- .col-md-8 -->
                 <div class="col-lg-4 sidebar ftco-animate">
-                    <div class="sidebar-box">
-                        <form action="#" class="search-form">
-                            <div class="form-group">
-                                <span class="icon icon-search"></span>
-                                <input type="text" class="form-control" placeholder="Ara">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="sidebar-box ftco-animate">
-                        <div class="categories">
-                            <h3>Çalışma Alanlarımız</h3>
-                            <li <a href="#">Family Law <span class="ion-ios-arrow-forward"></span></a></li>
-                            <li><a href="#">Business Law <span class="ion-ios-arrow-forward"></span></a></li>
-                            <li><a href="#">Criminal Law <span class="ion-ios-arrow-forward"></span></a></li>
-                            <li><a href="#">Insurance Law <span class="ion-ios-arrow-forward"></span></a></li>
-                            <li><a href="#">Emloyment Law <span class="ion-ios-arrow-forward"></span></a></li>
-                            <li><a href="#">Property Law <span class="ion-ios-arrow-forward"></span></a></li>
-                        </div>
-                    </div>
+
+                    @await Component.InvokeAsync("_PracticeAreaPartial")
+
 
                     <div class="sidebar-box ftco-animate">
                         <h3>Recent Blog</h3>
@@ -109,13 +93,7 @@
                             </div>
                         </div>
                     </div>
-
                    
-
-                    <div class="sidebar-box ftco-animate">
-                        <h3>Paragraph</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-                    </div>
                 </div>
 
             </div>

@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Conrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,14 @@ namespace Lawyer.Controllers
 {
     public class PracticeAreaController : Controller
     {
-        PracticeAreaManager practiceAreaManager = new PracticeAreaManager(new EfPracticeAreaDal());
+        IPracticeAreaService _practiceAreaService;
+
+        public PracticeAreaController(IPracticeAreaService practiceAreaService)
+        {
+            _practiceAreaService = practiceAreaService;
+        }
+
+       
         public IActionResult Index()
         {
             return View();
@@ -15,7 +23,7 @@ namespace Lawyer.Controllers
         [HttpGet]
         public IActionResult PracticeAreas(int id)
         {
-           var value= practiceAreaManager.GetById(id);
+           var value= _practiceAreaService.GetById(id);
             return View(value);
         } 
        

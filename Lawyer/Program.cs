@@ -1,10 +1,29 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Business.DependencyResolvers.AutoFac;
+using Core.DependecyResolvers;
+using Core.Extensions;
+using Core.Utilities.IoC;
 using Lawyer.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+    builder.RegisterModule(new AutofacBusinessModule());
+});
+
+builder.Services.AddDependencyResolvers(new ICoreModule[]
+{
+    new CoreModule()
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<PracticeAreaFilter>();
+
+
+
 
 var app = builder.Build();
 

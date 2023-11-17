@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Conrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,17 @@ namespace Lawyer.ViewComponents.Default
 {
     public class _HeaderPartial : ViewComponent
     {
-        HomeTextManager homeTextManager = new HomeTextManager(new EfHomeTextDal());
+        IHomeTextService _homeTextService;
+
+        public _HeaderPartial(IHomeTextService homeTextService)
+        {
+            _homeTextService = homeTextService;
+        }
+
+       
         public IViewComponentResult Invoke()
         {
-            var value = homeTextManager.GetHomeText();
+            var value = _homeTextService.GetHomeText();
             return View(value);
         }
     }

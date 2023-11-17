@@ -29,9 +29,10 @@ namespace Business.Concrete
             _locationdal.Delete(location);
         }
 
+        
         public ContactPage GetContactPage()
-        {
-            return _locationdal.GetAll().FirstOrDefault();
+        {            
+            return _locationdal.GetAll().FirstOrDefault();          
         }
 
         public List<ContactPage> GetLocations()

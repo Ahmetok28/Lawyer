@@ -1,0 +1,22 @@
+﻿@model List<PracticeArea>
+
+
+<li class="nav-item dropdown" id="practiceArea">
+    <a class="nav-link dropdown-toggle"  id="practiceAreaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Çalışma Alanlarımız
+    </a>
+    <div class="dropdown-menu" aria-labelledby="practiceAreaDropdown">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <a class="dropdown-item" href="/PracticeArea/PracticeAreas/@item.Id">@item.Name</a>
+            }
+        }
+    </div>
+</li>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,97 +1,32 @@
-﻿<section class="team">
+﻿@using Entities.Concrete
+@model List<Team>
 
-    <!-- ---------------- Sıralamalar -----------------  -->
-
-    @*<div class="wrapper">
-
-        <section class="rankings">
-
-            <div class="rankings__container">
-
-                <div class="ranking__box">
-                    <span>
-                        <h3 class="num" data-val="46"></h3>
-                        <p>+</p>
-                    </span>
-                    <h4>Uzman Avukatlar</h4>
-                </div>
-
-                <div class="ranking__box">
-                    <span>
-                        <h3 class="num" data-val="890"></h3>
-                        <p>+</p>
-                    </span>
-                    <h4>Davalar Düşürüldü</h4>
-                </div>
-
-                <div class="ranking__box">
-                    <span>
-                        <h3 class="num" data-val="956"></h3>
-                        <p>+</p>
-                    </span>
-                    <h4>Kazanılan Davalar</h4>
-                </div>
-
-                <div class="ranking__box">
-                    <span>
-                        <h3 class="num" data-val="251"></h3>
-                        <p>+</p>
-                    </span>
-                    <h4>Dünya Genelinde Ofisler</h4>
-                </div>
-
+@foreach (var item in Model)
+{
+   
+    <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="thumbnail-variant-2-wrap">
+        <div class="thumbnail thumbnail-variant-2">
+            <figure class="thumbnail-image">
+                <img src="@item.Image" alt="" width="246" height="300" />
+            </figure>
+            <div class="thumbnail-inner">
+                <div class="link-group"><span class="novi-icon icon icon-xxs icon-primary material-icons-local_phone"></span><a class="link-white" href="tel:@item.PhoneNumber">@item.PhoneNumber</a></div>
+                <div class="link-group"><span class="novi-icon icon icon-xxs icon-primary fa-envelope-o"></span><a class="link-white" href="mailto: @item.Mail">@item.Mail</a></div>
             </div>
-
-        </section>
-
-    </div>*@
-
-    <div class="wrapper">
-
-        <div class="team__textbox">
-
-            <span>Takımımızla Tanışın</span>
-            <h2>Sizi Tanımaktan Memnuniyet Duyarız.</h2>
-
+            <div class="thumbnail-caption">
+                <p class="text-header"><a href="#">@item.Name @item.SurName</a></p>
+                <div class="divider divider-md bg-teak"></div>
+                <p class="text-caption">Avukat</p>
+            </div>
         </div>
-
-        <div class="team__container">
-
-            <div class="team__box">
-
-                <img src="~/Av. site Template/img/team-1.jpg" alt="Takım Üyesi">
-
-                <div>
-                    <h5>Teresa Perkins</h5>
-                    <span>Takım Yöneticisi</span>
-                </div>
-
-            </div>
-
-            <div class="team__box">
-
-                <img src="~/Av. site Template/img/team-2.jpg" alt="Takım Üyesi">
-
-                <div>
-                    <h5>Michel Anderson</h5>
-                    <span>Yönetici</span>
-                </div>
-
-            </div>
-
-            <div class="team__box">
-
-                <img src="~/Av. site Template/img/team-3.jpg" alt="Takım Üyesi">
-
-                <div>
-                    <h5>Sarah Barrett</h5>
-                    <span>Pazarlama Direktörü</span>
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
+</div>
+}
+@if (Model.Count < 3)
+{
+    <div class="col-sm-6 col-md-4 col-lg-3">
+        
+    </div>
+}
 
-</section>

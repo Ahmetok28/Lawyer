@@ -1123,19 +1123,19 @@ header {
 /* --------------------------------------------------------- FOOTER -------------------------------------------------------------  */
 
 .footer {
-  display: flex;
-  color: var(--color-white);
-  padding-top: var(--gutter-huge);
-  padding-bottom: var(--gutter-tiny);
-  background-color: var(--color-black);
+    display: flex;
+    color: var(--color-white);
+    padding-top: var(--gutter-medium);
+    padding-bottom: var(--gutter-small);
+    background-color: var(--color-black);
 }
 
 .footer__container {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--gutter-small);
-  justify-content: space-between;
-  padding-bottom: var(--gutter-huge);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gutter-small);
+    justify-content: space-between;
+    padding-bottom: var(--gutter-small);
 }
 
 .footer__textbox {

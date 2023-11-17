@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Conrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,17 @@ namespace Lawyer.Controllers
 {
     public class PartialController : Controller
     {
-        PracticeAreaManager practiceAreaManager = new PracticeAreaManager(new EfPracticeAreaDal());
+        IPracticeAreaService _practiceAreaService;
+
+        public PartialController(IPracticeAreaService practiceAreaService)
+        {
+            _practiceAreaService = practiceAreaService;
+        }
+
+        
         public PartialViewResult NavbarPartial()
         {
-            var value = practiceAreaManager.GetTitleAndId();
+            var value = _practiceAreaService.GetTitleAndId();
             return PartialView(value);
         }
     }

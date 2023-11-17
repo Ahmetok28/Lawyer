@@ -1,11 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Conrete.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lawyer.ViewComponents.Default
 {
     public class _TeamPartial : ViewComponent
     {
+        ITeamService _teamService;
+
+        public _TeamPartial(ITeamService teamService)
+        {
+            _teamService = teamService;
+        }
+
         public IViewComponentResult Invoke()
         {
-            return View();
+            var values = _teamService.GetAll();
+            return View(values);
         }
     } }

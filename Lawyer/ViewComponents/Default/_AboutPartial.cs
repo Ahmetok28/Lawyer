@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Conrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
@@ -7,10 +8,17 @@ namespace Lawyer.ViewComponents.Default
 {
     public class _AboutPartial : ViewComponent
     {
-        AboutTextManager textManager = new AboutTextManager(new EfAboutTextDal());
+        IAboutTextService _aboutTextService;
+
+        public _AboutPartial(IAboutTextService abouttextService)
+        {
+            _aboutTextService = abouttextService;
+        }
+
+       
         public IViewComponentResult Invoke()
         {
-            var value = textManager.GetAboutText();
+            var value = _aboutTextService.GetAboutText();
             return View(value);
         }
     }
