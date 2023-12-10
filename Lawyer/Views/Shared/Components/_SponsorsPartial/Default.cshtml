@@ -4,8 +4,28 @@
 
         <div class="sponsors__container swiper mySwiper">
 
+            
             <div class="sponsors__boxes swiper-wrapper">
 
+                <div class="sponsor__box swiper-slide">
+                    <img src="~/Av. site Template/img/brand-1.png" alt="">
+                </div>
+
+                <div class="sponsor__box swiper-slide">
+                    <img src="~/Av. site Template/img/brand-2.png" alt="">
+                </div>
+
+                <div class="sponsor__box swiper-slide">
+                    <img src="~/Av. site Template/img/brand-3.png" alt="">
+                </div>
+
+                <div class="sponsor__box swiper-slide">
+                    <img src="~/Av. site Template/img/brand-5-1.png" alt="">
+                </div>
+
+                <div class="sponsor__box swiper-slide">
+                    <img src="~/Av. site Template/img/brand-4.png" alt="">
+                </div>  
                 <div class="sponsor__box swiper-slide">
                     <img src="~/Av. site Template/img/brand-1.png" alt="">
                 </div>
@@ -28,17 +48,18 @@
 
             </div>
 
-            <!-- <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div> -->
+           
+            
 
         </div>
-
+        @*<div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+*@
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
         <!-- Swiper'ı Başlat -->
 
         <script>
-
             var swiper = new Swiper(".mySwiper", {
                 slidesPerView: 5,
                 spaceBetween: 10,
@@ -52,9 +73,13 @@
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev"
+                },
+                // Otomatik kaydırma özelliği ekleniyor
+                autoplay: {
+                    delay: 2000, // Her slayt arasındaki bekleme süresi (milisaniye cinsinden)
+                    disableOnInteraction: false // Kullanıcı etkileşimi durumunda otomatik kaydırmayı devre dışı bırakma
                 }
             });
-
         </script>
 
     </div>

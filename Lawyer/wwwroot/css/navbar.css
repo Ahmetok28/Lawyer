@@ -1,0 +1,223 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: arial;
+}
+
+header {
+    background: #673AB7;
+    width: 100%;
+    float: left;
+    box-shadow: 0px 0px 15px #777;
+}
+
+.lawyer_my_wrapper {
+    max-width: 1200px;
+    padding: 0px 20px;
+    margin: auto;
+}
+
+.lawyer_logo {
+    float: left;
+    margin: 38px 0px;
+    max-width: 200px;
+}
+
+    .lawyer_logo img {
+        max-width: 100%;
+    }
+
+/*-- Navbar CSS --*/
+.lawyer_nav-menus {
+    float: right;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+    .lawyer_nav-menus li {
+        list-style: none;
+        position: relative;
+        padding: 30px 0px;
+    }
+
+    .lawyer_nav-menus a {
+        color: #fff;
+        position: relative;
+        font-size: 17px;
+        text-decoration: none;
+        padding: 15px 12px;
+        z-index: 1;
+    }
+
+    .lawyer_nav-menus li:hover {
+        color: #fff;
+    }
+
+    .lawyer_nav-menus a:after {
+        content: "";
+        width: 100%;
+        height: 0px;
+        background-color: #5a30a5;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border-radius: 4px;
+        transition: 0.5s;
+        z-index: -1;
+    }
+
+    .lawyer_nav-menus li:hover > a:after {
+        height: 100%;
+    }
+
+    .lawyer_nav-menus i {
+        margin-right: 8px;
+        font-size: 16px;
+    }
+
+.lawyer_toggle-btn {
+    float: right;
+    height: 90px;
+    line-height: 90px;
+    color: #fff;
+    font-size: 26px;
+    display: none;
+    cursor: pointer;
+}
+
+.lawyer_nav-menus.active {
+    display: block;
+}
+
+/*-- Sub Menus CSS--*/
+.lawyer_sub-menus ul {
+    position: absolute;
+    top: 80px;
+    background-color: #fff;
+    padding: 5px 0px;
+    min-width: 150px;
+    box-shadow: 0px 0px 8px #636363;
+    border-radius: 4px;
+    display: none;
+}
+
+.lawyer_sub-menus:hover ul {
+    display: block;
+}
+
+.lawyer_sub-menus ul li {
+    padding: 5px 0px;
+}
+
+    .lawyer_sub-menus ul li a {
+        padding: 8px 10px;
+        display: block;
+        color: #5a30a5;
+    }
+
+    .lawyer_sub-menus ul li:hover a {
+        color: #fff;
+    }
+
+.lawyer_sub-menus ul::before {
+    content: "";
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    position: absolute;
+    top: -9px;
+}
+
+/*-- Responsive Menus Bar CSS--*/
+@media (max-width:767px) {
+    .lawyer_toggle-btn {
+        display: block;
+    }
+
+    .lawyer_nav-menus {
+        position: absolute;
+        width: 100%;
+        background: #4e2890;
+        top: 100px;
+        right: 0;
+        display: none;
+        padding: 0px 15px;
+        box-sizing: border-box;
+    }
+
+        .lawyer_nav-menus::before {
+            content: "";
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #4e2890;
+            position: absolute;
+            top: -10px;
+            right: 10px;
+        }
+
+    .lawyer_sub-menus ul {
+        position: static;
+    }
+
+        .lawyer_sub-menus ul::before {
+            display: none;
+        }
+
+    .lawyer_nav-menus li {
+        padding: 0px;
+    }
+
+        .lawyer_nav-menus li a {
+            display: block;
+            margin: 15px 0px;
+        }
+}
+
+
+
+
+
+/*.navbar-toggler {
+    border: none;
+    font-size: 1.25rem;
+}
+
+.navbar-toggler:focus, .btn-close:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.nav-link {
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link:active {
+    color: #000;
+}
+@media(min-width:991px) {
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50);
+        width: 0;
+        height: 2px;
+        background-color: #009970;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before {
+        width: 100%;
+        visibility: visible;
+    }
+}*/

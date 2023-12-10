@@ -25,5 +25,7 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<Section> Sections { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<ContactPage> ContactPage { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

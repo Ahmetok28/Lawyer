@@ -1,4 +1,77 @@
-﻿
+﻿<form class="rd-mailform form-modern" data-form-output="form-output-global" data-form-type="contact" method="post" asp-action="AddMessage" asp-controller="Message" >
+    <div class="row row-30">
+        <div class="col-md-6">
+            <div class="form-wrap">
+                <input class="form-input" id="username" type="text"  name="Name" placeholder="Adınız">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-wrap">
+                <input class="form-input" id="phone-number" type="text" name="PhoneNumber" placeholder="Telefon Numaranız">
+
+            </div>
+            <br />
+        </div>
+        <div class="col-md-6">
+            <div class="form-wrap">
+                <input class="form-input" id="email" type="email"  name="Email" placeholder="E-Posta Adresiz">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-wrap">
+                <select class="form__select" name="IssueId" id="subject">
+                    <option value="USA">Konunuzu Seçin*</option>
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-wrap">
+                <div class="textarea-lined-wrap">
+                    <textarea class="form-input" id="message" name="Content" placeholder="Mesajınızı Girin"></textarea>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row row-30 row-sm-0">
+                <div class="col-sm-8">
+                    <button class="button button-primary button-block" id="btn1" type="submit">Gönder</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="button button-silver-outline button-block" type="reset">Sıfırla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
 <div class="contact__container">
 
     <form method="post" asp-action="AddMessage" asp-controller="Message" class="contact__form">
@@ -48,3 +121,4 @@
 
     </form>
 </div>
+*@

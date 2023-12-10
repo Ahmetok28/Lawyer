@@ -14,17 +14,18 @@
     <!-- ------------------------------------------------------------    SERVICES ---------------------------------------------------------------  -->
 @await Component.InvokeAsync("_ServicePartial")
     <!-- ----------------------------------------------------------     EXPERIENCE -------------------------------------------------------------  -->
-@*@await Component.InvokeAsync("_ExperiancePartial")
-*@    
-@*
+@await Component.InvokeAsync("_ExperiancePartial")
+    
     <!-- --------------------------------------------------------------- SPONSORS ------------------------------------------------------------- -->
-@await Component.InvokeAsync("_SponsorsPartial")*@
+@await Component.InvokeAsync("_SponsorsPartial")
     <!-- ----------------------------------------------------------------- OFFERS ----------------------------------------------------------------- -->
-@*@await Component.InvokeAsync("_OffersPartial")*@
+@*@await Component.InvokeAsync("_OffersPartial")
     <!-- ----------------------------------------------------------------- CONTACT ---------------------------------------------------------------- -->
-@await Component.InvokeAsync("_ContactPartial")
+@await Component.InvokeAsync("_ContactPartial")*@
+
+
     <!-- ----------------------------------------------------------------  CALL  ----------------------------------------------------------------  -->
-@await Component.InvokeAsync("_CallPartial")
+@*@await Component.InvokeAsync("_CallPartial")*@
 
 
    

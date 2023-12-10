@@ -1,16 +1,17 @@
 ﻿@using Microsoft.Web.Helpers;
+@using Lawyer.Models;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
-@model ContactPage
+@model ContactPageViewModel
 
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
-  <head>
-    <title>Contact us</title>
+<head>
+    <title>İletişim</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,16 +19,16 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic%7CLato:300,300italic,400,400italic,700,900%7CMerriweather:700italic">
     <link rel="stylesheet" href="~/css/fontsabout.css">
-    <link rel="stylesheet" href="~/css/bootstrapabout.css">
+   @* <link rel="stylesheet" href="~/css/bootstrap.min.css">*@
     <link rel="stylesheet" href="~/css/styleabout.css">
     <link rel="stylesheet" href="~/judge-master/css/ionicons.min.css">
     <script src="~/Scripts/jQuery-1.6.4.js" type="text/javascript"></script>
-		
-  </head>
-  <body>
-   
+
+</head>
+<body>
+
     <div class="page">
-         <div class="responsive-image">
+        <div class="responsive-image">
             <img src="images/banner/foreground-04-1600x60.png"
                  srcset="images/banner/foreground-04-1600x60.png 1x, images/banner/foreground-04-3200x120.png 2x"
                  alt="" width="1600" height="120">
@@ -41,100 +42,54 @@
             </div>
         </section>
 
-      <section class="section-60 section-md-top-90 section-md-bottom-100">
-        <div class="container">
-          <div class="row row-50 justify-content-lg-between">
-            <div class="col-lg-5 col-xl-4">
-              <div class="inset-lg-right-15 inset-xl-right-0">
-                <div class="row row-30 row-md-40">
-                  <div class="col-md-10 col-lg-12">
-                    <h3>Bize Nasıl Ulaşabilirsiniz ?</h3>
-                    <p class="text-secondary">
-                     Eğer herhangi bir sorunuz varsa, sadece iletişim formunu doldurun ve kısa sürede size cevap vereceğiz. Eğer yakınımızda yaşıyorsanız, ofislerimizde bizi ziyaret edebilirsiniz.
-                      
-                    </p>
-                  </div>
-                  <div class="col-md-6 col-lg-12">
-                    <h5>Adres</h5>
-                    <address class="contact-info">
-                      <p class="text-uppercase">@Model.OfficeAdress.</p>
-                      <dl class="list-terms-inline">
-                        <dt>Telefon</dt>
-                         <dd><a class="link-secondary" href="tel:@Model.OfficeTelephone">@Model.OfficeTelephone</a></dd>
-                      </dl>
-                      <dl class="list-terms-inline">
-                        <dt>E-mail</dt>
-                        <dd><a class="link-primary" href="mailto: @Model.OfficeMail">@Model.OfficeMail</a></dd>
-                      </dl>
-                    </address>
-                  </div>                  
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-7 col-xl-6">
-              <h3>İletişime Geçin</h3>
-              <form class="rd-mailform form-modern" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
-                <div class="row row-30">
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-name" type="text" name="name" placeholder="Adınız" >
-                      
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-number" type="text" name="number" placeholder="Telefon Numaranız" >
-                      
-                    </div>
-                    <br />
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-email" type="email" name="email" placeholder="E-Posta Adresiz">
-                      
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-chapter" type="text" name="Konu" placeholder="Lütfen Konu Seçin">
-                      
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-wrap">
-                      <div class="textarea-lined-wrap">
-                        <textarea class="form-input" id="contact-message" name="message"  placeholder="Mesajınızı Girin"></textarea>
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="row row-30 row-sm-0">
-                      <div class="col-sm-8">
-                        <button class="button button-primary button-block" type="submit">Gönder</button>
-                      </div>
-                      <div class="col-sm-4">
-                        <button class="button button-silver-outline button-block" type="reset">Sıfırla</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+        <section class="section-60 section-md-top-90 section-md-bottom-100">
+            <div class="container">
+                <div class="row row-50 justify-content-lg-between">
+                    <div class="col-lg-5 col-xl-4">
+                        <div class="inset-lg-right-15 inset-xl-right-0">
+                            <div class="row row-30 row-md-40">
+                                <div class="col-md-10 col-lg-12">
+                                    <h3>Bize Nasıl Ulaşabilirsiniz ?</h3>
+                                    <p class="text-secondary">
+                                        Eğer herhangi bir sorunuz varsa, sadece iletişim formunu doldurun ve kısa sürede size cevap vereceğiz. Eğer yakınımızda yaşıyorsanız, ofislerimizde bizi ziyaret edebilirsiniz.
 
-      <section>
-        <iframe src="@Model.MapAdress" width="1920" height="620" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </section>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-lg-12">
+                                    <h5>Adres</h5>
+                                    <address class="contact-info">
+                                        <p class="text-uppercase">@Model.ContactPageData.OfficeAdress.</p>
+                                        <dl class="list-terms-inline">
+                                            <dt>Telefon</dt>
+                                            <dd><a class="link-secondary" href="tel:@Model.ContactPageData.OfficeTelephone">@Model.ContactPageData.OfficeTelephone</a></dd>
+                                        </dl>
+                                        <dl class="list-terms-inline">
+                                            <dt>E-mail</dt>
+                                            <dd><a class="link-primary" href="mailto: @Model.ContactPageData.OfficeMail">@Model.ContactPageData.OfficeMail</a></dd>
+                                        </dl>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-6">
+                        <h3>İletişime Geçin</h3>
+                        @await Html.PartialAsync("~/Views/Messages/AddMessage.cshtml",Model.PracticeAreas)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <iframe src="@Model.ContactPageData.MapAdress" width="1920" height="620" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
 
 
     </div>
     <div class="snackbars" id="form-output-global"></div>
     <script src="~/AboutContact/js/core.min.js"></script>
     <script src="~/AboutContact/js/script.js"></script>
-  </body>
+</body>
 </html>
 
 
@@ -175,13 +130,13 @@
     <link rel="stylesheet" href="~/css/fontsabout.css">
     <link rel="stylesheet" href="~/css/bootstrapabout.css">
     <link rel="stylesheet" href="~/css/styleabout.css">
-    
-    
+
+
 </head>
 <body>
 
     <div class="page">
-       
+
 
         <section class="section-30 section-md-40 section-lg-66 section-xl-bottom-90 bg-gray-dark page-title-wrap" style="background-image: url(/judge-master/images/bg_1.jpg);">
             <div class="container">
@@ -218,12 +173,12 @@
                                         </dl>
                                     </address>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7 col-xl-6">
-                        
+
                         @await Html.PartialAsync("~/Views/Messages/AddMessage.cshtml",Model)
                     </div>
                 </div>

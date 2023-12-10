@@ -34,37 +34,6 @@
   --transition-basic: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-/* ----------------------------------------- MENU ---------------------------------------------   */
-
-
-.menu {
-    display: flex;
-    flex-direction: column;
-}
-
-.menu-toggle {
-    display: none; /* Baþlangýçta butonu gizle */
-}
-
-/* Küçük ekranlarda butonu göster */
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .menu.active {
-        display: flex;
-    }
-
-    .menu li {
-        padding: 10px;
-    }
-}
 /* ----------------------------------------- GLOBAL RESETS ---------------------------------------------   */
 
 *,
@@ -117,7 +86,6 @@ h5 {
 }
 
 .wrapper {
-   
   margin: 0 auto;
   padding: 0 2rem;
   max-width: 1150px;
@@ -175,32 +143,15 @@ h5 {
 
 /*  ------------------------------------------------------------- MAIN NAVIGATION -----------------------------------------------------  */
 
-
-
-.nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--color-white); 
-    z-index: 9999; /* Navbar'ýn diðer öðelerin üzerine çýkmasýný saðlar */
-   
-}
-
-.sticky {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
+nav {
+  background-color: var(--color-white);
 }
 
 .navigation {
-    
-   
-    display: flex;
-    align-items: center;
-    color: var(--color-black-text);
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  color: var(--color-black-text);
+  justify-content: space-between;
 }
 
 nav ul {
@@ -406,7 +357,11 @@ header {
 /* ------------------------------------------------------------- CALL  ----------------------------------------------------- */
 
 .call {
-  
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: var(--gutter-huge);
+  background-image: linear-gradient(rgba(1, 8, 17, 0.8), rgba(22, 26, 36, 0.8)),
+    url("https://demo.themexbd.com/wpv/attorna/wp-content/uploads/2021/05/call-bg.jpg");
 }
 
 .call__container {
@@ -506,8 +461,8 @@ header {
   transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .box-1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))
-    ;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("https://demo.themexbd.com/wpv/attorna/wp-content/uploads/2021/05/service-1.jpg");
 }
 
 .box-2 {
@@ -1123,19 +1078,19 @@ header {
 /* --------------------------------------------------------- FOOTER -------------------------------------------------------------  */
 
 .footer {
-    display: flex;
-    color: var(--color-white);
-    padding-top: var(--gutter-medium);
-    padding-bottom: var(--gutter-small);
-    background-color: var(--color-black);
+  display: flex;
+  color: var(--color-white);
+  padding-top: var(--gutter-huge);
+  padding-bottom: var(--gutter-tiny);
+  background-color: var(--color-black);
 }
 
 .footer__container {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--gutter-small);
-    justify-content: space-between;
-    padding-bottom: var(--gutter-small);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gutter-small);
+  justify-content: space-between;
+  padding-bottom: var(--gutter-huge);
 }
 
 .footer__textbox {

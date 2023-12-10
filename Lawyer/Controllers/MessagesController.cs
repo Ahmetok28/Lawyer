@@ -34,7 +34,7 @@ namespace Lawyer.Controllers
             message.Status = false;
             message.IsImportant= false;
             _messageService.Add(message);
-            return RedirectToAction("Index", "Default");
+            return Ok("Mesajınız Gönderildi.");
         }
     }
 }
