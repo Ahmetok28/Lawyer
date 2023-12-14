@@ -47,6 +47,12 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<SectionManager>().As<ISectionService>().SingleInstance();
             builder.RegisterType<EfSectionDal>().As<ISectionDal>().SingleInstance();
 
+            builder.RegisterType<BlogManager>().As<IBlogService>().SingleInstance();
+            builder.RegisterType<EfBlogDal>().As<IBlogDal>().SingleInstance();
+
+            builder.RegisterType<PostManager>().As<IPostService>().SingleInstance();
+            builder.RegisterType<EfPostDal>().As<IPostDal>().SingleInstance();
+
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

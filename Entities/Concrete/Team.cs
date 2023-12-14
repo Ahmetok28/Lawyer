@@ -15,13 +15,9 @@ namespace Entities.Concrete
         public string Image { get; set; }
         public string About { get; set; }
         public string Profession { get; set; }
-        [AllowNull]
         public string? Facebook { get; set; }
-        [AllowNull]
         public string? Instagram { get; set; }
-        [AllowNull]
         public string? Twitter { get; set; }
-        [AllowNull]
         public string? Linkedln { get; set; }
 
     }

@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,18 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<HomeText> HomeTexts { get; set; }
         public DbSet<AboutText> AboutTexts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Team> Teams { get; set; }
+        public DbSet<Team>? Teams { get; set; }
         public DbSet<PracticeArea> Practices { get; set; }
         public DbSet<HomeServices> HomeServices { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<ContactPage> ContactPage { get; set; }
-        public DbSet<Blog> Blogs { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Blog>? Blogs { get; set; }
+        public DbSet<Post>? Posts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserProperty> UserProperties { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<ProfilePhoto>? ProfilePhotos { get; set; }
+        public DbSet<OperationClaim>? OperationClaims { get; set; }
     }
 }

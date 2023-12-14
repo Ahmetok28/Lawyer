@@ -1,5 +1,5 @@
-﻿using DataAccess.Abstract;
-using DataAccess.Abstract.EntityFramework;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace DataAccess.Conrete.EntityFramework
