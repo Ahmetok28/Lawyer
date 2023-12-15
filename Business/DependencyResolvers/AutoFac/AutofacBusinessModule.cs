@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Conrete.EntityFramework;
 using System;
@@ -18,6 +19,17 @@ namespace Business.DependencyResolvers.AutoFac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
+
+            builder.RegisterType<ClaimManager>().As<IClaimService>();
+            builder.RegisterType<EfClaimDal>().As<IClaimDal>();
+
+            builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
+
+
+
             builder.RegisterType<ContactPageManager>().As<IContactPageService>().SingleInstance();
             builder.RegisterType<EfContactPageDal>().As<IContactPageDal>().SingleInstance();
 
