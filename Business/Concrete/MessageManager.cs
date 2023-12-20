@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,12 +18,12 @@ namespace Business.Concrete
         {
             _messageDal = messageDal;
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Add(Message message)
         {
            _messageDal.Add(message);
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Delete(Message message)
         {
             throw new NotImplementedException();
@@ -32,7 +33,7 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Update(Message message)
         {
             throw new NotImplementedException();

@@ -1,22 +1,25 @@
 ﻿using Business.Abstract;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lawyer.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
     public class AuthController : Controller
     {
         private IAuthService _authService;
-
         public AuthController(IAuthService authService)
         {
             _authService = authService;
         }
+
         public IActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -26,7 +29,6 @@ namespace Lawyer.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Login(UserForLoginDto userForLoginDto)
         {
-            
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
             {
@@ -36,13 +38,14 @@ namespace Lawyer.Areas.Admin.Controllers
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
-                return Ok(result);
+                SaveToken(result.Data.Token);          
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
             }
 
             return BadRequest(result);
 
-            
         }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -59,13 +62,26 @@ namespace Lawyer.Areas.Admin.Controllers
             }
 
             var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
-            var result = _authService.CreateAccessToken(registerResult.Data);
-            if (result.Success)
+            
+            if (registerResult.Success)
             {
-                return Ok(result.Data);
+
+                //return Ok(result.Data);
             }
 
-            return BadRequest(result.Message);
+            return BadRequest(registerResult.Message);
+        }
+
+        private void SaveToken(string token)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.Now.AddDays(1)
+            };
+            Response.Cookies.Append("AccessToken", token, cookieOptions);
         }
     }
 }

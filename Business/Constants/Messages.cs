@@ -24,6 +24,8 @@ namespace Business.Constants
         public static string AccessTokenCreated = "Token Oluşturuldu";
 
         public static string EmailInvalid = "E-Posta Geçersiz";
+
+        public static string AuthorizationDenied =  "Yetkiniz Yok";
     
     }
 }

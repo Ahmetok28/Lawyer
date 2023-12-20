@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,16 +18,17 @@ namespace Business.Concrete
         {
             _postDal = postDal;
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Add(Post post)
         {
            _postDal.Add(post);
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Update(Post post)
         {
             _postDal.Update(post);
         }
+        [SecuredOperation("Admin,Moderator")]
         public void Delete(Post post)
         {
             _postDal.Delete(post);

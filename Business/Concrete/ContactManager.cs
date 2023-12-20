@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,12 +19,12 @@ namespace Business.Concrete
         {
             _contactDal = contactDal;
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Add(Contact contact)
         {
             throw new NotImplementedException();
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Delete(Contact contact)
         {
             throw new NotImplementedException();
@@ -33,7 +34,7 @@ namespace Business.Concrete
         {
             return ReplacePhoneNumber(_contactDal.GetAll().First());
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Update(Contact contact)
         {
             throw new NotImplementedException();

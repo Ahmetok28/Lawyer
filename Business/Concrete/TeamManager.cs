@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,17 +19,17 @@ namespace Business.Concrete
         {
             _teamDal = teamDal;
         }
-
+        [SecuredOperation("Admin")]
         public void Add(Team team)
         {
            _teamDal.Add(team);
         }
-
+        [SecuredOperation("Admin")]
         public void Delete(Team team)
         {
            _teamDal.Delete(team);
         }
-
+        
         public List<Team> GetAll()
         {
            return _teamDal.GetAll();
@@ -38,7 +39,7 @@ namespace Business.Concrete
         {
            return _teamDal.Get(x=>x.Id==teamId);
         }
-
+        [SecuredOperation("Admin")]
         public void Update(Team team)
         {
            _teamDal.Update(team);

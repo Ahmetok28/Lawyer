@@ -7,8 +7,11 @@ using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using Lawyer.Filters;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.DependencyInjection;
+using Autofac.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +20,17 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
     builder.RegisterModule(new AutofacBusinessModule());
 });
+builder.Services.AddHttpClient();
 builder.Services.AddCors();
+#region Token Options
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    
+    
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
@@ -32,20 +43,49 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
         };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var token = context.Request.Cookies["AccessToken"];
+                context.Token = token;
+                return Task.CompletedTask;
+            }
+        };
+
     });
+
+#endregion
+
+#region DependencyResolvers
 
 builder.Services.AddDependencyResolvers(new ICoreModule[]
 {
     new CoreModule()
 });
-
+#endregion
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
 
 
 var app = builder.Build();
+
+#region Access Token
+app.Use(async (context, next) =>
+{
+    var token = context.Request.Cookies["AccessToken"];
+
+    if (!string.IsNullOrEmpty(token) &&
+        !context.Request.Headers.ContainsKey("Authorization"))
+    {
+        context.Request.Headers.Add("Authorization", "Bearer " + token);
+    }
+
+    await next();
+});
+#endregion
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -63,26 +103,29 @@ app.UseCors(builder =>
 });
 
 app.UseHttpsRedirection();
+app.UseSession();
 app.UseStaticFiles();
-
+app.ConfigureCustomExceptionMiddleware();
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllerRoute(
-//    name: "Partial",
-//    pattern: "Default/Index",
-//    defaults: new { controller = "Partial", action = "NavbarPartial" });
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Default}/{action=Index}/{id?}");
+//Home/Index
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Default}/{action=Index}/{id?}");
+});
+//Admin/
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+      areaName: "Admin",
+      name: "Admin",
+      pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
     );
 });
 

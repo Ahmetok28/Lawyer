@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,12 +18,12 @@ namespace Business.Concrete
         {
             _aboutTextDal = aboutTextDal;
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Add(AboutText aboutText)
         {
             _aboutTextDal.Add(aboutText);
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Delete(AboutText aboutText)
         {
             _aboutTextDal.Delete(aboutText);
@@ -33,7 +34,7 @@ namespace Business.Concrete
          
            return _aboutTextDal.GetAll().First();
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Update(AboutText aboutText)
         {
             _aboutTextDal.Update(aboutText);

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,12 +19,12 @@ namespace Business.Concrete
         {
             _locationdal = locationdal;
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Add(ContactPage location)
         {
             _locationdal.Add(location);
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Delete(ContactPage location)
         {
             _locationdal.Delete(location);
@@ -40,6 +41,7 @@ namespace Business.Concrete
             return _locationdal.GetAll();
         }
 
+        [SecuredOperation("Admin,Moderator")]
         public void Update(ContactPage location)
         {
             _locationdal.Update(location);

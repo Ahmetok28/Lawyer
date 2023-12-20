@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,12 +18,12 @@ namespace Business.Concrete
         {
             _sectionDal = sectionDal;
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Add(Section section)
         {
             throw new NotImplementedException();
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Delete(Section section)
         {
             throw new NotImplementedException();
@@ -37,7 +38,7 @@ namespace Business.Concrete
         {
            return _sectionDal.GetAll(x=>x.PracticeAreaId==id);
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Update(Section section)
         {
             throw new NotImplementedException();

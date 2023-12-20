@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Bussines.BusinessAspects.Autofac;
 using Core.Entities.Concrete;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -26,7 +27,7 @@ namespace Business.Concrete
             _claimService = claimService;
             
         }
-
+        [SecuredOperation("Admin")]
         public IResult Add(User user)
         {
             var check = CheckOtherEmail(user.Email);
@@ -41,7 +42,7 @@ namespace Business.Concrete
             _userDal.Add(user);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
-
+        [SecuredOperation("Admin")]
         public IResult Delete(User user)
         {
            
@@ -49,7 +50,7 @@ namespace Business.Concrete
             _userDal.Delete(user);
             return new SuccessResult(Messages.SuccesfullyDeleted);
         }
-
+        [SecuredOperation("Admin")]
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
@@ -76,7 +77,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<UserDto>>(_userDal.GetUserDetails());
         }
-
+        [SecuredOperation("Admin")]
         public IResult Update(User user)
         {
             _userDal.Update(user);

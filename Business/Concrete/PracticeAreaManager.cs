@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Bussines.BusinessAspects.Autofac;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,17 +19,18 @@ namespace Business.Concrete
         {
             _practiceAreaDal = practiceAreaDal;
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Add(PracticeArea practiceArea)
         {
             throw new NotImplementedException();
         }
-
+        [SecuredOperation("Admin,Moderator")]
         public void Delete(PracticeArea practiceArea)
         {
             throw new NotImplementedException();
         }
 
+       
         public List<PracticeArea> GetAll()
         {
             return _practiceAreaDal.GetAll();
@@ -44,6 +46,7 @@ namespace Business.Concrete
            return _practiceAreaDal.Get(x=>x.Id == id);
         }
 
+        [SecuredOperation("Admin,Moderator")]
         public void Update(PracticeArea practiceArea)
         {
             throw new NotImplementedException();
