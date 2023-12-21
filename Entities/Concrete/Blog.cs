@@ -9,8 +9,15 @@ namespace Entities.Concrete
 {
     public class Blog:IEntity
     {
-        public int Id { get; set; }
+        public int BlogId { get; set; }
+        public int AuthorId { get; set; }
+        public int CategoryId { get; set; }
         public string Title { get; set; }
-        public List<Post> Posts { get; set; }
+        public string Description { get; set; }
+        public string Content { get; set; }
+        public string? PhotoUrl { get; set; }      
+        public DateTime CreatedDate { get; set; }
+
+        
     }
 }

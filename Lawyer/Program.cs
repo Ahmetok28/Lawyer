@@ -6,12 +6,16 @@ using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
-using Lawyer.Filters;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 using Autofac.Core;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,10 +56,12 @@ builder.Services.AddAuthentication(options =>
                 return Task.CompletedTask;
             }
         };
+       
 
     });
 
 #endregion
+
 
 #region DependencyResolvers
 
@@ -66,6 +72,8 @@ builder.Services.AddDependencyResolvers(new ICoreModule[]
 #endregion
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
@@ -103,6 +111,14 @@ app.UseCors(builder =>
 });
 
 app.UseHttpsRedirection();
+app.UseStatusCodePages(async context =>
+{
+    var response = context.HttpContext.Response;
+
+    if (response.StatusCode == (int)HttpStatusCode.Unauthorized ||
+            response.StatusCode == (int)HttpStatusCode.Forbidden)
+        response.Redirect("/Admin/Auth/Login");
+});
 app.UseSession();
 app.UseStaticFiles();
 app.ConfigureCustomExceptionMiddleware();
@@ -123,10 +139,13 @@ app.UseEndpoints(endpoints =>
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapAreaControllerRoute(
-      areaName: "Admin",
-      name: "Admin",
-      pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+        name: "Admin",
+        areaName: "Admin",
+        pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
     );
+   
 });
+
+
 
 app.Run();
