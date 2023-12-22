@@ -22,9 +22,9 @@ namespace Lawyer.Controllers
       
         public IActionResult Index()
         {
-            var contactData = _contactService.GetContact();
-            var practiceAreas = _practiceAreaService.GetAll();
-            var contactPageData = _contactPageService.GetContactPage();
+            var contactData = _contactService.GetContact().Data;
+            var practiceAreas = _practiceAreaService.GetAll().Data;
+            var contactPageData = _contactPageService.GetContactPage().Data;
 
             
             var viewModel = new ContactPageViewModel

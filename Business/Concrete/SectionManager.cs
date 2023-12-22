@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,27 +20,27 @@ namespace Business.Concrete
             _sectionDal = sectionDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(Section section)
+        public IResult Add(Section section)
         {
             throw new NotImplementedException();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(Section section)
+        public IResult Delete(Section section)
         {
             throw new NotImplementedException();
         }
 
-        public List<Section> GetAll()
+        public IDataResult<List<Section>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public List<Section> GetSectionByPracticeAreaId(int id)
+        public IDataResult< List<Section>> GetSectionByPracticeAreaId(int id)
         {
-           return _sectionDal.GetAll(x=>x.PracticeAreaId==id);
+           return new SuccessDataResult<List<Section>>( _sectionDal.GetAll(x=>x.PracticeAreaId==id));
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Update(Section section)
+        public IResult Update(Section section)
         {
             throw new NotImplementedException();
         }

@@ -17,7 +17,7 @@ namespace Lawyer.ViewComponents.Default
        
         public IViewComponentResult Invoke()
         {
-            var value = _homeTextService.GetHomeText();
+            var value = _homeTextService.GetHomeText().Data;
             return View(value);
         }
     }

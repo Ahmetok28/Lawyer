@@ -23,7 +23,7 @@ namespace Lawyer.Controllers
         [HttpGet]
         public IActionResult PracticeAreas(int id)
         {
-           var value= _practiceAreaService.GetById(id);
+           var value= _practiceAreaService.GetById(id).Data;
             return View(value);
         } 
        

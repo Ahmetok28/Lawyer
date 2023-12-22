@@ -18,7 +18,7 @@ namespace Lawyer.ViewComponents.Default
        
         public IViewComponentResult Invoke()
         {
-            var value = _aboutTextService.GetAboutText();
+            var value = _aboutTextService.GetAboutText().Data;
             return View(value);
         }
     }

@@ -17,7 +17,7 @@ namespace Lawyer.ViewComponents.Default
         
         public IViewComponentResult Invoke()
         {
-            var values = _practiceAreaService.GetAll();
+            var values = _practiceAreaService.GetAll().Data;
 
             return View(values);
         }

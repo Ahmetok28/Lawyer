@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -20,36 +21,39 @@ namespace Business.Concrete
             _practiceAreaDal = practiceAreaDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(PracticeArea practiceArea)
+        public IResult Add(PracticeArea practiceArea)
         {
-            throw new NotImplementedException();
+            _practiceAreaDal.Add(practiceArea);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(PracticeArea practiceArea)
+        public IResult Delete(PracticeArea practiceArea)
         {
-            throw new NotImplementedException();
+            _practiceAreaDal.Delete(practiceArea);
+            return new SuccessResult();
         }
 
        
-        public List<PracticeArea> GetAll()
+        public IDataResult< List<PracticeArea>> GetAll()
         {
-            return _practiceAreaDal.GetAll();
+            return new SuccessDataResult<List<PracticeArea>>( _practiceAreaDal.GetAll());
         }
-        public List<PracticeAreaDTO> GetTitleAndId()
+        public IDataResult<List<PracticeAreaDTO>> GetTitleAndId()
         {
             var value= _practiceAreaDal.GetAll().Select(x => new PracticeAreaDTO { Id = x.Id, Name = x.Name }).ToList();
-            return value;
+            return new SuccessDataResult<List<PracticeAreaDTO>>( value);
         }
 
-        public PracticeArea GetById(int id)
+        public IDataResult<PracticeArea>  GetById(int id)
         {
-           return _practiceAreaDal.Get(x=>x.Id == id);
+           return new SuccessDataResult<PracticeArea>( _practiceAreaDal.Get(x=>x.Id == id));
         }
 
         [SecuredOperation("Admin,Moderator")]
-        public void Update(PracticeArea practiceArea)
+        public IResult Update(PracticeArea practiceArea)
         {
-            throw new NotImplementedException();
+            _practiceAreaDal.Update(practiceArea);
+            return new SuccessResult();
         }
     }
 }

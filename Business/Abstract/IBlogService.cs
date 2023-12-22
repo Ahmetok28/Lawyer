@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Business.Abstract
 {
     public interface IBlogService
     {
-        void Add(Blog blog);
-        void Delete(Blog blog);
-        void Update(Blog blog);
-        List<Blog> GetAll();
-        Blog BlogGetById(int id);
+        IResult Add(Blog blog);
+        IResult Delete(Blog blog);
+        IResult Update(Blog blog);
+        IDataResult<List<Blog>> GetAll();
+         IDataResult<Blog> BlogGetById(int id);
     }
 }

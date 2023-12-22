@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,24 +19,27 @@ namespace Business.Concrete
             _homeServicesDal = homeServicesDal;
         }
 
-        public void Add(HomeServices homeServices)
+        public IResult Add(HomeServices homeServices)
         {
-            throw new NotImplementedException();
+            _homeServicesDal.Add(homeServices);
+            return new SuccessResult();
         }
 
-        public void Delete(HomeServices homeServices)
+        public IResult Delete(HomeServices homeServices)
         {
-            throw new NotImplementedException();
+            _homeServicesDal.Delete(homeServices);
+            return new SuccessResult();
         }
 
-        public List<HomeServices> GetAll()
+        public IDataResult< List<HomeServices>> GetAll()
         {
-           return _homeServicesDal.GetAll();
+           return new SuccessDataResult<List<HomeServices>>( _homeServicesDal.GetAll());
         }
 
-        public void Update(HomeServices homeServices)
+        public IResult Update(HomeServices homeServices)
         {
-            throw new NotImplementedException();
+            _homeServicesDal.Update(homeServices);
+            return new SuccessResult();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Lawyer.Controllers
         
         public PartialViewResult NavbarPartial()
         {
-            var value = _practiceAreaService.GetTitleAndId();
+            var value = _practiceAreaService.GetTitleAndId().Data;
             return PartialView(value);
         }
     }

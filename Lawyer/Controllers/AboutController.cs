@@ -20,7 +20,7 @@ namespace Lawyer.Controllers
         }
         public IActionResult AboutMe(int id)
         {
-          var value=  _teamService.GetByTeamId(id);
+          var value=  _teamService.GetByTeamId(id).Data;
            return View(value);
         }
     }

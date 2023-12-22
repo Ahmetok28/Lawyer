@@ -24,7 +24,7 @@ namespace Lawyer.Controllers
         [HttpGet]
         public IActionResult AddMessage()    
         {
-            var options = _practiceAreaService.GetAll();
+            var options = _practiceAreaService.GetAll().Data;
             return PartialView(options);
         } 
         [HttpPost]

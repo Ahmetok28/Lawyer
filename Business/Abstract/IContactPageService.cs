@@ -1,13 +1,14 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 
 namespace Business.Abstract
 {
     public interface IContactPageService
     {
-        void Add(ContactPage contactPage);
-        void Update(ContactPage contactPage);
-        void Delete(ContactPage contactPage);
-        ContactPage GetContactPage();
+        IResult Add(ContactPage contactPage);
+        IResult Update(ContactPage contactPage);
+        IResult Delete(ContactPage contactPage);
+        IDataResult<ContactPage> GetContactPage();
         
     }
 }

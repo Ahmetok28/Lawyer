@@ -1,12 +1,13 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 namespace Business.Abstract
 {
     public interface ISectionService
     {
-        void Add(Section section);
-        void Update(Section section);
-        void Delete(Section section);
-        List<Section> GetSectionByPracticeAreaId(int id);
-        List<Section> GetAll();
+        IResult Add(Section section);
+        IResult Update(Section section);
+        IResult Delete(Section section);
+        IDataResult<List<Section>> GetSectionByPracticeAreaId(int id);
+        IDataResult<List<Section>> GetAll();
     }
 }

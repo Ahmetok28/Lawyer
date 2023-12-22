@@ -1,13 +1,14 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 
 namespace Business.Abstract
 {
     public interface IPostService
     {
-        void Add(Post post);
-        void Delete(Post post);
-        void Update(Post post);
-        List<Post> GetAll();
-        List<Post> GetById(int id);
+        IResult Add(Post post);
+        IResult Delete(Post post);
+        IResult Update(Post post);
+        IDataResult<List<Post>> GetAll();
+         IDataResult<Post> GetById(int id);
     }
 }

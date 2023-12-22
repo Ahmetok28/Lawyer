@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace Business.Abstract
 {
     public interface ITeamService
     {
-        void Add(Team team);
-        void Update(Team team);
-        void Delete(Team team);
-        Team GetByTeamId(int teamId);
-        List<Team> GetAll();
+        IResult Add(Team team);
+        IResult Update(Team team);
+        IResult Delete(Team team);
+        IDataResult<Team> GetByTeamId(int teamId);
+        IDataResult<List<Team>> GetAll();
 
 
 

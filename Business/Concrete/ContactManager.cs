@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -20,24 +21,27 @@ namespace Business.Concrete
             _contactDal = contactDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(Contact contact)
+        public IResult Add(Contact contact)
         {
-            throw new NotImplementedException();
+            _contactDal.Add(contact);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(Contact contact)
+        public IResult Delete(Contact contact)
         {
-            throw new NotImplementedException();
+            _contactDal.Delete(contact);
+            return new SuccessResult();
         }
 
-        public Contact GetContact()
+        public IDataResult< Contact> GetContact()
         {
-            return ReplacePhoneNumber(_contactDal.GetAll().First());
+            return new SuccessDataResult<Contact>( ReplacePhoneNumber(_contactDal.GetAll().First()));
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Update(Contact contact)
+        public IResult Update(Contact contact)
         {
-            throw new NotImplementedException();
+            _contactDal.Update(contact);
+            return new SuccessResult();
         }
 
         private Contact ReplacePhoneNumber(Contact contact)

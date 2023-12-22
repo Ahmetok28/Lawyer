@@ -1,12 +1,13 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 
 namespace Business.Abstract
 {
     public interface IMessageService
     {
-        void Add(Message message);
-        void Update(Message message);
-        void Delete(Message message);
-        Message GetMessage();
+        IResult Add(Message message);
+        IResult Update(Message message);
+        IResult Delete(Message message);
+        IDataResult<Message> GetMessage(int id);
     }
 }

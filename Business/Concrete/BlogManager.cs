@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,30 +20,33 @@ namespace Business.Concrete
             _blogDal = blogDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(Blog blog)
+        public IResult Add(Blog blog)
         {
            _blogDal.Add(blog);
+            return new SuccessResult();
         }
 
-        public Blog BlogGetById(int id)
+        public IDataResult< Blog> BlogGetById(int id)
         {
-            return _blogDal.Get(x => x.BlogId == id); ;
+            return  new SuccessDataResult<Blog>( _blogDal.Get(x => x.BlogId == id)) ;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(Blog blog)
+        public IResult Delete(Blog blog)
         {
             _blogDal.Delete(blog);
+            return new SuccessResult() ;
         }
 
        
-        public List<Blog> GetAll()
+        public IDataResult< List<Blog>> GetAll()
         {
-           return _blogDal.GetAll();    
+           return new SuccessDataResult<List<Blog>>( _blogDal.GetAll());    
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Update(Blog blog)
+        public IResult Update(Blog blog)
         {
             _blogDal.Update(blog);
+            return new SuccessResult();
         }
     }
 }

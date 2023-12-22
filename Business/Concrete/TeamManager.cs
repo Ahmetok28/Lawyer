@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -20,29 +21,32 @@ namespace Business.Concrete
             _teamDal = teamDal;
         }
         [SecuredOperation("Admin")]
-        public void Add(Team team)
+        public IResult Add(Team team)
         {
            _teamDal.Add(team);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin")]
-        public void Delete(Team team)
+        public IResult Delete(Team team)
         {
            _teamDal.Delete(team);
+            return new SuccessResult();
         }
         
-        public List<Team> GetAll()
+        public IDataResult< List<Team>> GetAll()
         {
-           return _teamDal.GetAll();
+           return new SuccessDataResult<List<Team>>( _teamDal.GetAll());
         }
 
-        public Team GetByTeamId(int teamId)
+        public IDataResult< Team> GetByTeamId(int teamId)
         {
-           return _teamDal.Get(x=>x.Id==teamId);
+           return new SuccessDataResult<Team>( _teamDal.Get(x=>x.Id==teamId));
         }
         [SecuredOperation("Admin")]
-        public void Update(Team team)
+        public IResult Update(Team team)
         {
            _teamDal.Update(team);
+            return new SuccessResult();
         }
     }
 }

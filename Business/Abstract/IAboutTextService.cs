@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Business.Abstract
 {
     public interface IAboutTextService
     {
-        void Add(AboutText aboutText);
-        void Update(AboutText aboutText);
-        void Delete(AboutText aboutText);
-        AboutText GetAboutText();
+        IResult Add(AboutText aboutText);
+        IResult Update(AboutText aboutText);
+        IResult Delete(AboutText aboutText);
+        IDataResult<AboutText> GetAboutText();
     }
 }

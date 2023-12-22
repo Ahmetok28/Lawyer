@@ -11,13 +11,9 @@ namespace Lawyer.Areas.Admin.Controllers
 
     public class AdminController : Controller
     {
-         
-        IPracticeAreaService _practiceAreaService;
+        
 
-        public AdminController(IPracticeAreaService practiceAreaService)
-        {
-            _practiceAreaService = practiceAreaService;
-        }
+       
 
        
         public IActionResult Index()
@@ -35,11 +31,6 @@ namespace Lawyer.Areas.Admin.Controllers
                 return RedirectToAction("AccessDenied", "Account"); // Örneğin, erişim reddedildi sayfasına yönlendirilebilir.
             }
         }
-        public IActionResult BlogDetails()
-        {
-            var values = _practiceAreaService.GetAll();
-
-            return View(values);
-        }
+        
     }
 }

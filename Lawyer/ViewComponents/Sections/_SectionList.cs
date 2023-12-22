@@ -16,7 +16,7 @@ namespace Lawyer.ViewComponents.Sections
 
         public IViewComponentResult Invoke(int id)
         {
-            var value = _sectionService.GetSectionByPracticeAreaId(id);
+            var value = _sectionService.GetSectionByPracticeAreaId(id).Data;
             return View(value);
         }
     }

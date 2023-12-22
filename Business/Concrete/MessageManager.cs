@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,24 +20,27 @@ namespace Business.Concrete
             _messageDal = messageDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(Message message)
+        public IResult Add(Message message)
         {
            _messageDal.Add(message);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(Message message)
+        public IResult Delete(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Delete(message);
+            return new SuccessResult();
         }
 
-        public Message GetMessage()
+        public IDataResult<Message> GetMessage(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Message>(_messageDal.Get(x=>x.Id==id));
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Update(Message message)
+        public IResult Update(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Update(message);
+            return new SuccessResult();
         }
     }
 }

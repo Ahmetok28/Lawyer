@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,24 +20,27 @@ namespace Business.Concrete
             _homeTextDal = homeTextDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(HomeText homeText)
+        public IResult Add(HomeText homeText)
         {
             _homeTextDal.Add(homeText);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(HomeText homeText)
+        public IResult Delete(HomeText homeText)
         {
             _homeTextDal.Delete(homeText);
+            return new SuccessResult();
         }
 
-        public HomeText GetHomeText()
+        public IDataResult< HomeText> GetHomeText()
         {
-            return _homeTextDal.GetAll().First();
+            return  new SuccessDataResult<HomeText>( _homeTextDal.GetAll().First());
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Update(HomeText homeText)
+        public IResult Update(HomeText homeText)
         {
             _homeTextDal.Update(homeText);
+            return new SuccessResult();
         }
     }
 }

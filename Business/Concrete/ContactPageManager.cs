@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -20,31 +21,34 @@ namespace Business.Concrete
             _locationdal = locationdal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(ContactPage location)
+        public IResult Add(ContactPage location)
         {
             _locationdal.Add(location);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(ContactPage location)
+        public IResult Delete(ContactPage location)
         {
             _locationdal.Delete(location);
+            return new SuccessResult();
         }
 
         
-        public ContactPage GetContactPage()
+        public IDataResult< ContactPage> GetContactPage()
         {            
-            return _locationdal.GetAll().FirstOrDefault();          
+            return new SuccessDataResult<ContactPage>( _locationdal.GetAll().FirstOrDefault());          
         }
 
-        public List<ContactPage> GetLocations()
+        public IDataResult<List<ContactPage>> GetLocations()
         {
-            return _locationdal.GetAll();
+            return new SuccessDataResult<List<ContactPage>>( _locationdal.GetAll());
         }
 
         [SecuredOperation("Admin,Moderator")]
-        public void Update(ContactPage location)
+        public IResult Update(ContactPage location)
         {
             _locationdal.Update(location);
+            return new SuccessResult();
         }
     }
 }

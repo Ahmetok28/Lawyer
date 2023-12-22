@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,29 +20,32 @@ namespace Business.Concrete
             _postDal = postDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(Post post)
+        public IResult Add(Post post)
         {
            _postDal.Add(post);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Update(Post post)
+        public IResult Update(Post post)
         {
             _postDal.Update(post);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(Post post)
+        public IResult Delete(Post post)
         {
             _postDal.Delete(post);
+            return new SuccessResult();
         }
 
-        public List<Post> GetAll()
+        public IDataResult< List<Post>> GetAll()
         {
-            return _postDal.GetAll();   
+            return new SuccessDataResult<List<Post>>( _postDal.GetAll());   
         }
 
-        public List<Post> GetById(int id)
+        public IDataResult<Post> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Post>(_postDal.Get(x => x.PostId == id));
         }
 
         

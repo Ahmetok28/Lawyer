@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,25 +20,28 @@ namespace Business.Concrete
             _aboutTextDal = aboutTextDal;
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Add(AboutText aboutText)
+        public IResult Add(AboutText aboutText)
         {
             _aboutTextDal.Add(aboutText);
+            return new SuccessResult();
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Delete(AboutText aboutText)
+        public IResult Delete(AboutText aboutText)
         {
             _aboutTextDal.Delete(aboutText);
+            return new SuccessResult();
         }
 
-        public AboutText GetAboutText()
+        public IDataResult< AboutText> GetAboutText()
         {
          
-           return _aboutTextDal.GetAll().First();
+           return new SuccessDataResult<AboutText>(_aboutTextDal.GetAll().First());
         }
         [SecuredOperation("Admin,Moderator")]
-        public void Update(AboutText aboutText)
+        public IResult Update(AboutText aboutText)
         {
-            _aboutTextDal.Update(aboutText);
+             _aboutTextDal.Update(aboutText);
+           return new SuccessResult();
         }
 
       

@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Business.Abstract
 {
     public interface IContactService
     {
-        void Add(Contact contact);
-        void Update(Contact contact);
-        void Delete(Contact contact);
-        Contact GetContact();
+        IResult Add(Contact contact);
+        IResult Update(Contact contact);
+        IResult Delete(Contact contact);
+        IDataResult<Contact> GetContact();
         
     }
 }

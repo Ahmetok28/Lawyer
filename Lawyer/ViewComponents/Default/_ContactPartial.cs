@@ -20,8 +20,8 @@ namespace Lawyer.ViewComponents.Default
       
         public IViewComponentResult Invoke()
         {
-            var value = _contactService.GetContact();
-            var value2 = _practiceAreaService.GetAll();
+            var value = _contactService.GetContact().Data;
+            var value2 = _practiceAreaService.GetAll().Data;
             var model = Tuple.Create(value, value2);
             return View(model);
         }

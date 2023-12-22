@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Business.Abstract
 {
     public interface IHomeTextService
     {
-        void Add(HomeText homeText);
-        void Update(HomeText homeText);
-        void Delete(HomeText homeText);
-        HomeText GetHomeText();
+        IResult Add(HomeText homeText);
+        IResult Update(HomeText homeText);
+        IResult Delete(HomeText homeText);
+        IDataResult<HomeText> GetHomeText();
     }
 }

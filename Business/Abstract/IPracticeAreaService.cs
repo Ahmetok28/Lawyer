@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ namespace Business.Abstract
 {
     public interface IPracticeAreaService
     {
-        void Add(PracticeArea practiceArea);
-        void Update(PracticeArea practiceArea);
-        void Delete(PracticeArea practiceArea);
-        PracticeArea GetById(int id);
-        List<PracticeArea> GetAll();
-        List<PracticeAreaDTO> GetTitleAndId();
+        IResult Add(PracticeArea practiceArea);
+        IResult Update(PracticeArea practiceArea);
+        IResult Delete(PracticeArea practiceArea);
+        IDataResult<PracticeArea> GetById(int id);
+        IDataResult<List<PracticeArea>> GetAll();
+        IDataResult<List<PracticeAreaDTO>> GetTitleAndId();
     }
 }
