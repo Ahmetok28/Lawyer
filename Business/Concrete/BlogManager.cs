@@ -26,7 +26,7 @@ namespace Business.Concrete
 
         public Blog BlogGetById(int id)
         {
-            throw new NotImplementedException();
+            return _blogDal.Get(x => x.BlogId == id); ;
         }
         [SecuredOperation("Admin,Moderator")]
         public void Delete(Blog blog)
