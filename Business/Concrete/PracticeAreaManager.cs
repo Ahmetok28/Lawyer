@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -24,13 +25,13 @@ namespace Business.Concrete
         public IResult Add(PracticeArea practiceArea)
         {
             _practiceAreaDal.Add(practiceArea);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyAdded);
         }
         [SecuredOperation("Admin,Moderator")]
         public IResult Delete(PracticeArea practiceArea)
         {
             _practiceAreaDal.Delete(practiceArea);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyDeleted);
         }
 
        
@@ -53,7 +54,7 @@ namespace Business.Concrete
         public IResult Update(PracticeArea practiceArea)
         {
             _practiceAreaDal.Update(practiceArea);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyUpdated);
         }
     }
 }

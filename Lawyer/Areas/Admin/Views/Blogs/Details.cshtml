@@ -1,78 +1,83 @@
-﻿@model IEnumerable<Entities.Concrete.Blog>
+﻿@model Entities.DTOs.BlogDTO
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Details</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BlogId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BlogId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="pagetitle">
+    <h1>Blog Detayı</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Admin/">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a href="/Admin/Blogs/Index">Bloglar</a></li>
+            <li class="breadcrumb-item active">@Model.BlogTitle</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="row align-items-top">
+
+
+
+        <div class="col-lg-12">
+
+            <!-- Fotoğraf Başlık -->
+
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        @if (Model.BlogPhoto != null)
+                        {
+                            <img src="@Model.BlogPhoto" class="card-img-top" alt="blog resmi">
+                        }
+                        else
+                        {
+                            <img src="~/niceadmin/assets/img/card.jpg" class="card-img-top" alt="blog resmi">
+                        }
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.BlogTitle</h5>
+                            <p class="card-text">Kategori : @Model.CategoryName</p>
+                            <p class="card-text">Yazar : @Model.AuthorFullName </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Giriş  -->
+            <div class="card">
+                <div class="card-header">Giriş</div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                   @Html.Raw( @Model.BlogDescription)
+                </div>
+
+            </div>
+             <!-- İçerik -->
+            <div class="card">
+                <div class="card-header">İçerik</div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    @Html.Raw(@Model.BlogContent)
+                </div>
+
+            </div>
+
+            <!--İşlemler -->
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Dikkatli olun silme işlemi geri alınamaz.</h5>
+                    <p class="card-text"></p>
+                    <a href="/Admin/Blogs/Edit/@Model.BlogId" class="btn btn-info">Güncelle</a>
+                    <a href="/Admin/Blogs/Delete/@Model.BlogId" class="btn btn-Danger">Sil</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+

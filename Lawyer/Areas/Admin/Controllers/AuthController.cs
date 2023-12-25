@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lawyer.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/[controller]/[action]/{id?}")]
     [AllowAnonymous]
     public class AuthController : Controller
     {

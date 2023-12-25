@@ -3,7 +3,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IBlogDal : IEntityRepository<Blog>
+    public interface IBlogCategoryDal : IEntityRepository<BlogCategory>
     {
     }
 }

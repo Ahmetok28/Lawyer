@@ -1,4 +1,4 @@
-﻿@model Entities.Concrete.Blog
+﻿@model Tuple<Blog ,List<BlogCategory>>
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,85 +6,100 @@
 }
 
 
-<h1>Düzenle</h1>
-
-<h4>Blog</h4>
-<hr />
+<div class="pagetitle">
+    <h1>Güncelle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Admin/">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a href="/Admin/Blogs/Index">Bloglar</a></li>
+            <li class="breadcrumb-item active">@Model.Item1.Title</li>
+        </ol>
+    </nav>
+</div>
 <div class="row">
     <div class="col-md-10">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Edit" method="post">
+            <div ></div>
             <div class="form-group">
                 <p> Id </p>
-                <label asp-for="BlogId" class="control-label"></label>
-                <input asp-for="BlogId" class="form-control" value="@Model.BlogId" />
-                <span asp-validation-for="BlogId" class="text-danger"></span>
+                
+                <input readonly="readonly" asp-for="@Model.Item1.BlogId" class="form-control" name="BlogId" value="@Model.Item1.BlogId" />
+                
             </div>
             <div class="form-group">
                 <p> Yazar </p>
-                <label asp-for="AuthorId" class="control-label"></label>
-                <input asp-for="AuthorId" class="form-control" value="@Model.AuthorId" />
-                <span asp-validation-for="AuthorId" class="text-danger"></span>
+                
+                <input readonly="readonly" asp-for="@Model.Item1.AuthorId" class="form-control" name="AuthorId" value="@Model.Item1.AuthorId" />
+                
             </div>
             <div class="form-group">
-                <p>Kategori  </p>
-                <label asp-for="CategoryId" class="control-label"></label>
-                <input asp-for="CategoryId" class="form-control" value="@Model.CategoryId" />
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <p>Kategori</p>
+                
+                <select class="form-control" name="CategoryId" id="CategoryId">
+                    @foreach (var category in Model.Item2)
+                    {
+                        <option value="@category.Id" selected="@(Model.Item1.CategoryId == category.Id)">
+                            @category.Name
+                        </option>
+                    }
+                </select>
+               
             </div>
+
             <div class="form-group">
                 <p>Başlık  </p>
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" value="@Model.Title" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+               
+                <input asp-for="@Model.Item1.Title" class="form-control" name="Title" value="@Model.Item1.Title" />
+                
             </div>
             <div class="form-group">
                 <p>Giriş</p>
-                <label asp-for="Description" class="control-label"></label>
                 
-                <textarea name="description" id="description" rows="10" cols="80">
-                @Model.Description
+
+                <textarea name="description" id="Description" rows="10" cols="80">
+                    @Model.Item1.Description
             </textarea>
-                <script>
-                   
-                    CKEDITOR.replace('description');
-                </script>
-            
-                @*<input asp-for="Content" class="form-control" />*@
-                <span asp-validation-for="Description" class="text-danger"></span>
+
+
+
+                
             </div>
             <div class="form-group">
                 <p>İçerik  </p>
-                <label asp-for="Content" class="control-label"></label>
-                <textarea asp-for="Content" name="content" id="content" rows="10" cols="80">
-                    @Model.Content
+              
+                <textarea asp-for="@Model.Item1.Content" name="Content" id="content" rows="10" cols="80">
+                    @Model.Item1.Content
                 </textarea>
-                <script>
 
-                    CKEDITOR.replace('content');
-                </script>
-                <span asp-validation-for="Content" class="text-danger"></span>
+                
             </div>
             <div class="form-group">
                 <p> Fotoğraf </p>
-                <label asp-for="PhotoUrl" class="control-label"></label>
-                <input asp-for="PhotoUrl" class="form-control" value="@Model.PhotoUrl" />
-                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+               
+                <input asp-for="@Model.Item1.PhotoUrl" class="form-control" name="PhotoUrl" value="@Model.Item1.PhotoUrl" />
+               
             </div>
+           
             <div class="form-group">
                 <p>Oluşturma Tarihi  </p>
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" value="@Model.CreatedDate" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                <textarea  readonly="readonly" asp-for="@Model.Item1.CreatedDate" class="form-control" name="CreatedDate" value="@ViewBag.CreatedDate">
+
+                </textarea>
+               
+                
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" >Kaydet</button>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="/Admin/Blogs/Index">Blog Listesine Geri Dön</a>
 </div>
 
+<script>
+    CKEDITOR.replace('Description');
+    CKEDITOR.replace('Content');
+</script>

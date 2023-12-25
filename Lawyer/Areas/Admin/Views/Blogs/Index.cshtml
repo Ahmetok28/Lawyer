@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entities.Concrete.Blog>
+﻿@model IEnumerable<Entities.DTOs.BlogDTO>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,72 +7,97 @@
 
 
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BlogId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BlogId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+<section class="section">
+    <p>
+        <span><a asp-action="Index">Blog Yazıları</a> / <a class="btn btn-success" href="/Admin/Blogs/Add">Yeni Blog Ekle</a> </span>
+    </p>
+
+    <div>
+        <label for="categoryDropdown">Kategori:</label>
+        <select id="categoryDropdown">
+            <option value="0">Tüm Kategoriler</option>
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+
+        <label for="authorDropdown">Yazar:</label>
+        <select id="authorDropdown">
+            <option value="0">Tüm Yazarlar</option>
+            @foreach (var author in ViewBag.Authors)
+            {
+                <option value="@author.AuthorId">@author.Name</option>
+            }
+        </select>
+
+        <button id="filterButton" class="btn btn-primary">Filtrele</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+
+     
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Yazar</th>
+                        <th>Kategori</th>
+                        <th>Başlık</th>
+                        <th data-type="date" data-format="YYYY/DD/MM">Yayınlama Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item1 in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item1.BlogId
+                            </td>
+                            <td>
+                                @item1.AuthorFullName
+                            </td>
+                            <td>
+                                @item1.CategoryName
+                            </td>
+                            <td>
+                                @item1.BlogTitle
+                            </td>
+                            <td>
+                                @item1.BlogCreatedDate
+                            </td>
+                            <td>
+                                <a asp-controller="Blogs" asp-route-ID="@item1.BlogId" asp-action="Details" asp-area="Admin"  method="get" class="btn btn-info">Detay</a>
+                                <a asp-controller="Blogs" asp-route-Id="@item1.BlogId" asp-action="Edit" asp-area="Admin"  class="btn btn-warning">Güncelle</a>
+                                <a asp-controller="Blogs" asp-route-id="@item1.BlogId" asp-action="Delete" asp-area="Admin" method="get" class="btn btn-danger">Sil</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+        </div>
+    </div>
+
+
+</section>
+
+
+
+
+@section scripts {
+    <script>
+        // Add JavaScript code to handle the button click event and apply the filters
+        document.getElementById('filterButton').addEventListener('click', function () {
+            var categoryId = document.getElementById('categoryDropdown').value;
+            var authorId = document.getElementById('authorDropdown').value;
+
+            // Redirect to the Index action with selected filters
+            window.location.href = '/Admin/Blogs/Index?categoryId=' + categoryId + '&authorId=' + authorId;
+        });
+    </script>
 }
-    </tbody>
-</table>

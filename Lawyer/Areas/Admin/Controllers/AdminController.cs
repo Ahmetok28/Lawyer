@@ -7,6 +7,8 @@ using NuGet.Common;
 namespace Lawyer.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin")]
+    [Route("Admin/[controller]/[action]/{id?}")]
     [Authorize]
 
     public class AdminController : Controller

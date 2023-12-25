@@ -9,5 +9,7 @@ namespace DataAccess.Abstract
         List<OperationClaim> GetClaims(User user);
         List<UserDto> GetUserDetails();
         UserDto GetUserDetailById(int userId);
+        List<AuthorDTO> GetAuthors();
+        AuthorDTO GetAuthor(int id);
     }
 }

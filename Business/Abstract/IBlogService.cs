@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace Business.Abstract
         IResult Delete(Blog blog);
         IResult Update(Blog blog);
         IDataResult<List<Blog>> GetAll();
-         IDataResult<Blog> BlogGetById(int id);
-    }
+        IDataResult<List<BlogDTO>> GetAllBlogDetails();
+        IDataResult<BlogDTO> GetBlogDetailsById(int id);
+        IDataResult<List<BlogDTO>> GetBlogDetailsByAuthorId(int id);
+        IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryId(int id);
+        IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryAndAuthorId(int catId,int authId);
+        IDataResult<Blog> BlogGetById(int id);
+    } 
 }

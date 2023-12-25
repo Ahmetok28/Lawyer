@@ -62,6 +62,9 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<BlogManager>().As<IBlogService>().SingleInstance();
             builder.RegisterType<EfBlogDal>().As<IBlogDal>().SingleInstance();
 
+            builder.RegisterType<BlogCategoryManager>().As<IBlogCategoryService>().SingleInstance();
+            builder.RegisterType<EfBlogCategoryDal>().As<IBlogCategoryDal>().SingleInstance();
+
             builder.RegisterType<PostManager>().As<IPostService>().SingleInstance();
             builder.RegisterType<EfPostDal>().As<IPostDal>().SingleInstance();
 

@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +25,7 @@ namespace Business.Concrete
         public IResult Add(Blog blog)
         {
            _blogDal.Add(blog);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyAdded);
         }
 
         public IDataResult< Blog> BlogGetById(int id)
@@ -34,7 +36,7 @@ namespace Business.Concrete
         public IResult Delete(Blog blog)
         {
             _blogDal.Delete(blog);
-            return new SuccessResult() ;
+            return new SuccessResult(Messages.SuccesfullyDeleted) ;
         }
 
        
@@ -42,11 +44,34 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<List<Blog>>( _blogDal.GetAll());    
         }
+
+        public IDataResult<List<BlogDTO>> GetAllBlogDetails()
+        {
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails());
+        }
+
+        public IDataResult<BlogDTO> GetBlogDetailsById(int id)
+        {
+            return new SuccessDataResult<BlogDTO>(_blogDal.GetBlogDetailsByFilter(x=>x.BlogId==id));
+        } 
+        public IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryId(int id)
+        {
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x => x.CategoryId==id));
+        } 
+        public IDataResult<List<BlogDTO>> GetBlogDetailsByAuthorId(int id)
+        {
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x=>x.AuthorId==id));
+        } 
+        public IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryAndAuthorId(int catId,int authId)
+        {
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x=>x.CategoryId==catId && x.AuthorId==authId));
+        }
+
         [SecuredOperation("Admin,Moderator")]
         public IResult Update(Blog blog)
         {
             _blogDal.Update(blog);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyUpdated);
         }
     }
 }

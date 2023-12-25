@@ -135,15 +135,19 @@ app.UseEndpoints(endpoints =>
     name: "default",
     pattern: "{controller=Default}/{action=Index}/{id?}");
 });
-//Admin/
+
+
+
+//Admin /
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapAreaControllerRoute(
         name: "Admin",
         areaName: "Admin",
         pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+
     );
-   
+
 });
 
 

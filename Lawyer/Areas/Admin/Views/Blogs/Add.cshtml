@@ -1,0 +1,86 @@
+﻿@model Entities.Concrete.Blog
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="pagetitle">
+    <h1>Ekle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Admin/">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a href="/Admin/Blogs/Index">Bloglar</a></li>
+            <li class="breadcrumb-item active">Yeni Blog Yazısı Ekle</li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Add" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+           
+            <div class="form-group">
+                <p>Kategori  </p>
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select class="form-control" name="CategoryId" id="CategoryId">
+                    @foreach (var category in ViewBag.v1)
+                    {
+                        <option value="@category.Id">
+                            @category.Name
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p>Başlık  </p>
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" name="Title"  />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p>Giriş</p>
+                <label asp-for="Description" class="control-label"></label>
+
+                <textarea name="description" id="Description" rows="10" cols="80">
+                  
+            </textarea>
+
+
+
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p>İçerik  </p>
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" name="Content" id="content" rows="10" cols="80">
+                  
+                </textarea>
+
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p> Fotoğraf </p>
+                <label asp-for="PhotoUrl" class="control-label"></label>
+                <input asp-for="PhotoUrl" class="form-control" name="PhotoUrl" />
+                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="/Admin/Blogs/Index">Blog Listesine Geri Dön</a>
+</div>
+
+<script>
+    CKEDITOR.replace('Description');
+    CKEDITOR.replace('Content');
+</script>

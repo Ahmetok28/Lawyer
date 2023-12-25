@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Castle.Components.DictionaryAdapter;
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Entities.Concrete
 {
     public class Blog:IEntity
     {
+       
         public int BlogId { get; set; }
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }

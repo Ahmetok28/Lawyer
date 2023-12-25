@@ -56,6 +56,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
+        public IDataResult<AuthorDTO> GetAuthor(int id)
+        {
+            return new SuccessDataResult<AuthorDTO>(_userDal.GetAuthor(id));
+        }
+
+        public IDataResult<List<AuthorDTO>> GetAuthors()
+        {
+            return new SuccessDataResult<List<AuthorDTO>>(_userDal.GetAuthors());
+        }
+
         public IDataResult<User> GetByMail(string email)
         {
             var value = _userDal.Get(u => u.Email == email);

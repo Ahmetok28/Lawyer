@@ -27,6 +27,7 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<Message> Messages { get; set; }
         public DbSet<ContactPage> ContactPage { get; set; }
         public DbSet<Blog>? Blogs { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<Post>? Posts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserProperty> UserProperties { get; set; }

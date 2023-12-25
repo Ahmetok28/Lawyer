@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -24,13 +25,13 @@ namespace Business.Concrete
         public IResult Add(ContactPage location)
         {
             _locationdal.Add(location);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyAdded);
         }
         [SecuredOperation("Admin,Moderator")]
         public IResult Delete(ContactPage location)
         {
             _locationdal.Delete(location);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyDeleted);
         }
 
         
@@ -48,7 +49,7 @@ namespace Business.Concrete
         public IResult Update(ContactPage location)
         {
             _locationdal.Update(location);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyUpdated);
         }
     }
 }

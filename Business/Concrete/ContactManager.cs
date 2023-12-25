@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -24,13 +25,13 @@ namespace Business.Concrete
         public IResult Add(Contact contact)
         {
             _contactDal.Add(contact);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyAdded);
         }
         [SecuredOperation("Admin,Moderator")]
         public IResult Delete(Contact contact)
         {
             _contactDal.Delete(contact);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyDeleted);
         }
 
         public IDataResult< Contact> GetContact()
@@ -41,7 +42,7 @@ namespace Business.Concrete
         public IResult Update(Contact contact)
         {
             _contactDal.Update(contact);
-            return new SuccessResult();
+            return new SuccessResult(Messages.SuccesfullyUpdated);
         }
 
         private Contact ReplacePhoneNumber(Contact contact)

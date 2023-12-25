@@ -7,6 +7,34 @@ namespace DataAccess.Conrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, Context>, IUserDal
     {
+        public AuthorDTO GetAuthor(int id)
+        {
+            using (var context = new Context())
+            {
+                var result = from author in context.Users.Where(a => a.Id ==id)
+                             select new AuthorDTO
+                             {
+                                 AuthorId = author.Id,
+                                 Name = author.FirstName + " " + author.LastName
+                             };
+                return result.SingleOrDefault() ;
+            }
+        }
+
+        public List<AuthorDTO> GetAuthors()
+        {
+            using (var context = new Context())
+            {
+                var result = from author in context.Users
+                             select new AuthorDTO
+                             {
+                                 AuthorId = author.Id,
+                                 Name = author.FirstName + " " + author.LastName
+                             };
+                return result.ToList();
+            }
+        }
+
         public List<OperationClaim> GetClaims(User user)
         {
             using (var context = new Context())

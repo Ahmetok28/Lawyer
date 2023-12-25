@@ -1,0 +1,80 @@
+﻿@model Entities.Concrete.Blog
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Sil</h1>
+
+<h3>Silmek İstediğinize Emin misiniz?</h3>
+<div>
+    <h4>@Model.Title </h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BlogId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BlogId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AuthorId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(@Model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw( @Model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhotoUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhotoUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+    
+    <form asp-action ="Delete" method="post">
+        <input type="hidden" name="BlogId" id="blogId" value="@Model.BlogId" />
+        <input type="hidden" name="AuthorId" id="title" value="@Model.Title" />
+        <input type="hidden" name="CategoryId" id="authorId" value="@Model.AuthorId" />
+        <input type="hidden" name="Title" id="categoryId" value="@Model.CategoryId" />
+        <input type="hidden" name="Description" id="description" value="@Model.Description" />
+        <input type="hidden" name="Content" id="content" value="@Model.Content" />
+        <input type="hidden" name="PhotoUrl" id="photoUrl" value="@Model.PhotoUrl" />
+        <input type="hidden" name="CreatedDate" id="createdDate" value="@Model.CreatedDate" />
+        
+         <button type="submit" class="btn btn-danger">Sil</button>|
+        <a href="/Admin/Blogs/Index">Geri Dön</a>
+    </form>
+</div>
+
+
