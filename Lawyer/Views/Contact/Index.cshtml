@@ -79,10 +79,13 @@
                 </div>
             </div>
         </section>
-
-        <section>
-            <iframe src="@Model.ContactPageData.MapAdress" width="1920" height="620" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
+        @if (@Model.ContactPageData.MapAdress != null)
+        {
+            <section>
+                <iframe src="@Model.ContactPageData.MapAdress" width="1920" height="620" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </section>
+        }
+       
 
 
     </div>

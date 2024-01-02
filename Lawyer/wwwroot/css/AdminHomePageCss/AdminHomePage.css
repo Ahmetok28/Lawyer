@@ -1,0 +1,60 @@
+﻿body {
+}
+    /* ----------------------------------------- GLOBAL RESETS ---------------------------------------------   */
+    .wrapper {
+    margin: 0 auto;
+    padding: 0 2rem;
+    max-width: 1150px;
+}
+
+
+
+/* ------------------------------------------------------------- HEADER ----------------------------------------------------- */
+header_admin {
+    color: #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    ;
+}
+.header__container {
+    display: flex;
+    min-height: 70vh;
+    align-items: center;
+}
+
+/* ------------------------------------------------------------- FEATURES ----------------------------------------------------- */
+
+.features__container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    border-radius: 0.5rem;
+    transform: translateY(-50%);
+    justify-content: center;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.feature__box {
+    display: flex;
+    min-width: 28rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* ------------------------------------------------------------- ABOUT ----------------------------------------------------- */
+
+.about {
+    padding-bottom: 9rem;
+}
+
+.about__container {
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+    justify-content: space-between;
+}
+

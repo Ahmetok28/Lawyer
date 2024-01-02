@@ -1,0 +1,57 @@
+﻿@model Entities.Concrete.ContactPage
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Güncelle</h1>
+
+<h4>İletişim sayfası</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input readonly="readonly" asp-for="Id" class="form-control"  value="@Model.Id"/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label> Sayfa Yazısı</label>
+                <input asp-for="PageText" class="form-control" value="@Model.PageText" />
+                <span asp-validation-for="PageText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label> Ofis Adresi</label>
+                <input asp-for="OfficeAdress" class="form-control" value="@Model.OfficeAdress" />
+                <span asp-validation-for="OfficeAdress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Ofis Telefonu</label>
+                <input asp-for="OfficeTelephone" class="form-control" value="@Model.OfficeTelephone" />
+                <span asp-validation-for="OfficeTelephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Ofis Mail Adresi</label>
+                <input asp-for="OfficeMail" class="form-control" value="@Model.OfficeMail"/>
+                <span asp-validation-for="OfficeMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Harita için gereken adres</label>
+                <p style="color:red">Harita kullanmayacaksanız tamamen boş bırakın</p>
+                <input asp-for="MapAdress" class="form-control" value="@Model.MapAdress"/>
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri Dön</a>
+</div>
+

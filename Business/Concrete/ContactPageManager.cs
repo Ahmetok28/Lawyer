@@ -40,6 +40,11 @@ namespace Business.Concrete
             return new SuccessDataResult<ContactPage>( _locationdal.GetAll().FirstOrDefault());          
         }
 
+        public IDataResult<ContactPage> GetContactPageById(int id)
+        {
+            return new SuccessDataResult<ContactPage>(_locationdal.Get(x=>x.Id==id));
+        }
+
         public IDataResult<List<ContactPage>> GetLocations()
         {
             return new SuccessDataResult<List<ContactPage>>( _locationdal.GetAll());

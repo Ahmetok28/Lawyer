@@ -6,17 +6,17 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
-   
-    
+
+
     <link rel="icon" href="~/AboutContact/images/favicon.ico" type="image/x-icon">
-   @* <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic%7CLato:300,300italic,400,400italic,700,900%7CMerriweather:700italic">*@
+    @* <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic%7CLato:300,300italic,400,400italic,700,900%7CMerriweather:700italic">*@
     <link rel="stylesheet" href="~/css/fontsabout.css">
-@*    <link rel="stylesheet" href="~/css/bootstrapabout.css">*@
+    @*    <link rel="stylesheet" href="~/css/bootstrapabout.css">*@
     @*<link rel="stylesheet" href="~/css/styleabout.css">*@
     <link href="~/css/css/aboutstyle.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/judge-master/css/ionicons.min.css">
-  
-   
+
+
 </head>
 <body>
 
@@ -34,19 +34,17 @@
                 </div>
             </div>
         </section>
-
+        <!--Biz kimiz ve progress barlar-->
         <section class="section-66 section-md-90 section-xl-bottom-120">
             <div class="container">
-                <h3>Biz Kimiz</h3>
+                <h3>@ViewBag.v1.WhoWeAreTitle</h3>
                 <div class="row row-40 justify-content-xl-between align-items-lg-center">
                     <div class="col-md-6 col-xl-5 text-secondary">
                         <div class="inset-md-right-15 inset-xl-right-0">
                             <p>
-                                Kendimizi sadece 'avukatlar' olarak görmüyoruz, her zaman müşterilerimizin güvendiği danışmanı olmaya çalışacağız, bu bir ticari veya kişisel bağlamda olsun. Bir hukuk firmasından beklenenlerin çok ötesinde hizmetler sunuyoruz.
+                                @ViewBag.v1.WhoWeAreContent
                             </p>
-                            <p>
-                                Temel değerlerimiz dürüstlük ve güven, yeniliğin teşvik edilmesi, takım çalışması ve firmadaki herkesin kişisel gelişiminin devamıdır.
-                            </p>
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -72,7 +70,7 @@
                 </div>
             </div>
         </section>
-
+        <!--Ekip-->
         <section class="section-60 section-lg-90 bg-whisper">
             <div class="container">
                 <div class="row row-40 align-items-sm-end">
@@ -82,15 +80,16 @@
                     <div class="col-sm-6 col-md-12 col-lg-3 text-center">
                         <div class="block-wrap-1">
                             <div class="block-number"></div>
-                            <h3 class="text-normal">Alanlarında</h3>
-                            <p class="h5 h5-smaller text-style-4">Uzman Profesyoneller</p>
-                            <p>Eğer siz ya da işletmeniz hukuki bir sorunla karşı karşıyaysa, bir avukatla başlangıç danışması ayarlamak için bugün bizimle iletişime geçin.</p><a class="link link-group link-group-animated link-bold link-secondary" href="/Contact/Index"><span>İletişim</span><span class="novi-icon icon icon-xxs icon-primary fa fa-angle-right"></span></a>
+                            <h3 class="text-normal">Alanında</h3>
+                            <p class="h5 h5-smaller text-style-4">Uzman</p>
+                            <p>@ViewBag.v1.TeamText</p><a class="link link-group link-group-animated link-bold link-secondary" href="/Contact/Index"><span>İletişim</span><span class="novi-icon icon icon-xxs icon-primary fa fa-angle-right"></span></a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!--Hakkımızda söylenenler-->
         <section class="section parallax-container bg-black" data-parallax-img="images/clients-testimonials-parallax-1.jpg">
             <div class="parallax-content">
                 <div class="section-60 section-md-90 section-xl-120">
@@ -99,48 +98,31 @@
                             <div class="col-sm-12">
                                 <h3>Hakkımızda Söylenenler</h3>
                             </div>
+
                             <div class="col-lg-11 col-xl-9">
                                 <div class="owl-carousel-inverse">
                                     <div class="owl-carousel owl-nav-position-numbering" data-autoplay="true" data-items="1" data-stage-padding="0" data-loop="false" data-margin="30" data-nav="true" data-numbering="#owl-numbering-1" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                                        <div class="item">
-                                            <blockquote class="quote-minimal quote-minimal-inverse">
-                                                <div class="quote-body">
-                                                    <p>
-                                                        <q>Yapar Hukuk Bürosu ile olan deneyimimizden çok memnun kaldık. Gerçekten mahkemeye gitmesek de, Ertuğrul Bey'in bizi en iyi şekilde savunmaya hazır olduğunu hissettik. Tüm çalışanlarla yaşadığımız deneyim çok güzel ve keyifliydi. Çalışmanız için teşekkür ederim!</q>
-                                                    </p>
-                                                </div>
-                                                <div class="quote-meta">
-                                                    <cite>Ahmet ÖK</cite>
-                                                    <p class="caption">Müşteri</p>
-                                                </div>
-                                            </blockquote>
-                                        </div>
-                                        <div class="item">
-                                            <blockquote class="quote-minimal quote-minimal-inverse">
-                                                <div class="quote-body">
-                                                    <p>
-                                                        <q>Yapar Hukuk Bürosunu seçtiğim için çok memnunum. Çok kötü bir motosiklet kazası geçirdik. Biz aile gibi karşılandık ve her adımda dahil edildik. Davamla ilgilenen herkese teşekkür ederim!</q>
-                                                    </p>
-                                                </div>
-                                                <div class="quote-meta">
-                                                    <cite>Deniz Yılmaz</cite>
-                                                    <p class="caption">Müşteri</p>
-                                                </div>
-                                            </blockquote>
-                                        </div>
-                                        <div class="item">
-                                            <blockquote class="quote-minimal quote-minimal-inverse">
-                                                <div class="quote-body">
-                                                    <p>
-                                                        <q>Ertuğrul Bey ve ekibi, bizi süreç boyunca rahat hissettirmek konusunda harikaydı. Vakamızın ilerleyişi hakkında bizi güncel tuttular ve tamamlamamız gereken tüm belgeler konusunda çok yardımcı oldular. Her şeyin sonucundan çok memnunuz.</q>
-                                                    </p>
-                                                </div>
-                                                <div class="quote-meta">
-                                                    <cite>Ali Ertürk</cite>
-                                                    <p class="caption">Müşteri</p>
-                                                </div>
-                                            </blockquote>
-                                        </div>
+                                        @foreach (var item in ViewBag.v2)
+                                        {
+                                            <div class="item">
+
+                                                <blockquote class="quote-minimal quote-minimal-inverse">
+
+                                                    <div class="quote-body">
+                                                        <p>
+                                                            <q>@item.Description</q>
+                                                        </p>
+                                                    </div>
+                                                    <div class="quote-meta">
+                                                        <cite>@item.Author</cite>
+                                                        <p class="caption">@item.Job</p>
+                                                    </div>
+
+                                                </blockquote>
+
+                                            </div>
+                                        }
+
                                     </div>
                                     <div class="owl-numbering owl-numbering-default" id="owl-numbering-1">
                                         <div class="numbering-current"></div>
@@ -149,6 +131,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -156,134 +140,83 @@
         </section>
 
 
+        <!--Neden biz-->
+        @{
+            var whyChooseUsList = ViewBag.v3 as List<WhyChooseUsDTO>; // YourItemType, ViewBag.v3 içindeki öğelerin türüne göre değiştirilmelidir.
+        }
 
         <section class="bg-whisper">
             <div class="container">
-                <div class="row align-items-lg-end">
-                    <div class="offset-md-1 offset-lg-0 col-md-8 col-lg-6 col-xl-5">
-                        <div class="section-60 section-md-90">
-                            <div class="inset-md-left-100">
-                                <h3>Neden Bizi Şeçmelisiniz</h3>
-                            </div>
-                            <div class="inset-md-left-30 inset-md-right-30">
-                                <ul class="list-xl">
-                                    <li>
-                                        <article class="icon-box-horizontal">
-                                            <div class="unit unit-horizontal unit-spacing-md">
-                                                <div class="unit-left"><span class="novi-icon icon icon-primary icon-lg mercury-icon-users"></span></div>
-                                                <div class="unit-body">
-                                                    <h5><a href="#" class="myLink">İnaçlarımız</a></h5>
-                                                    <p class="bigger-text-p">Firmamız bir aile gibidir. Her dava birinin hayatıdır ve buna gerçekten böyle davranmamız gerektiğine inanıyoruz.</p>
-                                                </div>
-                                            </div>
-                                        </article>
-
-                                    </li>
-                                    <li>
-                                        <article class="icon-box-horizontal">
-                                            <div class="unit unit-horizontal unit-spacing-md">
-                                                <div class="unit-left"><span class="novi-icon icon icon-primary icon-lg mercury-icon-lib"></span></div>
-                                                <div class="unit-body">
-                                                    <h5><a href="#" class="myLink">Zengin Deneyim</a></h5>
-                                                    <p class="bigger-text-p">Deneyim işi halleder. Uzun yıllardır hukuki uygulama deneyimine sahibiz.</p>
-                                                </div>
-                                            </div>
-                                        </article>
-
-                                    </li>
-                                    <li>
-                                        <article class="icon-box-horizontal">
-                                            <div class="unit unit-horizontal unit-spacing-md">
-                                                <div class="unit-left"><span class="novi-icon icon icon-primary icon-lg mercury-icon-briefcase"></span></div>
-                                                <div class="unit-body">
-                                                    <h5><a href="#" class=" myLink">Harika Sonuçlar</a></h5>
-                                                    <p class="bigger-text-p">Sonuçlar, hayatınıza fark yarattığımızda başarılı olur. Size para ve faydaları almanız konusunda yardımcı olacağız.</p>
-                                                </div>
-                                            </div>
-                                        </article>
-
-                                    </li>
-                                </ul>
+                <div class="inset-md-left-100">
+                    <br />
+                    <h3>Neden Bizi Seçmelisiniz</h3>
+                </div>
+                <div class="row align-items-start">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="section-60 section-md-90">
+                                
+                                @foreach (var item in whyChooseUsList.Where((value, i) => i % 2 == 0))
+                                {
+                                    <div class="inset-md-left-30 inset-md-right-30">
+                                        <ul class="list-xl">
+                                            <li>
+                                                <article class="icon-box-horizontal">
+                                                    <div class="unit unit-horizontal unit-spacing-md">
+                                                        <div class="unit-left"><span class="@item.LogoText"></span></div>
+                                                        <div class="unit-body">
+                                                            <h5><a href="#" class="myLink">@item.Title</a></h5>
+                                                            <p class="bigger-text-p">@item.Description</p>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
                             </div>
                         </div>
-                    </div>
 
-
-
-                    <div class="col-md-9 col-lg-6 col-xl-7 offset-top-30 offset-md-top-0 d-none d-lg-block">
-                        <div class="section-60 section-md-90">
-                            <div class="inset-md-left-100">
-                                <h3></h3>
+                        <div class="col-md-6">
+                            <!-- İkinci sütun içeriği -->
+                            <div class="section-60 section-md-90">
+                                @foreach (var item in whyChooseUsList.Where((value, i) => i % 2 != 0))
+                                {
+                                    <div class="inset-md-left-30 inset-md-right-30">
+                                        <ul class="list-xl">
+                                            <li>
+                                                <article class="icon-box-horizontal">
+                                                    <div class="unit unit-horizontal unit-spacing-md">
+                                                        <div class="unit-left"><span class="@item.LogoText"></span></div>
+                                                        <div class="unit-body">
+                                                            <h5><a href="#" class="myLink">@item.Title</a></h5>
+                                                            <p class="bigger-text-p">@item.Description</p>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
                             </div>
-                            <div class="inset-md-left-30 inset-md-right-30">
-
-                                <ul class="list-xl">
-                                    <li>
-                                        <article class="icon-box-horizontal">
-                                            <div class="unit unit-horizontal unit-spacing-md">
-                                                <div class="unit-left"><span class="novi-icon icon icon-primary icon-lg mercury-icon-users"></span></div>
-                                                <div class="unit-body">
-                                                    <h5><a href="#" class="myLink">Vizyonumuz</a></h5>
-                                                    <p class="bigger-text-p">
-                                                        Hukukun temelinde adaletin yeşermesini hedefleyen, deneyimli ve tutkulu ekibimiz, bu ideal doğrultusunda uzmanlıklarını adaletin terazisinin hassasiyetiyle birleştiriyor. Hukuki mücadelelerde mükemmeliyeti arayan avukatlar olarak, her davanın önemli olduğuna inanıyor ve bu doğrultuda müvekkillerimize adil bir hukuki temsil sunma sorumluluğunu taşıyoruz.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </li> 
-
-                                    <li>
-                                        <article class="icon-box-horizontal">
-                                            <div class="unit unit-horizontal unit-spacing-md">
-                                                <div class="unit-left"><span class="novi-icon icon icon-primary icon-lg mercury-icon-users"></span></div>
-                                                <div class="unit-body">
-                                                    <h5><a href="#" class="myLink" >Müşteri Memnuniyeti Odaklı Çalışma</a></h5>
-                                                    <p class="bigger-text-p">                                                     
-                                                        Müvekkillerimizin memnuniyeti, çalışmalarımızın odak noktasıdır. Her bir davada müvekkillerimizin beklentilerini aşmayı hedefler, onlara adil bir hukuki temsil sunarak sürekli destek oluruz. Müvekkillerimizle uzun vadeli işbirlikleri kurmayı ve onların hukuki ihtiyaçlarına kalıcı çözümler sunmayı amaçlarız.
-
-                                                        Avukatlık mesleğini adaletin hizmetine adayan ekibimiz, müvekkillerimizin haklarını koruma misyonunu taşırken, dürüstlük, uzmanlık ve müşteri memnuniyeti prensiplerinden ödün vermeden çalışmaya devam edecektir. Hukuki sorunlarınızla ilgili çözümlerimizle sizi desteklemek için buradayız. Adaletin terazisinde yanınızdayız.
-                                                    </p>
-
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </li>
-                                </ul>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+
+
+
+
+
 
     </div>
     <div class="snackbars" id="form-output-global"></div>
     <script src="~/AboutContact/js/core.min.js"></script>
     <script src="~/AboutContact/js/script.js"></script>
-@*
-    <script>
-        // JavaScript ile tıklanınca hiçbir şey yapma
-       var links = document.querySelectorAll('.myLink');
-      
 
-    links.forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); // Tıklanınca varsayılan davranışı engelle
-            // İsterseniz burada başka işlemler yapabilirsiniz
-        });
-
-        link.addEventListener('mouseover', function() {
-                this.setAttribute('data-tooltip', '');
-                
-            
-        });
-    });
-    </script>
-    
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>*@
-    @*<script>
-        $(.myLink).attr("title", "");
-    </script>*@
 </body>
 </html>
+
+

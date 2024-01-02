@@ -21,7 +21,7 @@ namespace Core.Utilities.Security.JWT
         }
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
-            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
+            _accessTokenExpiration = DateTime.Now.AddDays(_tokenOptions.AccessTokenExpiration);
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
@@ -61,4 +61,49 @@ namespace Core.Utilities.Security.JWT
             return claims;
         }
     }
+
+    //public string CreateRefreshToken()
+    //{
+    //    var refreshTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.RefreshTokenExpiration);
+    //    var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
+    //    var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
+
+    //    var refreshToken = new JwtSecurityToken(
+    //        issuer: _tokenOptions.Issuer,
+    //        audience: _tokenOptions.Audience,
+    //        expires: refreshTokenExpiration,
+    //        notBefore: DateTime.UtcNow,
+    //        signingCredentials: signingCredentials
+    //    );
+
+    //    var refreshTokenHandler = new JwtSecurityTokenHandler();
+    //    return refreshTokenHandler.WriteToken(refreshToken);
+    //}
+
+    //public bool ValidateRefreshToken(string refreshToken)
+    //{
+    //    var refreshTokenHandler = new JwtSecurityTokenHandler();
+
+    //    try
+    //    {
+    //        var tokenValidationParameters = new TokenValidationParameters
+    //        {
+    //            ValidateIssuer = true,
+    //            ValidateAudience = true,
+    //            ValidateLifetime = true,
+    //            ValidateIssuerSigningKey = true,
+    //            ValidIssuer = _tokenOptions.Issuer,
+    //            ValidAudience = _tokenOptions.Audience,
+    //            IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey),
+    //            ClockSkew = TimeSpan.Zero
+    //        };
+
+    //        refreshTokenHandler.ValidateToken(refreshToken, tokenValidationParameters, out var validatedToken);
+    //        return true;
+    //    }
+    //    catch
+    //    {
+    //        return false;
+    //    }
+    //}
 }

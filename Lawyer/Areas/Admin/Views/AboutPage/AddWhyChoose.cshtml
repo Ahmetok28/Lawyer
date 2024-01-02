@@ -1,0 +1,61 @@
+﻿@model Entities.Concrete.WhyChooseUs
+
+@{
+    ViewData["Title"] = "AddWhyChoose";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Neden Bizi Seçmelisiniz Madde Ekle</h1>
+
+<h4>Neden Bizi Seçmelisiniz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="AddWhyChoose">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LogoId" class="control-label"></label>
+                <select asp-for="LogoId" class="form-control">
+                    @foreach (var item in ViewBag.logos)
+                    {
+                        <option value="@item.Id">-- @item.Name --</option>
+                    }
+
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2">
+        <label>Logolar</label>
+
+        @foreach (var item in ViewBag.Logos)
+        {
+            <div class="form-group">
+
+                <label>@item.Name</label>
+                <label style="font-size:3rem;" class="unit-left"><span class="@item.Logo"></span> </label>
+            </div>
+        }
+       
+        </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri Gön</a>
+</div>
+

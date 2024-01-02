@@ -78,7 +78,7 @@ namespace Lawyer.Areas.Admin.Controllers
         {
             var blogValue=_blogService.BlogGetById(id).Data;
             var blogCategories = _blogCategoryService.GetAll().Data;
-            ViewBag.CreatedDate = blogValue.CreatedDate.ToString("yyyy/mm/dd");
+            ViewBag.createdDate = blogValue.CreatedDate.ToString("yyyy/mm/dd");
             var model= Tuple.Create(blogValue, blogCategories);
         
             return View(model);
@@ -91,7 +91,7 @@ namespace Lawyer.Areas.Admin.Controllers
 
                  _blogService.Update(blog);
                 // _blogService.Update başarı veya başarısızlık durumunu belirten bir mesaj döndürüyorsa
-                return RedirectToAction("Admin"); // Başarı durumunda Index'e yönlendir
+                return RedirectToAction("Index"); // Başarı durumunda Index'e yönlendir
             }
 
             // ModelState geçerli değilse, görünümü geçerlilik hataları ile birlikte geri döndür

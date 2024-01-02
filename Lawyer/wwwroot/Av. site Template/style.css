@@ -203,14 +203,11 @@ nav li:hover {
 /* ------------------------------------------------------------- HEADER ----------------------------------------------------- */
 
 header {
-  color: var(--color-white);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
-    url("https://demo.themexbd.com/wpv/attorna/wp-content/uploads/2021/05/slider.jpg");
+    color: var(--color-white);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
 .header__container {
   display: flex;
   min-height: 70vh;
@@ -1078,19 +1075,23 @@ header {
 /* --------------------------------------------------------- FOOTER -------------------------------------------------------------  */
 
 .footer {
-  display: flex;
-  color: var(--color-white);
-  padding-top: var(--gutter-huge);
-  padding-bottom: var(--gutter-tiny);
-  background-color: var(--color-black);
+    display: flex;
+    color: #ffffff;
+    padding-top: 9rem;
+    background-color: var(--color-black);
+    padding: 50px;
+    text-align: center;
+    position: relative;
+    margin-top: auto;
+    width: 100%;
 }
 
 .footer__container {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--gutter-small);
-  justify-content: space-between;
-  padding-bottom: var(--gutter-huge);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gutter-small);
+    justify-content: space-between;
+   
 }
 
 .footer__textbox {

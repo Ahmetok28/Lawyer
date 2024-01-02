@@ -1,0 +1,107 @@
+﻿@model Entities.Concrete.ContactPage
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>İletişim Sayfası</h1>
+
+<div>
+    <h4>Detayı</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            Sayfa Yazısı
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PageText)
+        </dd>
+
+        <dt class = "col-sm-2">
+           Ofis Adresi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OfficeAdress)
+        </dd>
+        <dt class = "col-sm-2">
+            Ofis Telefonu
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OfficeTelephone)
+        </dd>
+        <dt class = "col-sm-2">
+            Ofis Mail Adresi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OfficeMail)
+        </dd>
+        <dt class = "col-sm-2">
+            Harita Adresi
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.MapAdress != null)
+            {
+                <p>https://www.google.com/maps/embed?.....</p>
+            }
+           
+        </dd>
+    </dl>
+</div>
+<div>
+    
+    <a asp-controller="ContactPage" asp-route-Id="@Model.Id" asp-action="Edit" asp-area="Admin" class="btn btn-info">Güncelle</a>
+</div>
+<hr />
+
+<div>
+    <h4>Harita Eklemek için Yapılması Gerekenler</h4>
+
+    <br />
+    <p style="color:red">Eğer eklemek istemiyorsanız harita adresi kısımını tamamen boş bırakın aksi takdirde uygulama hata verebilir.</p>
+    <hr />
+    <h4>Adım 1:</h4>
+    <p>Google hartilara gidin. </p>
+    
+    <h4>Adım 2:</h4>
+    <p>Eklemek istediğiniz adresi haritalarda seçin. </p>
+    
+
+    <h4>Adım 3:</h4>
+    <p>Açılan yan panelde paylaş şeçeneğine tıklayın. </p>
+    <img src="~/Images/MapAdressInfo/mapadresinfo1.png" />
+
+    <h4>Adım 4:</h4>
+    <p>Açılan küçük pencerede harita yerleştirme seçeneğini seçin. </p>
+    <img src="~/Images/MapAdressInfo/mapadressinfo2.png" />
+
+    <h4>Adım 5:</h4>
+    <p>Burada HTML'yi kopyala butonuna tıklayız. </p>
+        
+    <h4>Adım 6:</h4>
+    <p> <a class="btn btn-success" href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_editor" target="_blank">Editor</a>Editor butonuna tıklayın ve açılan sayfanın sol tarafındaki tüm yazıları silin. </p>
+    <img src="~/Images/MapAdressInfo/mapadresinfo4.png" />
+
+    <h4>Adım 7:</h4>
+    <p>Kopyaladığınız HTML kodunu buraya yapıştırın. </p>
+
+    <h4>Adım 8:</h4>
+    <p>Burada iframe src="https//....." width ...  şu sekilde bir kod olacak. </p>
+    <img src="~/Images/MapAdressInfo/mapadresinfo5.png" />
+    <h4>Adım 9:</h4>
+    <p>Burada çift tırnak işareti arasında yer alan adresi kopyalayacağız. </p>
+
+    <h4>Adım 10:</h4>
+    <p>Kopyaladığınız bu adresi harita adresi kısımına yapıştıracağız. </p>
+    <img src="~/Images/MapAdressInfo/mapadressinfo6.png" />
+
+    <h4>Adım 11:</h4>
+    <p>Bu kadar. </p>
+
+</div>

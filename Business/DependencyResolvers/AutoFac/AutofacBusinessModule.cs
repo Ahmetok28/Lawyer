@@ -67,6 +67,18 @@ namespace Business.DependencyResolvers.AutoFac
 
             builder.RegisterType<PostManager>().As<IPostService>().SingleInstance();
             builder.RegisterType<EfPostDal>().As<IPostDal>().SingleInstance();
+            
+            builder.RegisterType<WhatsSaidAboutUsManager>().As<IWhatsSaidAboutUsService>().SingleInstance();
+            builder.RegisterType<EfWhatsSaidAboutUsDal>().As<IWhatSaidAboutUsDal>().SingleInstance(); 
+
+            builder.RegisterType<WhyChooseUsManager>().As<IWhyChooseUsService>().SingleInstance();
+            builder.RegisterType<EfWhyChooseUsDal>().As<IWhyChooseUsDal>().SingleInstance(); 
+
+            builder.RegisterType<AboutPageManager>().As<IAboutPageService>().SingleInstance();
+            builder.RegisterType<EfAboutPageDal>().As<IAboutPageDal>().SingleInstance();
+            
+            builder.RegisterType<WhyChooseLogoManager>().As<IWhyChooseLogoService>().SingleInstance();
+            builder.RegisterType<EfWhyChooseLogoDal>().As<IWhyChooseLogoDal>().SingleInstance();
 
 
 

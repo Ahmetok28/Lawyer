@@ -1,0 +1,83 @@
+﻿@model List<PracticeArea>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+    <div class="pagetitle">
+        <h1>Çalışma Alşanları</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+   
+
+<p>
+        <span><a asp-action="Index">Çalışma Alanları</a> / <a class="btn btn-success" href="/Admin/Blogs/Add">Yeni Çalışma Alanı Ekle</a> </span>
+    </p>
+     
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table datatable">
+                            
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Başlık</th>
+                                    <th>İçerik</th>
+                                    <th>İşlemler</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item1 in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item1.Id
+                                        </td>
+                                        <td>
+                                            @item1.Name
+                                        </td>
+                                        <td>
+                                            @item1.Description
+                                        </td>
+
+                                        <td>
+                                            <a asp-controller="PracticeAreas" asp-route-ID="@item1.Id" asp-action="Details" asp-area="Admin" method="get" class="btn btn-info">Detay</a>
+                                            <a asp-controller="PracticeAreas" asp-route-Id="@item1.Id" asp-action="Edit" asp-area="Admin" class="btn btn-warning">Güncelle</a>
+                                            <a asp-controller="PracticeAreas" asp-route-id="@item1.Id" asp-action="Delete" asp-area="Admin" method="get" class="btn btn-danger">Sil</a>
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    
+
+
+
+

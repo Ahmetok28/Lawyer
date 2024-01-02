@@ -9,7 +9,7 @@ namespace Business.Abstract
         IResult Add(BlogCategory blog);
         IResult Delete(BlogCategory blog);
         IResult Update(BlogCategory blog);
-        IDataResult<List<BlogCategory>> GetAll();     
+        IDataResult<List<BlogCategory>> GetAll();
         IDataResult<BlogCategory> BlogCategoryGetById(int id);
-    }
+    } 
 }

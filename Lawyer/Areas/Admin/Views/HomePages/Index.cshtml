@@ -1,0 +1,32 @@
+﻿@model Entities.Concrete.HomeText
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h1>Anasayfa Giriş 
+    
+    <a asp-action="EditHeader" asp-controller="HomePages" asp-area="Admin" class="btn btn-info">Düzenle</a>
+
+</h1>
+
+@await Component.InvokeAsync("_HeaderPartialAdmin")
+<!-- ---------------------------------------------------------------- FEATURES ------------------------------------------------------------  -->
+
+<h1>Anasayfa Butonlar       <a class="btn btn-info">Düzenle</a></h1>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@await Component.InvokeAsync("_FeaturePartial")
+<!-- ---------------------------------------------------------------   ABOUT --------------------------------------------------------------  -->
+<h1>Anasayfa Hakkımızda
+    <a asp-action="EditAbout" asp-controller="HomePages" asp-area="Admin" class="btn btn-info">Düzenle</a>
+    </h1>
+@await Component.InvokeAsync("_AboutPartial")
+<!-- ------------------------------------------------------------    SERVICES ---------------------------------------------------------------  -->
+
+

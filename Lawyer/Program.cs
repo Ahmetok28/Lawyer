@@ -46,6 +46,7 @@ builder.Services.AddAuthentication(options =>
             ValidAudience = tokenOptions.Audience,
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+             
         };
         options.Events = new JwtBearerEvents
         {
@@ -55,6 +56,7 @@ builder.Services.AddAuthentication(options =>
                 context.Token = token;
                 return Task.CompletedTask;
             }
+            
         };
        
 
@@ -84,6 +86,7 @@ var app = builder.Build();
 app.Use(async (context, next) =>
 {
     var token = context.Request.Cookies["AccessToken"];
+
 
     if (!string.IsNullOrEmpty(token) &&
         !context.Request.Headers.ContainsKey("Authorization"))

@@ -1,4 +1,6 @@
-﻿<head>
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -21,10 +23,15 @@
     <link href="~/NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="~/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="~/NiceAdmin/simple-datatables/style.css" rel="stylesheet">
+    
 
     <!-- Template Main CSS File -->
     <link href="~/NiceAdmin/assets/css/style.css" rel="stylesheet">
+
+    <!-- Benim Ekledeğim Css ler -->
+   @* <link href="~/css/adminhomepagecss/adminhomepage.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/fontsabout.css">*@
 
     <!--ckeditor-->
    @* <script src="~/ckeditor/ckeditor.js"></script>*@
@@ -248,8 +255,8 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
+                            <a asp-controller="Auth" asp-action="Logout" asp-area="Admin" class="dropdown-item d-flex align-items-center">
+                                <i  class="bi bi-box-arrow-right"></i>
                                 <span>Çıkış Yap</span>
                             </a>
                         </li>
@@ -267,7 +274,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="/Admin/Admin/Index">
+                <a class="nav-link " href="/Admin">
                     <i class="bi bi-grid"></i>
                     <span>Admin Özet</span>
                 </a>
@@ -360,12 +367,12 @@
                 </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="tables-general.html">
+                        <a asp-action="Index" asp-controller="HomePages" asp-area="Admin">
                             <i class="bi bi-circle"></i><span>Ana Sayfa </span>
                         </a>
                     </li>
                     <li>
-                        <a href="tables-data.html">
+                        <a asp-action="Index" asp-controller="AboutPage" asp-area="Admin">
                             <i class="bi bi-circle"></i><span>Hakkımızda</span>
                         </a>
                     </li>
@@ -375,7 +382,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="tables-data.html">
+                        <a asp-action="Index" asp-controller="ContactPage" asp-area="Admin">
                             <i class="bi bi-circle"></i><span>İletişim</span>
                         </a>
                     </li>
@@ -534,12 +541,48 @@
     <script src="~/NiceAdmin/assets/vendor/chart.js/chart.umd.js"></script>
     <script src="~/NiceAdmin/assets/vendor/echarts/echarts.min.js"></script>
     <script src="~/NiceAdmin/assets/vendor/quill/quill.min.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/NiceAdmin/simple-datatables/simple-datatables.js"></script>
+    
     <script src="~/NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
     <script src="~/NiceAdmin/assets/js/main.js"></script>
-    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Mevcut sayfa URL'sini alın
+            var currentUrl = window.location.pathname;
+
+            // Sidebar linklerini seç
+            var sidebarLinks = document.querySelectorAll('.sidebar-nav .nav-link');
+
+            // Mevcut URL ile eşleşen bağlantıyı bulun
+            sidebarLinks.forEach(function (link) {
+                var controller = link.getAttribute('asp-controller');
+                var action = link.getAttribute('asp-action');
+
+                // Controller ve action özellikleri eşleşiyorsa ve mevcut URL ile de eşleşiyorsa
+                if (controller && action && ("/" + controller + "/" + action).toLowerCase() === currentUrl.toLowerCase()) {
+                    // Diğer linklerin üzerindeki "active" sınıfını kaldırın
+                    sidebarLinks.forEach(function (otherLink) {
+                        otherLink.classList.remove('active');
+                    });
+
+                    // Sadece mevcut linkin üzerine "active" sınıfını ekleyin
+                    link.classList.add('active');
+                }
+            });
+
+            // Debug için console.log ekleyin
+            console.log("Script çalıştı, currentUrl:", currentUrl);
+            console.log(sidebarLinks);
+        });
+    </script>
+
+
+
+
+
     </body>
 
+    </html>

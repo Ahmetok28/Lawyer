@@ -1,0 +1,293 @@
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
+body {
+    padding-top: 56px;
+    font-family: "Open Sans", sans-serif;
+    background: #f6f9ff;
+    color: #444444;
+    
+}
+
+a {
+  color: #4154f1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #717ff5;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+}
+
+/*--------------------------------------------------------------
+# Main
+--------------------------------------------------------------*/
+#main {
+    margin-top: 60px;
+    padding: 20px 30px;
+    transition: all 0.3s;
+    margin-bottom: 24.1em;
+}
+
+@media (max-width: 1199px) {
+  #main {
+    padding: 20px;
+  }
+}
+
+
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 99999;
+  background: #4154f1;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 24px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: #6776f4;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Override some default Bootstrap stylings
+--------------------------------------------------------------*/
+
+
+
+/* Card */
+.card {
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-header {
+  border-color: #ebeef4;
+  background-color: #fff;
+  color: #798eb3;
+  padding: 15px;
+}
+
+.card-title {
+  padding: 20px 0 15px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #012970;
+  font-family: "Poppins", sans-serif;
+}
+
+.card-title span {
+  color: #899bbd;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card-body {
+  padding: 0 20px 20px 20px;
+}
+
+.card-img-overlay {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Alerts */
+.alert-heading {
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+/* Close Button */
+.btn-close {
+  background-size: 25%;
+}
+
+.btn-close:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+/* Accordion */
+.accordion-item {
+  border: 1px solid #ebeef4;
+}
+
+.accordion-button:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #012970;
+  background-color: #f6f9ff;
+}
+
+.accordion-flush .accordion-button {
+  padding: 15px 0;
+  background: none;
+  border: 0;
+}
+
+.accordion-flush .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  color: #4154f1;
+}
+
+.accordion-flush .accordion-body {
+  padding: 0 0 15px 0;
+  color: #3e4f6f;
+  font-size: 15px;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+  font-size: 14px;
+  font-family: "Nunito", sans-serif;
+  color: #899bbd;
+  font-weight: 600;
+}
+
+.breadcrumb a {
+  color: #899bbd;
+  transition: 0.3s;
+}
+
+.breadcrumb a:hover {
+  color: #51678f;
+}
+
+.breadcrumb .breadcrumb-item::before {
+  color: #899bbd;
+}
+
+.breadcrumb .active {
+  color: #51678f;
+  font-weight: 600;
+}
+
+
+
+/*--------------------------------------------------------------
+# Icons list page
+--------------------------------------------------------------*/
+.iconslist {
+  display: grid;
+  max-width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  padding-top: 15px;
+}
+
+.iconslist .icon {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  text-align: center;
+  color: #012970;
+  padding: 15px 0;
+}
+
+.iconslist i {
+  margin: 0.25rem;
+  font-size: 2.5rem;
+}
+
+.iconslist .label {
+  font-family: var(--bs-font-monospace);
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.25rem;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #666;
+}
+
+/*--------------------------------------------------------------
+# Profie Page
+--------------------------------------------------------------*/
+.profile .profile-card img {
+  max-width: 120px;
+}
+
+.profile .profile-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c384e;
+  margin: 10px 0 0 0;
+}
+
+.profile .profile-card h3 {
+  font-size: 18px;
+}
+
+.profile .profile-card .social-links a {
+  font-size: 20px;
+  display: inline-block;
+  color: rgba(1, 41, 112, 0.5);
+  line-height: 0;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.profile .profile-card .social-links a:hover {
+  color: #012970;
+}
+
+.profile .profile-overview .row {
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.profile .profile-overview .card-title {
+  color: #012970;
+}
+
+.profile .profile-overview .label {
+  font-weight: 600;
+  color: rgba(1, 41, 112, 0.6);
+}
+
+.profile .profile-edit label {
+  font-weight: 600;
+  color: rgba(1, 41, 112, 0.6);
+}
+
+.profile .profile-edit img {
+  max-width: 120px;
+}
+

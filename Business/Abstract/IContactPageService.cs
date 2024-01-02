@@ -9,6 +9,7 @@ namespace Business.Abstract
         IResult Update(ContactPage contactPage);
         IResult Delete(ContactPage contactPage);
         IDataResult<ContactPage> GetContactPage();
+        IDataResult<ContactPage> GetContactPageById(int id);
         
     }
 }

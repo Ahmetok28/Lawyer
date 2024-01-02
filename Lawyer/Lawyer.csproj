@@ -35,4 +35,15 @@
     <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\NiceAdmin\assets\vendor\simple-datatables\simple-datatables.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\NiceAdmin\assets\vendor\simple-datatables\style.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,57 @@
+﻿@model List<BlogCategory>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="section">
+    <p>
+        <span><a asp-action="Index">Blog Kategorileri</a> / <a class="btn btn-success" href="/Admin/BlogCategories/Add">Yeni Kategori Ekle</a> </span>
+    </p>
+
+  
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        
+                        <th>Kategori</th>
+                        
+                        <th>İşlemler</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Name
+                            </td>
+                           
+                            <td>
+                                
+                                <a asp-controller="BlogCategories" asp-route-Id="@item.Id" asp-action="Edit" asp-area="Admin" class="btn btn-warning">Güncelle</a>
+                                <a asp-controller="BlogCategories" asp-route-id="@item.Id" asp-action="Delete" asp-area="Admin" method="get" class="btn btn-danger">Sil</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+        </div>
+    </div>
+
+
+</section>
+

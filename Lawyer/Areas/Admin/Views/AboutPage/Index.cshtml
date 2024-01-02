@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>Sayfanın İlk Girişi Ve Ekip Kısımı</h2>
+<hr />
+<table class="table datatable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Başlık</th>
+            <th>İçerik</th>
+            <th>Ekip</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+       
+            <tr>
+                <td>
+                    @ViewBag.v1.Id
+                </td>             
+                <td>
+                @ViewBag.v1.WhoWeAreTitle
+                </td>
+                <td>
+                @ViewBag.v1.WhoWeAreContent
+                </td>
+                <td>
+                @ViewBag.v1.TeamText
+                </td>
+                <td>
+                <a asp-controller="AboutPage" asp-route-Id="@ViewBag.v1.Id" asp-action="UpdateAboutPage" asp-area="Admin" class="btn btn-warning">Güncelle</a>
+                </td>
+            </tr>
+        
+    </tbody>
+</table>
+<hr />
+
+<h2>Hakkımızda Söylenenler Kısımı</h2>
+<hr />
+<h2>Yeni Yorum Ekle</h2>
+<a asp-controller="AboutPage" asp-action="AddWhatSaids" asp-area="Admin" class="btn btn-info">Ekle</a>
+<table class="table datatable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>İsim</th>
+            <th>Meslek</th>
+            <th>Yazı</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.v2)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>             
+                <td>
+                    @item.Author
+                </td>
+                <td>
+                    @item.Job
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+
+                    <a asp-controller="AboutPage" asp-route-Id="@item.Id" asp-action="UpdateWhatSaids" asp-area="Admin" class="btn btn-warning">Güncelle</a>
+                    <a asp-controller="AboutPage" asp-route-id="@item.Id" asp-action="DeleteWhatsSaids" asp-area="Admin" method="get" class="btn btn-danger">Sil</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+
+<h2>Neden Bizi Seçmelisinizin Altında Yer Alan Kısım</h2>
+<hr />
+<h2>Yeni Madde Ekle</h2>
+<a asp-controller="AboutPage" asp-action="AddWhyChoose" asp-area="Admin" class="btn btn-info">Ekle</a>
+<table class="table datatable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Logo</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.v3)
+        {
+            <tr>
+                <td>
+                    @item.WCUId
+                </td>             
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    <div style="font-size:3rem;" class="unit-left"><span class="@item.LogoText"></span></div>
+                </td>
+                <td>
+
+
+                    <a asp-controller="AboutPage" asp-route-Id="@item.WCUId" asp-action="UpdateWhyChooseUs" asp-area="Admin" class="btn btn-warning">Güncelle</a>
+                    <a asp-controller="AboutPage" asp-route-id="@item.WCUId" asp-action="DeleteWhyChooseUs" asp-area="Admin" method="get" class="btn btn-danger">Sil</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />

@@ -14,5 +14,5 @@ namespace Business.Abstract
         IResult Update(AboutText aboutText);
         IResult Delete(AboutText aboutText);
         IDataResult<AboutText> GetAboutText();
-    }
+    } 
 }

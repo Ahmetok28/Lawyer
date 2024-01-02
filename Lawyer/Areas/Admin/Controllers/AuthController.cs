@@ -1,7 +1,12 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Security.JWT;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using System.Security.Claims;
 
 namespace Lawyer.Areas.Admin.Controllers
 {
@@ -39,7 +44,8 @@ namespace Lawyer.Areas.Admin.Controllers
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
-                SaveToken(result.Data.Token);          
+                SaveToken(result.Data);
+                //return RedirectToRoute("Admin");
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
             }
 
@@ -73,16 +79,40 @@ namespace Lawyer.Areas.Admin.Controllers
             return BadRequest(registerResult.Message);
         }
 
-        private void SaveToken(string token)
+        public async Task<IActionResult> Logout() 
+        {
+            RemoveToken();
+
+            return RedirectToAction("Index","Default");
+
+        }
+
+        private void RemoveToken ()
         {
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true,
                 SameSite = SameSiteMode.Strict,
-                Expires = DateTime.Now.AddDays(1)
+                Expires = DateTime.UtcNow.AddYears(-1)
             };
-            Response.Cookies.Append("AccessToken", token, cookieOptions);
+
+            Response.Cookies.Append("AccessToken", "", cookieOptions);
         }
+      
+     
+        private void SaveToken(AccessToken token)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = token.Expiration
+            };
+            
+            Response.Cookies.Append("AccessToken", token.Token, cookieOptions);
+        }
+
     }
 }

@@ -25,7 +25,7 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<HomeServices> HomeServices { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<ContactPage> ContactPage { get; set; }
+        public DbSet<ContactPage>? ContactPage { get; set; }
         public DbSet<Blog>? Blogs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<Post>? Posts { get; set; }
@@ -34,5 +34,9 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<ProfilePhoto>? ProfilePhotos { get; set; }
         public DbSet<OperationClaim>? OperationClaims { get; set; }
+        public DbSet<WhyChooseUs> WhyChooses { get; set; }
+        public DbSet<WhatsSaidAboutUs> WhatsSaidAbouts { get; set; }
+        public DbSet<AboutPage> AboutPages { get; set; }
+        public DbSet<WhyChooseLogo> WhyChooseLogos { get; set; }
     }
 }

@@ -12,9 +12,10 @@ namespace Entities.Concrete
     {
         [Key]
         public int Id { get; set; }
+        public string PageText { get; set; }
         public string OfficeAdress { get; set; }
         public string OfficeTelephone { get; set; }
         public string OfficeMail { get; set; }
-        public string MapAdress { get; set; }
+        public string? MapAdress { get; set; }
     }
 }

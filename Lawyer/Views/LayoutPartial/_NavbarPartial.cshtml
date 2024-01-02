@@ -59,33 +59,7 @@
 
 
 
-<script>
-    // Mevcut sayfa URL'sini alın
-    var currentUrl = window.location.pathname;
 
-    // Mevcut URL ile eşleşen bağlantıyı seçin
-    var currentNavLink = document.querySelector('a[href="' + currentUrl + '"]');
-
-    // "active" sınıfını seçilen bağlantıya ekleyin
-    if (currentNavLink) {
-        currentNavLink.classList.add('active');
-    }
-</script>
-
-<script defer>
-    document.addEventListener('DOMContentLoaded', function () {
-        var offcanvasElement = document.getElementById('offcanvasNavbar');
-       
-        var closeButton = document.querySelector('.btn-close[data-bs-dismiss="offcanvas"]');
-
-        document.addEventListener('click', function (event) {
-            // Tıklanan öğe offcanvas içinde değilse ve offcanvas açılmışsa
-            if (!event.target.closest('.offcanvas') && offcanvasElement.classList.contains('show')) {
-                closeButton.click(); // Offcanvas'i gizlemek için hide() yöntemini çağır
-            }
-        });
-    });
-</script>
 
 
 
