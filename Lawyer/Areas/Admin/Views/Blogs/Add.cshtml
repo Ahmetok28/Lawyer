@@ -45,7 +45,7 @@
                 <p>Giriş</p>
                 <label asp-for="Description" class="control-label"></label>
 
-                <textarea name="description" id="Description" rows="10" cols="80">
+                <textarea asp-for="Description" name="Description" id="Description" rows="10" cols="80">
                   
             </textarea>
 
@@ -56,7 +56,7 @@
             <div class="form-group">
                 <p>İçerik  </p>
                 <label asp-for="Content" class="control-label"></label>
-                <textarea asp-for="Content" name="Content" id="content" rows="10" cols="80">
+                <textarea asp-for="Content" name="Content" id="content">
                   
                 </textarea>
 
@@ -81,6 +81,6 @@
 </div>
 
 <script>
-    CKEDITOR.replace('Description');
+    
     CKEDITOR.replace('Content');
 </script>

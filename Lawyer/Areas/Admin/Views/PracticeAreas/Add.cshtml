@@ -1,0 +1,62 @@
+﻿@model Entities.Concrete.PracticeArea
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ekle</h1>
+
+<h4>Çalışma Alanı</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label >Adı </label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label >Alan</label>
+                <input asp-for="Description"   class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label >İçerik</label>
+                <textarea asp-for="Content"  name="Content" id="Description" rows="10" cols="80" class="form-control" >
+                    
+                </textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Resim</label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label >Ana Sayfadaki Logosu</label>
+                <input asp-for="LogoImage" class="form-control" />
+                <span asp-validation-for="LogoImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label >Ana Sayfadaki Arkaplanı</label>
+                <input asp-for="BackgroundImage" class="form-control" />
+                <span asp-validation-for="BackgroundImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri Dön</a>
+</div>
+
+<script>   
+    CKEDITOR.replace('Content');
+</script>

@@ -9,9 +9,9 @@
         <h1>Çalışma Alşanları</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/Admin">Home</a></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                
+                <li class="breadcrumb-item active">Çalışma Alanları</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -19,7 +19,7 @@
    
 
 <p>
-        <span><a asp-action="Index">Çalışma Alanları</a> / <a class="btn btn-success" href="/Admin/Blogs/Add">Yeni Çalışma Alanı Ekle</a> </span>
+    <span> <a class="btn btn-success" asp-controller="PracticeAreas" asp-action="Add" asp-area="Admin">Yeni Çalışma Alanı Ekle</a> </span>
     </p>
      
 
@@ -58,7 +58,7 @@
 
                                         <td>
                                             <a asp-controller="PracticeAreas" asp-route-ID="@item1.Id" asp-action="Details" asp-area="Admin" method="get" class="btn btn-info">Detay</a>
-                                            <a asp-controller="PracticeAreas" asp-route-Id="@item1.Id" asp-action="Edit" asp-area="Admin" class="btn btn-warning">Güncelle</a>
+                                            <a asp-controller="PracticeAreas" asp-route-Id="@item1.Id" asp-action="Update" asp-area="Admin" class="btn btn-warning">Güncelle</a>
                                             <a asp-controller="PracticeAreas" asp-route-id="@item1.Id" asp-action="Delete" asp-area="Admin" method="get" class="btn btn-danger">Sil</a>
 
                                         </td>

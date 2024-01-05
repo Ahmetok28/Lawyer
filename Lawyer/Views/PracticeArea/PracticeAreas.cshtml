@@ -5,7 +5,7 @@
 }
 
 <head>
- 
+
 
 
     <link rel="stylesheet" href="~/judge-master/css/animate.css">
@@ -21,6 +21,13 @@
     <link rel="stylesheet" href="~/judge-master/css/flaticon.css">
     <link rel="stylesheet" href="~/judge-master/css/icomoon.css">
     <link rel="stylesheet" href="~/css/style.css">
+
+    <style>
+        .link-container a {
+            text-decoration: underline;
+            color:coral;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,7 +38,7 @@
             <div class="row no-gutters slider-text align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <h1 class="mb-3 bread">@Model.Name</h1>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>@Model.Name<i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index">Anasayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>@Model.Name<i class="ion-ios-arrow-forward"></i></span></p>
                 </div>
             </div>
         </div>
@@ -44,11 +51,9 @@
                     <p>
                         <img src="images/practice-1.jpg" alt="" class="img-fluid">
                     </p>
-
-                    @await Component.InvokeAsync("_SectionList",Model.Id)
-
-                   
-
+                    <div class="link-container">
+                        @Html.Raw(@Model.Content)
+                    </div>
 
                 </div> <!-- .col-md-8 -->
                 <div class="col-lg-4 sidebar ftco-animate">
@@ -92,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
 
             </div>
@@ -105,7 +110,7 @@
     <script src="~/judge-master/js/jquery.min.js"></script>
     <script src="~/judge-master/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="~/judge-master/js/popper.min.js"></script>
-   
+
     <script src="~/judge-master/js/jquery.easing.1.3.js"></script>
     <script src="~/judge-master/js/jquery.waypoints.min.js"></script>
     <script src="~/judge-master/js/jquery.stellar.min.js"></script>

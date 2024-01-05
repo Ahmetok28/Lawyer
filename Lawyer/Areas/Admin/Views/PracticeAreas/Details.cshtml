@@ -1,0 +1,62 @@
+﻿@model Entities.Concrete.PracticeArea
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    <h4>Detayı</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            İsim
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Alan
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            İçerik
+        </dt>
+        <dd class = "col-sm-10">
+            
+            @Html.Raw(Model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+          Resim
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+        <dt class = "col-sm-2">
+            Küçük Logo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LogoImage)
+        </dd>
+        <dt class = "col-sm-2">
+            Arkaplan
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BackgroundImage)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="PracticeAreas" asp-route-Id="@Model.Id" asp-action="Update" asp-area="Admin" class="btn btn-warning">Güncelle</a> |
+    <a asp-action="Index">Geri Dön</a>
+</div>

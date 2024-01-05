@@ -56,7 +56,7 @@
                 <p>Giriş</p>
                 
 
-                <textarea name="description" id="Description" rows="10" cols="80">
+                <textarea asp-for="@Model.Item1.Description" name="description" id="Description" rows="10" cols="80">
                     @Model.Item1.Description
             </textarea>
 
@@ -100,6 +100,6 @@
 </div>
 
 <script>
-    CKEDITOR.replace('Description');
+    
     CKEDITOR.replace('Content');
 </script>

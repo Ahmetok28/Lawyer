@@ -73,5 +73,15 @@ namespace Business.Concrete
             _blogDal.Update(blog);
             return new SuccessResult(Messages.SuccesfullyUpdated);
         }
+
+        public IDataResult<List<Blog>> BringLatestBlogs(int howMany)
+        {
+            var latestBlogs = _blogDal.GetAll()
+          .OrderByDescending(blog => blog.CreatedDate)
+          .Take(howMany)
+          .ToList();
+
+            return new SuccessDataResult<List<Blog>>(latestBlogs, "En son bloglar getirildi");
+        }
     }
 }

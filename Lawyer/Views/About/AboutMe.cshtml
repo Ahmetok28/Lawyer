@@ -8,12 +8,12 @@
     
 
     <!-- Vendor CSS Files -->
-  @* 
+   
     <link href="~/NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="~/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">*@
+    <link href="~/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
    
     <link href="~/NiceAdmin/assets/css/style1.css" rel="stylesheet">
 </head>
@@ -95,12 +95,12 @@
        
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Telefon</div>
-                                <div class="col-lg-9 col-md-8">@Model.PhoneNumber</div>
+                                    <div class="col-lg-9 col-md-8"><a href="tel:@Model.PhoneNumber">@Model.PhoneNumber</a></div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">E Posta Adresi</div>
-                                <div class="col-lg-9 col-md-8">@Model.Mail</div>
+                                    <div class="col-lg-9 col-md-8"><a href="mailto:@Model.Mail">@Model.Mail</a></div>
                             </div>
 
                         </div>
