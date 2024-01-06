@@ -24,7 +24,7 @@ namespace DataAccess.Conrete.EntityFramework
                                   AuthorId = auth.Id,
                                   CategoryName = category.Name,
                                   AuthorFullName = auth.FirstName + " " + auth.LastName,
-
+                                  
                                   BlogContent = blog.Content,
                                   BlogCreatedDate = blog.CreatedDate,
                                   BlogDescription = blog.Description,

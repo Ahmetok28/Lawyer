@@ -83,5 +83,36 @@ namespace Business.Concrete
 
             return new SuccessDataResult<List<Blog>>(latestBlogs, "En son bloglar getirildi");
         }
+        public IDataResult<List<Blog>> PrevAndNextBlogs(int id)
+        {
+            var allBlogs = _blogDal.GetAll().OrderByDescending(blog => blog.CreatedDate).ToList();
+
+            var index = allBlogs.FindIndex(blog => blog.BlogId == id);
+
+            if (index == -1)
+            {
+                return new ErrorDataResult<List<Blog>>("Belirtilen ID ile eşleşen blog bulunamadı.");
+            }
+
+            var prevBlog = index > 0 ? allBlogs[index - 1] : null;
+            var nextBlog = index < allBlogs.Count - 1 ? allBlogs[index + 1] : null;
+
+            var resultBlogs = new List<Blog>();
+
+            if (prevBlog != null)
+            {
+                resultBlogs.Add(prevBlog);
+            }
+
+            resultBlogs.Add(allBlogs[index]);
+
+            if (nextBlog != null)
+            {
+                resultBlogs.Add(nextBlog);
+            }
+
+            return new SuccessDataResult<List<Blog>>(resultBlogs, "Önceki ve sonraki bloglar getirildi");
+        }
+
     }
 }

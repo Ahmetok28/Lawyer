@@ -22,5 +22,6 @@ namespace Business.Abstract
         IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryId(int id);
         IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryAndAuthorId(int catId,int authId);
         IDataResult<Blog> BlogGetById(int id);
+        IDataResult<List<Blog>> PrevAndNextBlogs(int id);
     } 
 }

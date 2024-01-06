@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using Lawyer.Helpers;
 using Lawyer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,34 +19,9 @@ namespace Lawyer.ViewComponents.Default
         public IViewComponentResult Invoke()
         {
             
-            return View(BlogViewModelConverter(_blogService.BringLatestBlogs(4).Data));
+            return View(BlogTitleConverterHelper.ConvertToBlogViewModel(_blogService.BringLatestBlogs(4).Data,25));
         }
 
-        private List<RecentBlogViewModel> BlogViewModelConverter(List<Blog> blogViewModels)
-        {
-
-            List<RecentBlogViewModel> singleBlogViews = new List<RecentBlogViewModel>();
-            foreach (var item in blogViewModels)
-            {
-                var model = new RecentBlogViewModel
-                {
-                    Id = item.BlogId,
-                    Title = !string.IsNullOrEmpty(item.Title) && item.Title.Length > 20
-                                          ? item.Title[..25]
-                                          : item.Title,
-
-
-                    ImageUrl = item.PhotoUrl,
-                    CreatedDate = item.CreatedDate.ToString("dd MMMM yyyy"),
-                   
-                    
-
-
-                };
-                singleBlogViews.Add(model);
-            }
-
-            return singleBlogViews;
-        }
+       
     }
 }
