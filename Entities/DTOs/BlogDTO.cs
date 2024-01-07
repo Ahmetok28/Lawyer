@@ -18,7 +18,7 @@ namespace Entities.DTOs
         public string BlogTitle { get; set; }
         public string BlogDescription { get; set; }
         public string BlogContent { get; set; }
-        public string BlogPhoto { get; set; }
+        public string? BlogPhoto { get; set; }
         public DateTime BlogCreatedDate { get; set; }
 
     }

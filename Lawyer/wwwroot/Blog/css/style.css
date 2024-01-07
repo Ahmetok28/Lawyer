@@ -1262,8 +1262,15 @@ ul {
 
 /*============ blog_left_sidebar css ==============*/
 /* line 525, ../../01 cl html template/New folder/May 2019/174 Ariclaw Lawyer/Ariclaw Lawyer Html/sass/_blog.scss */
+/*.blog_left_sidebar {
+    display: flex;
+    flex-wrap: wrap;
+}*/
+
 .blog_item {
-  margin-bottom: 50px;
+    flex: 0 0 50%; /* Ýki sütunu yatayda böler, bu deðeri ihtiyaca göre ayarlayabilirsiniz */
+    box-sizing: border-box;
+    margin-bottom: 50px;
 }
 
 /* line 529, ../../01 cl html template/New folder/May 2019/174 Ariclaw Lawyer/Ariclaw Lawyer Html/sass/_blog.scss */

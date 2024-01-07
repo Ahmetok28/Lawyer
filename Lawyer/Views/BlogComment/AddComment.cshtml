@@ -1,0 +1,35 @@
+﻿@model BlogDTO
+
+
+<div class="comment-form">
+    <h4>Bir Yanıt Yazın </h4>
+    <form method="post" asp-action="AddComment" asp-controller="BlogComment" class="form-contact comment_form">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <textarea  class="form-control w-100" name="CommentContent"  cols="30" rows="9"
+                              placeholder="Yorumunuz"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input class="form-control" name="CommentUserName"  type="text" placeholder="İsminiz">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input class="form-control" name="CommentUserEmail"  type="email" placeholder="E Posta Adresiniz">
+                </div>
+            </div> 
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input  class="form-control" name="BlogId"  type="hidden" value="@Model.BlogId" >
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <button class="button button-contactForm btn_4 mt-3">Yorum Yap</button>
+        </div>
+    </form>
+</div>

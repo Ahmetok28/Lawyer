@@ -5,13 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lawyer.Controllers
 {
+   
     public class BlogController : Controller
     {
         private readonly IBlogService _blogService;
+        private readonly IBlogCommentService _blogCommentService;
 
-        public BlogController(IBlogService blogService)
+        public BlogController(IBlogService blogService, IBlogCommentService blogCommentService)
         {
             _blogService = blogService;
+            _blogCommentService = blogCommentService;
         }
 
         public IActionResult Index(int categoryid)
@@ -19,7 +22,9 @@ namespace Lawyer.Controllers
 
             if (categoryid == 0)
             {
-                return View(BlogViewModelConverter(_blogService.GetAllBlogDetails().Data));
+                var blogs = BlogViewModelConverter(_blogService.GetAllBlogDetails().Data);
+
+                return View(blogs);
             }
             if (categoryid!=0)
             {
@@ -30,7 +35,7 @@ namespace Lawyer.Controllers
         }
 
         public IActionResult SingleBlog(int id)
-        {
+        {            
             
             return View(_blogService.GetBlogDetailsById(id).Data);
         }
@@ -46,6 +51,7 @@ namespace Lawyer.Controllers
                 var model = new BlogViewModel
                 {
                     Id = item.BlogId,
+                    AuthorId=item.AuthorId,
                     Title = item.BlogTitle,
                     Description = !string.IsNullOrEmpty(item.BlogDescription) && item.BlogDescription.Length > 200
                                           ? item.BlogDescription[..350]

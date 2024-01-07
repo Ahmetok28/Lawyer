@@ -1,0 +1,30 @@
+﻿@model List<BlogComment>
+
+
+<div class="comments-area">
+    <h4>(@Model.Count) Yorumlar</h4>
+
+    @foreach (var item in Model)
+    {
+        <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+
+                    <div class="desc">
+                        <p class="comment">
+                            @item.CommentContent
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <h5>
+                                    <a>@item.CommentUserName</a>
+                                </h5>
+                                <p class="date">@item.CommentDate </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

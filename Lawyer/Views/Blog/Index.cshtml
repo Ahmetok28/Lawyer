@@ -56,12 +56,14 @@
     <!-- breadcrumb start-->
     <!--================Blog Area =================-->
     <section class="blog_area section_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mb-5 mb-lg-0">
+        <div class="container">        
+            <div class="row">   
+                    <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
+
                         @foreach (var item in Model)
                         {
+                            <div class="col-md-6">
                             <article class="blog_item">
                                 <div class="blog_item_img">
                                     @if (item.ImageUrl == null)
@@ -87,40 +89,46 @@
                                       @Html.Raw( @item.Description)...
                                     </p>
                                     <ul class="blog-info-link">
-                                        <li><a href="#"><i class="far fa-user"></i> @item.Author</a></li>
-                                        <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+                                        <li><a><i class=""></i> Yazar</a></li>
+                                        <li><a asp-action="AboutMe" asp-controller="About" asp-route-id="@item.AuthorId"><i class="far fa-user"></i> @item.Author</a></li>
+                                        
                                     </ul>
                                 </div>
                             </article>
+                            </div>
                         }
                         
 
                        
 
-                        <nav class="blog-pagination justify-content-center d-flex">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Previous">
-                                        <i class="ti-angle-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Next">
-                                        <i class="ti-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        
                     </div>
+
+
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+                                    <i class="ti-angle-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a href="#" class="page-link">1</a>
+                            </li>
+                            <li class="page-item active">
+                                <a href="#" class="page-link">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+                                    <i class="ti-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
+                        <!--  Ara -->
                         <aside class="single_sidebar_widget search_widget">
                             <form action="#">
                                 <div class="form-group">
@@ -143,72 +151,9 @@
                          @await Component.InvokeAsync("_BlogCategoryPartial")
                         <!--  Son Bloglar -->
                         @await Component.InvokeAsync("_RecentBlogPartial")
-                        <aside class="single_sidebar_widget tag_cloud_widget">
-                            <h4 class="widget_title">Tag Clouds</h4>
-                            <ul class="list">
-                                <li>
-                                    <a href="#">project</a>
-                                </li>
-                                <li>
-                                    <a href="#">love</a>
-                                </li>
-                                <li>
-                                    <a href="#">technology</a>
-                                </li>
-                                <li>
-                                    <a href="#">travel</a>
-                                </li>
-                                <li>
-                                    <a href="#">restaurant</a>
-                                </li>
-                                <li>
-                                    <a href="#">life style</a>
-                                </li>
-                                <li>
-                                    <a href="#">design</a>
-                                </li>
-                                <li>
-                                    <a href="#">illustration</a>
-                                </li>
-                            </ul>
-                        </aside>
+                       
 
-
-                        <aside class="single_sidebar_widget instagram_feeds">
-                            <h4 class="widget_title">Instagram Feeds</h4>
-                            <ul class="instagram_row flex-wrap">
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="~/Blog/img/post/post_5.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="~/Blog/img/post/post_6.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="~/Blog/img/post/post_7.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="~/Blog/img/post/post_8.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="~/Blog/img/post/post_9.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="~/Blog/img/post/post_10.png" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
+                       
 
 
                         <aside class="single_sidebar_widget newsletter_widget">
@@ -255,5 +200,23 @@
     <script src="~/Blog/js/jquery.nice-select.min.js"></script>
     <!-- custom js -->
     <script src="~/Blog/js/custom.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var blogDetailsElements = document.querySelectorAll('.blog_details');
+
+            var maxHeight = 0;
+            blogDetailsElements.forEach(function (element) {
+                var elementHeight = element.offsetHeight;
+                maxHeight = Math.max(maxHeight, elementHeight);
+            });
+
+            blogDetailsElements.forEach(function (element) {
+                element.style.height = maxHeight + 'px';
+            });
+        });
+    </script>
+
+
 </body>
 

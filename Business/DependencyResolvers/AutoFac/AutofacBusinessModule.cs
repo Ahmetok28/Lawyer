@@ -78,7 +78,10 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<EfAboutPageDal>().As<IAboutPageDal>().SingleInstance();
             
             builder.RegisterType<WhyChooseLogoManager>().As<IWhyChooseLogoService>().SingleInstance();
-            builder.RegisterType<EfWhyChooseLogoDal>().As<IWhyChooseLogoDal>().SingleInstance();
+            builder.RegisterType<EfWhyChooseLogoDal>().As<IWhyChooseLogoDal>().SingleInstance(); 
+            
+            builder.RegisterType<BlogCommentManager>().As<IBlogCommentService>().SingleInstance();
+            builder.RegisterType<EfBlogCommentDal>().As<IBlogCommentDal>().SingleInstance();
 
 
 
