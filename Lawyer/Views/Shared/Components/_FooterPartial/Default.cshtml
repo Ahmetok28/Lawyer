@@ -1,0 +1,103 @@
+﻿@model Tuple<List<PracticeArea>,ContactPage>
+
+
+<link rel="stylesheet" href="~/judge-master/css/ionicons.min.css">
+<link href="~/csskopya/stylefooter.css" rel="stylesheet" />
+
+
+@*
+<link href="~/csskopya/all.css" rel="stylesheet" />*@
+<style>
+    a {
+        text-decoration: none;
+    }
+  
+</style>
+<footer class="footer-area">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-sm-6 col-xl-3">
+                <div class="single-footer-widget footer_1">
+                    <a href="/"> <img src="~/av. site template/img/logo-white.png" alt=""> </a>
+                    <p>
+
+                       @ViewBag.Social.Saying
+                   </p>
+                    <div class="social_icon">
+                        @if (ViewBag.Social.Instagram != null)
+                        {
+                            <a href="@ViewBag.Social.Instagram"> <i class="ion-logo-instagram"></i> </a>
+                        } 
+                        @if (ViewBag.Social.Facebook != null)
+                        {
+                            <a href="@ViewBag.Social.Facebook"> <i class="ion-logo-facebook"></i> </a>
+                        } 
+                        @if (ViewBag.Social.Twitter != null)
+                        {
+                            <a href="@ViewBag.Social.Twitter"> <i class="ion-logo-twitter"></i> </a>
+                        }
+                        @if (ViewBag.Social.Linkedin!=null)
+                        {
+                            <a href="@ViewBag.Social.Linkedin"> <i class="ion-logo-linkedin"></i> </a>
+                        }
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="single-footer-widget">
+                    <h4>Çalışma Alanları</h4>
+                    <ul>
+                        @foreach (var item in Model.Item1)
+                        {
+                            <li><a asp-action="PracticeAreas" asp-controller="PracticeArea" asp-route-id="@item.Id">@item.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="single-footer-widget footer_icon">
+                    <h4>İletişim</h4>
+                    <p>
+                        @Model.Item2.OfficeAdress
+                    </p>
+                    <ul>
+                        <li><a href="tel:@Model.Item2.OfficeTelephone"><i class="ion-md-phone-portrait"></i>@Model.Item2.OfficeTelephone</a></li>
+                        <li><a href="mailto:@Model.Item2.OfficeMail"><i class="ion-md-mail"></i>@Model.Item2.OfficeMail</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="copyright_part_text text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12">
+                                <p class="footer-text m-0">
+                                    &copy;  2023-<script>document.write(new Date().getFullYear());</script> Bu web sitesi <a href="https://www.linkedin.com/in/ahmet-ok/" target="_blank">Ahmet Ök</a> tarafından yapılmıştır.
+                                </p>
+                            </div>
+                            <div class="col-lg-7 col-md-12">
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="/">Anasayfa</a></li>
+                                        <li><a href="/About">Hakkımızda</a></li>
+                                        <li><a href="/PracticeArea">Çalışma Alanları</a></li>
+                                        <li><a href="/Blog">Bloglar</a></li>
+                                        <li><a href="/Contact">İletişim</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

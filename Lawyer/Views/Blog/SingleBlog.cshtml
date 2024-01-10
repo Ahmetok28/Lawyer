@@ -43,8 +43,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
-                            <h2 style="font-size:48px">Bloglar</h2>
-                            <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index" style="font-size:17px">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span style="font-size:17px">Blog<i class="ion-ios-arrow-forward"></i></span></p>
+                            <h2 style="font-size:48px">@Model.BlogTitle</h2>
+                            <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index" style="font-size:17px; color:black;">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span><a style="font-size:17px;  color:black;" href="/Blog/Index">Bloglar</a><i class="ion-ios-arrow-forward"></i></span></p>
                         </div>
                     </div>
                 </div>
@@ -102,21 +102,22 @@
 
                 </div>
                 <div class="col-lg-4">
-                     
+
+                  
                     <div class="blog_right_sidebar">
                         <!--  Ara -->
                         <aside class="single_sidebar_widget search_widget">
                             <form action="#">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='Search Keyword'
-                                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                                        <input type="text" class="form-control" placeholder='Ara'
+                                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ara'">
                                         <div class="input-group-append">
-                                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                                            <button class="btn" type="button"><i class="ion-ios-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Search</button>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Ara</button>
                             </form>
                         </aside>
 
@@ -124,18 +125,22 @@
                         @await Component.InvokeAsync("_BlogCategoryPartial")
                         <!--  Son Bloglar -->
                         @await Component.InvokeAsync("_RecentBlogPartial")
+                        
+                    
                        
                         <!--  Bültene Abone Ol -->
                         <aside class="single_sidebar_widget newsletter_widget">
-                            <h4 class="widget_title">Newsletter</h4>
+                            <h4 class="widget_title">Bültene Abone Olun</h4>
+                            <p>Yayınlanan Blogları Kaçırmayın</p>
+                            <hr />
                             <form action="#">
                                 <div class="form-group">
                                     <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                                           onblur="this.placeholder = 'E Posta adresinizi yazın'" placeholder='E Posta adresinizi yazın' required>
                                 </div>
                                 <button class="button rounded-0 primary-bg text-white w-100 btn_1"
                                         type="submit">
-                                    Subscribe
+                                    Abone Ol
                                 </button>
                             </form>
                         </aside>

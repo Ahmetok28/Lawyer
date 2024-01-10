@@ -21,8 +21,9 @@
     @RenderBody()
    
     <!-- ----------------------------------------------------------------- FOOTER ---------------------------------------------------------------- -->
-    @await Html.PartialAsync("/Views/LayoutPartial/_FooterPartial.cshtml")
+    
 </body>
+@await Component.InvokeAsync("_FooterPartial")
 
 </html>
 

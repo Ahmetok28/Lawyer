@@ -16,6 +16,7 @@ namespace Business.Abstract
         IResult Update(Blog blog);
         IDataResult<List<Blog>> GetAll();
         IDataResult<List<Blog>> BringLatestBlogs(int howMany);
+        IDataResult<List<BlogDTO>> BringLatestBlogsDetails(int howMany);
         IDataResult<List<BlogDTO>> GetAllBlogDetails();
         IDataResult<BlogDTO> GetBlogDetailsById(int id);
         IDataResult<List<BlogDTO>> GetBlogDetailsByAuthorId(int id);

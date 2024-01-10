@@ -10,5 +10,5 @@ namespace DataAccess.Abstract
 {
     public interface IClaimDal : IEntityRepository<UserOperationClaim>
     {
-    }
+    } 
 }

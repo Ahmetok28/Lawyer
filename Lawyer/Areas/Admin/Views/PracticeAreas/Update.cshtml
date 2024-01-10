@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label>İçerik</label>
-                <textarea asp-for="Content" name="Content" id="Description" rows="10" cols="80" class="form-control">
+                <textarea asp-for="Content" name="Content" id="Description" rows="10" cols="100" class="form-control">
 
                 </textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
@@ -42,7 +42,28 @@
             </div>
             <div class="form-group">
                 <label>Ana Sayfadaki Logosu</label>
-                <input asp-for="LogoImage" class="form-control" />
+                <select asp-for="LogoImage" class="form-control">
+                    
+                    <option value="/Images/PracticaAreaLogos/service-icon1.png">service-icon1</option>
+                    <option value="/Images/PracticaAreaLogos/service-icon-2.png">service-icon-2</option>
+                    <option value="/Images/PracticaAreaLogos/service-icon-3.png">service-icon-3</option>
+                    <option value="/Images/PracticaAreaLogos/service-icon-4.png">service-icon-4</option>
+                    <option value="/Images/PracticaAreaLogos/service-icon-5.png">service-icon-5</option>
+                    <option value="/Images/PracticaAreaLogos/service-icon-6.png">service-icon-6</option>
+                    <option value="/Images/PracticaAreaLogos/agreement.png">agreement</option>
+                    <option value="/Images/PracticaAreaLogos/auction.png">auction</option>
+                    <option value="/Images/PracticaAreaLogos/discussion.png">discussion</option>
+                    <option value="/Images/PracticaAreaLogos/employee.png">employee</option>
+                    <option value="/Images/PracticaAreaLogos/fire.png">fire</option>
+                    <option value="/Images/PracticaAreaLogos/handcuffs.png">handcuffs</option>
+                    <option value="/Images/PracticaAreaLogos/labour-law.png">labour-law</option>
+                    <option value="/Images/PracticaAreaLogos/loan.png">loan</option>
+                    <option value="/Images/PracticaAreaLogos/medicine.png">medicine</option>
+                    <option value="/Images/PracticaAreaLogos/money.png">money</option>
+                    <option value="/Images/PracticaAreaLogos/shield.png">shield</option>
+                    <option value="@Model.LogoImage" selected>Geçerli Logo</option>
+                </select>
+               
                 <span asp-validation-for="LogoImage" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -54,6 +75,43 @@
                 <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+    <div class="col-md-4" style="background-color:gray;">
+        <h4> Ana sayfada görünen logolar</h4>
+        <p>service-icon1</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/service-icon1.png" alt="Hizmet İkonu">
+        <p>service-icon-2</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/service-icon-2.png" alt="Hizmet İkonu">
+        <p>service-icon-3</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/service-icon-3.png" alt="Hizmet İkonu">
+        <p>service-icon-4</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/service-icon-4.png" alt="Hizmet İkonu">
+        <p>service-icon-5</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/service-icon-5.png" alt="Hizmet İkonu">
+        <p>service-icon-6</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/service-icon-6.png" alt="Hizmet İkonu">
+        <p>handcuffs</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/handcuffs.png" alt="Hizmet İkonu">
+        <p>fire</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/fire.png" alt="Hizmet İkonu">
+        <p>money</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/money.png" alt="Hizmet İkonu">
+        <p>labour-law</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/labour-law.png" alt="Hizmet İkonu">
+        <p>loan</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/loan.png" alt="Hizmet İkonu">
+        <p>medicine</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/medicine.png" alt="Hizmet İkonu">
+        <p>auction</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/auction.png" alt="Hizmet İkonu">
+        <p>discussion</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/discussion.png" alt="Hizmet İkonu">
+        <p>agreement</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/agreement.png" alt="Hizmet İkonu">
+        <p>employee</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/employee.png" alt="Hizmet İkonu">
+        <p>sheild</p>
+        <img style="height:54px;width:54px; " src="/Images/PracticaAreaLogos/shield.png" alt="Hizmet İkonu">
     </div>
 </div>
 

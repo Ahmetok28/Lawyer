@@ -17,21 +17,30 @@ namespace Lawyer.Controllers
             _blogCommentService = blogCommentService;
         }
 
-        public IActionResult Index(int categoryid)
+        public IActionResult Index(int categoryid, int pageNumber = 1)
         {
+            List<BlogViewModel> blogs;
+            int pageSize = 4;
 
             if (categoryid == 0)
             {
-                var blogs = BlogViewModelConverter(_blogService.GetAllBlogDetails().Data);
-
-                return View(blogs);
+                blogs = BlogViewModelConverter(_blogService.GetAllBlogDetails().Data);
             }
-            if (categoryid!=0)
+            else
             {
-                return View(BlogViewModelConverter(_blogService.GetBlogDetailsByCategoryId(categoryid).Data));
+                blogs = BlogViewModelConverter(_blogService.GetBlogDetailsByCategoryId(categoryid).Data);
             }
-            
-            return View();
+
+            // Sayfalama işlemleri
+            var pagedBlogs = blogs.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
+            // ViewBag veya ViewData kullanarak sayfalama bilgilerini view'e iletebilirsiniz.
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = blogs.Count;
+            ViewBag.TotalPages = Math.Ceiling((double)blogs.Count / pageSize);
+
+            return View(pagedBlogs);
         }
 
         public IActionResult SingleBlog(int id)

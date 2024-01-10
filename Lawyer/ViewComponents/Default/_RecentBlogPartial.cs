@@ -18,10 +18,9 @@ namespace Lawyer.ViewComponents.Default
 
         public IViewComponentResult Invoke()
         {
-            
-            return View(BlogTitleConverterHelper.ConvertToBlogViewModel(_blogService.BringLatestBlogs(4).Data,25));
+
+            return View(BlogPropertyConverterHelper.ConvertToBlogViewModel(_blogService.BringLatestBlogs(4).Data, 25));
         }
 
-       
-    }
-}
+
+    }}

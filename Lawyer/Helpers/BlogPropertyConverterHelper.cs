@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using Lawyer.Models;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace Lawyer.Helpers
 
 
 
-    public static class BlogTitleConverterHelper
+    public static class BlogPropertyConverterHelper
     {
         public static List<RecentBlogViewModel> ConvertToBlogViewModel(List<Blog> blogList, int wordCount)
         {
@@ -21,7 +22,7 @@ namespace Lawyer.Helpers
 
             return recentBlogs;
         }
-
+  
         private static RecentBlogViewModel ConvertToBlogViewModel(Blog blog, int wordCount)
         {
             return new RecentBlogViewModel
@@ -34,5 +35,6 @@ namespace Lawyer.Helpers
                 CreatedDate = blog.CreatedDate.ToString("dd MMMM yyyy")
             };
         }
+       
     }
 }

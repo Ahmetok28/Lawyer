@@ -10,42 +10,44 @@
             </div>
             <div class="arrow">
                 <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.First().Id">
-                    <span class="lnr text-white ti-arrow-left"></span>
+                    <span class="lnr text-white ion-ios-arrow-back"></span>
                 </a>
             </div>
             <div class="detials">
                 <p>Önceki Blog</p>
-                <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.First().Id">
-                    @if (@Model.First().Title.Length<43)
+                 <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.First().Id">
+                    @if (@Model.First().Title.Length < 43)
                     {
                         <h4>@Model.First().Title</h4>
                     }
-                    @if (@Model.First().Title.Length>=43)
+                    @if (@Model.First().Title.Length >= 43)
                     {
-                        <h4>@Model.First().Title...</h4>
+                        <h4>@Model.First().Title... </h4>
                     }
                     
                 </a>
+
+                
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
             <div class="detials">
                 <p>Sonraki Blog</p>
                 <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.Last().Id">
-                    @if (@Model.Last().Title.Length<43)
+                    @if (@Model.Last().Title.Length < 43)
                     {
                         <h4>@Model.Last().Title</h4>
                     }
                     @if (@Model.Last().Title.Length >= 43)
                     {
-                        <h4>@Model.Last().Title... </h4>
+                        <h4>@Model.Last().Title...</h4>
                     }
-                    
+
                 </a>
             </div>
             <div class="arrow">
                 <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.Last().Id">
-                    <span class="lnr text-white ti-arrow-right"></span>
+                    <span class="lnr text-white ion-ios-arrow-forward"></span>
                 </a>
             </div>
             <div class="thumb">

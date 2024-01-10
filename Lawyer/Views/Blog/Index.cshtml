@@ -10,25 +10,25 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    
+
+
     <!-- Bootstrap CSS -->
-   @* <link rel="stylesheet" href="css/bootstrap.min.css">*@
+    @* <link rel="stylesheet" href="css/bootstrap.min.css">*@
     <!-- animate CSS -->
     <link rel="stylesheet" href="~/Blog/css/animate.css">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="~/Blog/css/owl.carousel.min.css">
-    <!-- themify CSS -->
+@*    <!-- themify CSS -->
     <link rel="stylesheet" href="~/Blog/css/themify-icons.css">
     <!-- flaticon CSS -->
-    <link rel="stylesheet" href="~/Blog/css/flaticon.css">
+    <link rel="stylesheet" href="~/Blog/css/flaticon.css">*@
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="~/Blog/css/magnific-popup.css">
     <!-- swiper CSS -->
     <link rel="stylesheet" href="~/Blog/css/slick.css">
     <link rel="stylesheet" href="~/Blog/css/gijgo.min.css">
     <link rel="stylesheet" href="~/Blog/css/nice-select.css">
-    <link rel="stylesheet" href="~/Blog/css/all.css">
+  @*  <link rel="stylesheet" href="~/Blog/css/all.css">*@
     <!-- style CSS -->
     <link rel="stylesheet" href="~/Blog/css/BlogStyle.css">
     <link rel="stylesheet" href="~/judge-master/css/ionicons.min.css">
@@ -36,7 +36,6 @@
 
 <body>
     <!--::header part start::-->
-
     <!-- Header part end-->
     <!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">
@@ -46,7 +45,7 @@
                     <div class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
                             <h2 style="font-size:48px">Blog</h2>
-                            <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index" style="font-size:17px">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span style="font-size:17px">Blog<i class="ion-ios-arrow-forward"></i></span></p>
+                            <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index" style="font-size:17px;  color:black;">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span style="font-size:17px">Bloglar<i class="ion-ios-arrow-forward"></i></span></p>
                         </div>
                     </div>
                 </div>
@@ -55,76 +54,81 @@
     </section>
     <!-- breadcrumb start-->
     <!--================Blog Area =================-->
+
     <section class="blog_area section_padding">
-        <div class="container">        
-            <div class="row">   
-                    <div class="col-lg-8 mb-5 mb-lg-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
                     <div class="blog_left_sidebar">
 
                         @foreach (var item in Model)
                         {
                             <div class="col-md-6">
-                            <article class="blog_item">
-                                <div class="blog_item_img">
-                                    @if (item.ImageUrl == null)
-                                    {
-                                        <img class="card-img rounded-0" src="~/Blog/img/blog/single_blog_1.png" alt="">
-                                    }
-                                    @if (item.ImageUrl != null)
-                                    {
-                                        <img class="card-img rounded-0" src="@item.ImageUrl" alt="">
-                                    }
+                                <article class="blog_item">
+                                    <div class="blog_item_img">
+                                        @if (item.ImageUrl == null)
+                                        {
+                                            <img class="card-img rounded-0" src="~/Blog/img/blog/single_blog_1.png" alt="">
+                                        }
+                                        @if (item.ImageUrl != null)
+                                        {
+                                            <img class="card-img rounded-0" src="@item.ImageUrl" alt="">
+                                        }
 
-                                    <a href="#" class="blog_item_date">
-                                        <h3>@item.CreatedDateDays</h3>
-                                        <p>@item.CreatedDateMonths</p>
-                                    </a>
-                                </div>
+                                        <a href="#" class="blog_item_date">
+                                            <h3>@item.CreatedDateDays</h3>
+                                            <p>@item.CreatedDateMonths</p>
+                                        </a>
+                                    </div>
 
-                                <div class="blog_details">
-                                    <a class="d-inline-block" asp-action="SingleBlog" asp-route-id="@item.Id">
-                                        <h2>@item.Title</h2>
-                                    </a>
-                                    <p>
-                                      @Html.Raw( @item.Description)...
-                                    </p>
-                                    <ul class="blog-info-link">
-                                        <li><a><i class=""></i> Yazar</a></li>
-                                        <li><a asp-action="AboutMe" asp-controller="About" asp-route-id="@item.AuthorId"><i class="far fa-user"></i> @item.Author</a></li>
-                                        
-                                    </ul>
-                                </div>
-                            </article>
+                                    <div class="blog_details">
+                                        <a class="d-inline-block" asp-action="SingleBlog" asp-route-id="@item.Id">
+                                            <h2>@item.Title</h2>
+                                        </a>
+                                        <p>
+                                            @Html.Raw( @item.Description)...
+                                        </p>
+                                        <ul class="blog-info-link">
+                                            <li><a><i class=""></i> Yazar</a></li>
+                                            <li><a asp-action="AboutMe" asp-controller="About" asp-route-id="@item.AuthorId"><i class="far fa-user"></i> @item.Author</a></li>
+
+                                        </ul>
+                                    </div>
+                                </article>
                             </div>
                         }
-                        
 
-                       
 
-                        
+
+
+
                     </div>
 
+                    <div class="col-md-12">
+                        <nav class="blog-pagination justify-content-center d-flex" ">
+                            <ul class="pagination">
+                                <li class="page-item @(ViewBag.PageNumber == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber - 1 })">
+                                        <i class="ion-ios-arrow-back"></i>
+                                    </a>
+                                </li>
+                                @for (int i = 1; i <= Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize); i++)
+                                {
+                                <li class="page-item @(i == ViewBag.PageNumber ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = i })">@i</a>
+                                </li>
+                                }
+                                <li class="page-item @(ViewBag.PageNumber == ViewBag.TotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber + 1})">
+                                        <i class="ion-ios-arrow-forward"></i>
+                                    </a>
 
-                    <nav class="blog-pagination justify-content-center d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                    <i class="ti-angle-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link">1</a>
-                            </li>
-                            <li class="page-item active">
-                                <a href="#" class="page-link">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                    <i class="ti-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    </div>
+
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
@@ -133,40 +137,37 @@
                             <form action="#">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='Search Keyword'
-                                               onfocus="this.placeholder = ''"
-                                               onblur="this.placeholder = 'Search Keyword'">
+                                        <input type="text" class="form-control" placeholder='Ara'
+                                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ara'">
                                         <div class="input-group-append">
-                                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                                            <button class="btn" type="button"><i class="ion-ios-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="button rounded-0 primary-bg text-white w-100 btn_1"
-                                        type="submit">
-                                    Search
-                                </button>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Ara</button>
                             </form>
                         </aside>
                         <!--  Blog Kategorileri -->
-                         @await Component.InvokeAsync("_BlogCategoryPartial")
+                        @await Component.InvokeAsync("_BlogCategoryPartial")
                         <!--  Son Bloglar -->
                         @await Component.InvokeAsync("_RecentBlogPartial")
-                       
 
-                       
+
+
 
 
                         <aside class="single_sidebar_widget newsletter_widget">
-                            <h4 class="widget_title">Newsletter</h4>
-
+                            <h4 class="widget_title">Bültene Abone Olun</h4>
+                            <p>Yayınlanan Blogları Kaçırmayın</p>
+                            <hr />
                             <form action="#">
                                 <div class="form-group">
                                     <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                                           onblur="this.placeholder = 'E Posta adresinizi yazın'" placeholder='E Posta adresinizi yazın' required>
                                 </div>
                                 <button class="button rounded-0 primary-bg text-white w-100 btn_1"
                                         type="submit">
-                                    Subscribe
+                                    Abone Ol
                                 </button>
                             </form>
                         </aside>
@@ -176,12 +177,10 @@
         </div>
     </section>
     <!--================Blog Area =================-->
-
-    
-
     <!-- jquery plugins here-->
     <!-- jquery -->
-    <script src="~/Blog/js/jquery-1.12.1.min.js"></script>
+   
+    <script src="Blog/js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="~/Blog/js/popper.min.js"></script>
     <!-- bootstrap js -->

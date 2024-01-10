@@ -21,4 +21,21 @@ namespace Lawyer.Areas.Admin.ViewComponents.Default
             return View(value);
         }
     }
+    public class PracticeAreaLogosPartialAdmin : ViewComponent
+    {
+        private readonly IPracticeAreaService _practiceAreaService;
+
+        public PracticeAreaLogosPartialAdmin(IPracticeAreaService practiceAreaService)
+        {
+            _practiceAreaService = practiceAreaService;
+        }
+
+      
+
+       
+        public IViewComponentResult Invoke()
+        {
+            return View();
+        }
+    }
 }

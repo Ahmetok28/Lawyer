@@ -18,7 +18,7 @@ namespace Lawyer.Controllers
        
         public IActionResult Index()
         {
-            return View();
+            return View(_practiceAreaService.GetAll().Data);
         }
         [HttpGet]
         public IActionResult PracticeAreas(int id)

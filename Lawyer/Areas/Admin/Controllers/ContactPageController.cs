@@ -9,7 +9,7 @@ namespace Lawyer.Areas.Admin.Controllers
     public class ContactPageController : Controller
     {
         private readonly IContactPageService _contactPageService;
-public ContactPageController(IContactPageService contactPageService)
+        public ContactPageController(IContactPageService contactPageService)
         {
             _contactPageService = contactPageService;
         }

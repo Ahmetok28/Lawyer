@@ -114,5 +114,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Blog>>(resultBlogs, "Önceki ve sonraki bloglar getirildi");
         }
 
+        public IDataResult<List<BlogDTO>> BringLatestBlogsDetails(int howMany)
+        {
+            var latestBlogs = _blogDal.GetAllBlogDetails()
+          .OrderByDescending(blog => blog.BlogCreatedDate)
+          .Take(howMany)
+          .ToList();
+
+            return new SuccessDataResult<List<BlogDTO>>(latestBlogs, "En son bloglar getirildi");
+        }
     }
 }

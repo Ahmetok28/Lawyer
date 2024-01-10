@@ -6,5 +6,5 @@ namespace DataAccess.Conrete.EntityFramework
 {
     public class EfPostDal : EfEntityRepositoryBase<Post, Context>, IPostDal
     {
-    }
+    }  
 }

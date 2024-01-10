@@ -39,5 +39,6 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<AboutPage> AboutPages { get; set; }
         public DbSet<WhyChooseLogo> WhyChooseLogos { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<FooterSocialAndSaying>? FooterSocialAndSayings { get; set; }
     }
 }

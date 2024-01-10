@@ -16,7 +16,7 @@ namespace Lawyer.ViewComponents.Default
         public IViewComponentResult Invoke(int id)
         {
             
-            return View(BlogTitleConverterHelper.ConvertToBlogViewModel(_blogService.PrevAndNextBlogs(id).Data,43));
+            return View(BlogPropertyConverterHelper.ConvertToBlogViewModel(_blogService.PrevAndNextBlogs(id).Data,43));
         }
 
        
