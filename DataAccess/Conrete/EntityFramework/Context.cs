@@ -30,10 +30,10 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<Post>? Posts { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserProperty> UserProperties { get; set; }
+        public DbSet<UserAdditionalProperties>? UserProperties { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<ProfilePhoto>? ProfilePhotos { get; set; }
-        public DbSet<OperationClaim>? OperationClaims { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<WhyChooseUs> WhyChooses { get; set; }
         public DbSet<WhatsSaidAboutUs> WhatsSaidAbouts { get; set; }
         public DbSet<AboutPage> AboutPages { get; set; }

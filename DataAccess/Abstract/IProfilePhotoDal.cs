@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IClaimDal : IEntityRepository<UserOperationClaim>
+    public interface IProfilePhotoDal : IEntityRepository<ProfilePhoto>
     {
-    } 
+    }
 }

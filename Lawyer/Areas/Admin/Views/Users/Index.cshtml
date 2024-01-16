@@ -1,0 +1,237 @@
+﻿@model UserForTeamDTO
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+    <div class="pagetitle">
+        <h1>Profil</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin">Admin Anasayfa</a></li>
+                <li class="breadcrumb-item">Kullanıcı</li>
+                <li class="breadcrumb-item active">Profili Düzenle</li>
+            <li class="breadcrumb-item active">@Model.FullName</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+   
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                        <img src="~/Images/ProfilePhotos/@Model.ProfliePhoto" alt="Profile" class="rounded-circle">
+                        <h2>@Model.FullName</h2>
+                        <h3>@Model.Profession</h3>
+                        <div class="social-links mt-2">
+                            <a href="@Model.Twitter" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="@Model.Facebook" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="@Model.Instagram" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="@Model.Linkedln" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-8">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Görününüm</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Profili Düzenle</button>
+                            </li>                         
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Şifreyi Değiştir</button>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content pt-2">
+
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <h5 class="card-title">Hakkımda</h5>
+                                <p class="small fst-italic">@Model.AboutUser</p>
+
+                                <h5 class="card-title">Profile Detayları</h5>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label ">İsim</div>
+                                    <div class="col-lg-9 col-md-8">@Model.FullName</div>
+                                </div>
+
+                               
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Meslek</div>
+                                    <div class="col-lg-9 col-md-8">@Model.Profession</div>
+                                </div>
+
+                             
+
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Telefon</div>
+                                    <div class="col-lg-9 col-md-8">@Model.PhoneNumber</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">E Posta</div>
+                                    <div class="col-lg-9 col-md-8">@Model.Mail</div>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                            <div class="row mb-3">
+                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profil Foroğrafı</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <img src="~/Images/ProfilePhotos/@Model.ProfliePhoto" alt="Profile">
+                                    @if (@Model.ProfliePhoto ==null)
+                                    {
+                                        @await Component.InvokeAsync("_AddProfilePhotoPartialAdmin")
+                                    }  
+                                    @if (@Model.ProfliePhoto !=null)
+                                    {
+                                        @await Component.InvokeAsync("_UpdateProfilePhotoPartialAdmin")
+                                    }
+                                   
+                                   
+                                   
+                                </div>
+                            </div>
+                                <!-- Profile Edit Form -->
+                            <form enctype="multipart/form-data">
+                                   
+
+                                    <div class="row mb-3">
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">İsim</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="fullName" type="text" class="form-control" id="fullName" value="@Model.FullName">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="about" class="col-md-4 col-lg-3 col-form-label">Hakkımda</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <textarea name="about" class="form-control" id="about" style="height: 100px">@Model.AboutUser</textarea>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div class="row mb-3">
+                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Meslek</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="job" type="text" class="form-control" id="Job" value="@Model.Profession">
+                                        </div>
+                                    </div>
+
+                                
+
+                                    <div class="row mb-3">
+                                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Telefon</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="phone" type="text" class="form-control" id="Phone" value="@Model.PhoneNumber">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Email" class="col-md-4 col-lg-3 col-form-label">E Posta</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="email" type="email" class="form-control" id="Email" value="@Model.Mail">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter </label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="twitter" type="text" class="form-control" id="Twitter" value="@Model.Twitter">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook </label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="facebook" type="text" class="form-control" id="Facebook" value="@Model.Facebook">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram </label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="instagram" type="text" class="form-control" id="Instagram" value="@Model.Instagram">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin </label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="linkedin" type="text" class="form-control" id="Linkedin" value="@Model.Linkedln">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                                    </div>
+                                </form><!-- End Profile Edit Form -->
+
+                            </div>
+
+                            
+
+                            <div class="tab-pane fade pt-3" id="profile-change-password">
+                                <!-- Change Password Form -->
+                                <form>
+
+                                    <div class="row mb-3">
+                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Geçerli Şifre</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="password" type="password" class="form-control" id="currentPassword">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Yeni Şifre</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Yeni Şifre Tekrar</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Şifreyi Değiştir</button>
+                                    </div>
+                                </form><!-- End Change Password Form -->
+
+                            </div>
+
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+

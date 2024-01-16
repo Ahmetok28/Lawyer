@@ -19,20 +19,24 @@ namespace Business.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
+        private IUserAdditioanlPropertiesService _additioanlPropertiesService;
+        private IProfilePhotoService _profilePhotoService;
        
-        private IClaimService _claimService;
+        private IUserOperationClaimService _claimService;
 
-        public AuthManager(IClaimService claimService)
+        public AuthManager(IUserOperationClaimService claimService)
         {
             _claimService = claimService;
         }
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper, IClaimService claimService)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper, IUserOperationClaimService claimService, IUserAdditioanlPropertiesService additioanlPropertiesService = null, IProfilePhotoService profilePhotoService = null)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
-           
+
             _claimService = claimService;
+            _additioanlPropertiesService = additioanlPropertiesService;
+            _profilePhotoService = profilePhotoService;
         }
 
         [SecuredOperation("Admin")]
@@ -50,6 +54,18 @@ namespace Business.Concrete
                 Status = true
             };
             _userService.Add(user);
+            _additioanlPropertiesService.Add(new UserAdditionalProperties
+            {
+                UserId= user.Id,
+                TeamStatus=false,
+                
+                
+            });
+            _profilePhotoService.AddOnlyPhoto(new ProfilePhoto
+            {
+                UserId=user.Id
+            });
+
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 

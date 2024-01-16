@@ -30,7 +30,7 @@ namespace Lawyer.Controllers
         [HttpPost]
         public IActionResult AddMessage(Message message)
         {
-            message.SendTime= Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            message.SendTime= Convert.ToDateTime(DateTime.Now);
             message.Status = false;
             message.IsImportant= false;
             _messageService.Add(message);

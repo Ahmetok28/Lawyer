@@ -73,7 +73,7 @@ namespace Lawyer.Areas.Admin.Controllers
             if (registerResult.Success)
             {
 
-                //return Ok(result.Data);
+                return RedirectToAction("Users","Users" );
             }
 
             return BadRequest(registerResult.Message);

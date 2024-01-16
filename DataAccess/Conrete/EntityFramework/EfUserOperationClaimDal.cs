@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Conrete.EntityFramework
 {
-    public class EfClaimDal : EfEntityRepositoryBase<UserOperationClaim, Context>, IClaimDal
+    public class EfUserOperationClaimDal : EfEntityRepositoryBase<UserOperationClaim, Context>, IUserOperationClaimDal
     {
     }
 }

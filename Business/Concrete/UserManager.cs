@@ -17,11 +17,11 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         private IUserDal _userDal;
-        private IClaimService _claimService;
+        private IUserOperationClaimService _claimService;
         
 
 
-        public UserManager(IUserDal userDal, IClaimService claimService)
+        public UserManager(IUserDal userDal, IUserOperationClaimService claimService)
         {
             _userDal = userDal;
             _claimService = claimService;

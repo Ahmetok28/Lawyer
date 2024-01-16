@@ -33,6 +33,11 @@ namespace Business.Concrete
             return new SuccessResult(Messages.SuccesfullyDeleted);
         }
 
+        public IDataResult<List<Message>> GetAll()
+        {
+            return new SuccessDataResult<List<Message>>(_messageDal.GetAll());
+        }
+
         public IDataResult<Message> GetMessage(int id)
         {
             return new SuccessDataResult<Message>(_messageDal.Get(x=>x.Id==id));

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IClaimService
+    public interface IUserOperationClaimService
     {
         IDataResult<List<UserOperationClaim>> GetAll();
         IDataResult<List<UserOperationClaim>> GetByClaimId(int id);

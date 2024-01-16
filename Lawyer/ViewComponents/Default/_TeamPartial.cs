@@ -7,16 +7,16 @@ namespace Lawyer.ViewComponents.Default
 {
     public class _TeamPartial : ViewComponent
     {
-        ITeamService _teamService;
+        IUserAdditioanlPropertiesService _teamService;
 
-        public _TeamPartial(ITeamService teamService)
+        public _TeamPartial(IUserAdditioanlPropertiesService teamService)
         {
             _teamService = teamService;
         }
 
         public IViewComponentResult Invoke()
         {
-            var values = _teamService.GetAll().Data;
+            var values = _teamService.GetAllIfTeamMemberExistsDto().Data;
             return View(values);
         }
     } }

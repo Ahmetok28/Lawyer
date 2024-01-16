@@ -3,6 +3,7 @@ using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
@@ -22,8 +23,11 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
-            builder.RegisterType<ClaimManager>().As<IClaimService>();
-            builder.RegisterType<EfClaimDal>().As<IClaimDal>();
+            builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>();
+            builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>();
+
+            builder.RegisterType<OperationClaimManager>().As<IOperationClaimService>();
+            builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>();
 
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
@@ -53,8 +57,8 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<HomeServicesManager>().As<IHomeServicesService>().SingleInstance();
             builder.RegisterType<EfHomeServicesDal>().As<IHomeServicesDal>().SingleInstance();
 
-            builder.RegisterType<TeamManager>().As<ITeamService>().SingleInstance();
-            builder.RegisterType<EfTeamDal>().As<ITeamDal>().SingleInstance();
+            builder.RegisterType<UserAdditioanalPropertiesManager>().As<IUserAdditioanlPropertiesService>().SingleInstance();
+            builder.RegisterType<EfUserAdditionalPropertiesDal>().As<IUserAdditionalPropertiesDal>().SingleInstance();
 
             builder.RegisterType<SectionManager>().As<ISectionService>().SingleInstance();
             builder.RegisterType<EfSectionDal>().As<ISectionDal>().SingleInstance();
@@ -86,6 +90,10 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<FooterSocialAndSayingMaanger>().As<IFooterSocialAndSayingService>().SingleInstance();
             builder.RegisterType<EfFooterSocialAndSayingDal>().As<IFooterSocialAndSayingDal>().SingleInstance();
 
+            builder.RegisterType<ProfilePhotoManager>().As<IProfilePhotoService>().SingleInstance();
+            builder.RegisterType<EfProfilePhotoDal>().As<IProfilePhotoDal>().SingleInstance();
+
+            builder.RegisterType<FileHeplerManager>().As<IFileHelper>().SingleInstance();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

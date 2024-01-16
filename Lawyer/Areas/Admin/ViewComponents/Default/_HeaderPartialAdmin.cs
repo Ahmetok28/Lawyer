@@ -37,5 +37,5 @@ namespace Lawyer.Areas.Admin.ViewComponents.Default
         {
             return View();
         }
-    }
+    }   
 }

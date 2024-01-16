@@ -8,13 +8,13 @@ namespace Lawyer.Controllers
 {
     public class AboutController : Controller
     {
-        private readonly ITeamService _teamService;
+        private readonly IUserAdditioanlPropertiesService _teamService;
         private readonly IAboutPageService _aboutPageService;
         private readonly IWhyChooseUsService _whyChooseUsService;
         private readonly IWhatsSaidAboutUsService _whatsSaidAboutUsService;
 
 
-        public AboutController(ITeamService teamService, IAboutPageService aboutPageService, IWhyChooseUsService whyChooseUsService, IWhatsSaidAboutUsService whatsSaidAboutUsService)
+        public AboutController(IUserAdditioanlPropertiesService teamService, IAboutPageService aboutPageService, IWhyChooseUsService whyChooseUsService, IWhatsSaidAboutUsService whatsSaidAboutUsService)
         {
             _teamService = teamService;
             _aboutPageService = aboutPageService;
@@ -31,7 +31,7 @@ namespace Lawyer.Controllers
         }
         public IActionResult AboutMe(int id)
         {
-          var value=  _teamService.GetByTeamId(id).Data;
+          var value=  _teamService.GetByIdDto(id).Data;
            return View(value);
         }
     }

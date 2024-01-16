@@ -9,5 +9,6 @@ namespace Business.Abstract
         IResult Update(Message message);
         IResult Delete(Message message);
         IDataResult<Message> GetMessage(int id);
+        IDataResult<List<Message>> GetAll();
     }
 }

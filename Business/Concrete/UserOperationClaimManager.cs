@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ClaimManager : IClaimService
+    public class UserOperationClaimManager : IUserOperationClaimService
     {
-        IClaimDal _claimDal;
+        IUserOperationClaimDal _claimDal;
 
-        public ClaimManager(IClaimDal ClaimDal)
+        public UserOperationClaimManager(IUserOperationClaimDal ClaimDal)
         {
             _claimDal = ClaimDal;
         }
