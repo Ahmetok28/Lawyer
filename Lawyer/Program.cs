@@ -121,7 +121,10 @@ app.UseStatusCodePages(async context =>
     if (response.StatusCode == (int)HttpStatusCode.Unauthorized ||
             response.StatusCode == (int)HttpStatusCode.Forbidden)
         response.Redirect("/Admin/Auth/Login");
+   
 });
+app.UseStatusCodePagesWithReExecute("/ErrorPages/PageNotFound","?code={0}");
+
 app.UseSession();
 app.UseStaticFiles();
 app.ConfigureCustomExceptionMiddleware();
