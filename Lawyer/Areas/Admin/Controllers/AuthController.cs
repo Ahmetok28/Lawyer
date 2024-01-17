@@ -38,7 +38,8 @@ namespace Lawyer.Areas.Admin.Controllers
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
             {
-                return BadRequest(userToLogin.Message);
+                ViewBag.UserNo = "Kullanıcı Adı Veya Şifre Hatalı!";
+                return View();
             }
 
             var result = _authService.CreateAccessToken(userToLogin.Data);

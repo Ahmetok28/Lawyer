@@ -41,9 +41,42 @@
                             @item1.Profession
                         </td>
                         <td>
-                           
+
                             <a asp-controller="Users" asp-route-Id="@item1.UserId" asp-action="UpdateUserRoles" asp-area="Admin" class="btn btn-warning">Güncelle</a>
-                            <a asp-controller="Users" asp-route-id="@item1.UserId" asp-action="Delete" asp-area="Admin" method="get" class="btn btn-danger">Sil</a>
+                            @*<a href="/Admin/Users/UserDelete/@item1.UserId" id="DeleteBtn"
+                        onclick="return confirm ('Silmek İstediğinizden Emin misiniz?');" class="btn btn-danger">
+                        Sil
+                        </a>*@
+                            <!-- Sil butonu -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_@item1.UserId">
+                                Sil
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal_@item1.UserId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">@item1.FullName</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            İsimli kullanıcıyı silmek istediğinizden emin misiniz?
+                                            <div class="form-group">
+                                                <input name="id" id="userIdInput" type="hidden" value="@item1.UserId" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Hayır</button>
+                                            <a href="/Admin/Users/UserDelete/@item1.UserId" id="DeleteBtn"
+                                           onclick="return confirm ('Silmek İstediğinizden Emin misiniz?');" class="btn btn-danger">
+                                                Sil
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
 
                         </td>
                     </tr>
@@ -53,4 +86,7 @@
         <!-- End Table with stripped rows -->
 
     </div>
+
 </div>
+
+

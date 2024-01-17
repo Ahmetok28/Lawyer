@@ -29,7 +29,7 @@ namespace Business.Concrete
             _claimService = claimService;
         }
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper, IUserOperationClaimService claimService, IUserAdditioanlPropertiesService additioanlPropertiesService = null, IProfilePhotoService profilePhotoService = null)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper, IUserOperationClaimService claimService, IUserAdditioanlPropertiesService additioanlPropertiesService , IProfilePhotoService profilePhotoService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;

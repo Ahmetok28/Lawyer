@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -70,29 +69,63 @@
                                         <p class="text-center small">Giriş Yapmak İçin E-Posta ve Şifrenizi Girin</p>
                                     </div>
 
+                                    @if (!string.IsNullOrEmpty(ViewBag.UserNo))
+                                    {
+
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-exclamation-octagon me-1"></i>
+                                            @ViewBag.UserNo
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+
+                                        @*<div class="alert alert-danger" role="alert">
+                                            <p style="color:red">
+                                                @ViewBag.UserNo
+                                            </p>
+                                        </div>*@
+                                    }
                                     <form method="post" asp-action="Login" asp-controller="Auth" class="row g-3 needs-validation" novalidate>
 
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">E-Posta</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"></span>
-                                                <input type="text" name="Email" class="form-control" id="yourUsername" required>
+                                                <input type="email" name="Email" class="form-control" id="yourUsername" required>
                                                 <div class="invalid-feedback">E-Posta adresinizi girin.</div>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Şifre</label>
-                                            <input type="password" name="Password" class="form-control" id="yourPassword" required>
-                                            <div class="invalid-feedback">Şifrenizi Girin</div>
+                                            <div class="input-group">
+                                                <input type="password" name="Password" class="form-control" id="yourPassword" required>
+                                                <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
+                                                    <i id="eyeIcon" class="bi bi-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="invalid-feedback">Şifrenizi girin</div>
                                         </div>
 
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                                                <label class="form-check-label" for="rememberMe">Beni Hatırla</label>
-                                            </div>
-                                        </div>
+                                        <script>
+                                            var passwordVisible = false;
+
+                                            function togglePasswordVisibility() {
+                                                var passwordInput = document.getElementById('yourPassword');
+                                                var eyeIcon = document.getElementById('eyeIcon');
+
+                                                passwordVisible = !passwordVisible;
+
+                                                if (passwordVisible) {
+                                                    passwordInput.type = 'text';
+                                                    eyeIcon.classList.remove('bi-eye');
+                                                    eyeIcon.classList.add('bi-eye-slash');
+                                                } else {
+                                                    passwordInput.type = 'password';
+                                                    eyeIcon.classList.remove('bi-eye-slash');
+                                                    eyeIcon.classList.add('bi-eye');
+                                                }
+                                            }
+                                        </script>
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">Giriş</button>
                                         </div>
@@ -105,7 +138,7 @@
                             </div>
 
                             <div class="credits">
-                              
+
                                 Designed by <a href="">Ahmet ÖK</a>
                             </div>
 

@@ -50,6 +50,12 @@ namespace Business.Concrete
             _userDal.Delete(user);
             return new SuccessResult(Messages.SuccesfullyDeleted);
         }
+
+        public IDataResult<User> Get(int id)
+        {
+           return new SuccessDataResult<User>(_userDal.Get(x=>x.Id== id));
+        }
+
         [SecuredOperation("Admin")]
         public IDataResult<List<User>> GetAll()
         {
@@ -68,9 +74,9 @@ namespace Business.Concrete
 
         public IDataResult<User> GetByMail(string email)
         {
-            var value = _userDal.Get(u => u.Email == email);
+            var value = _userDal.Get(u => u.Email == email && u.Status==true);
 
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
+            return new SuccessDataResult<User>(value);
         }
 
         public IDataResult<List<OperationClaim>> GetClaims(User user)

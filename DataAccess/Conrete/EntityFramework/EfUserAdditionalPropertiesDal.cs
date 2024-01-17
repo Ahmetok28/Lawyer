@@ -19,7 +19,7 @@ namespace DataAccess.Conrete.EntityFramework
             using (var context = new Context())
             {
                 var result = from userAddProp in context.UserProperties
-                             join user in context.Users
+                             join user in context.Users.Where(x=>x.Status==true)
                              on userAddProp.UserId equals user.Id
                              join profPhoto in context.ProfilePhotos
                              on userAddProp.UserId equals profPhoto.UserId
@@ -52,7 +52,7 @@ namespace DataAccess.Conrete.EntityFramework
             using (var context = new Context())
             {
                 var result = from userAddProp in context.UserProperties
-                             join user in context.Users
+                             join user in context.Users.Where(x => x.Status == true)
                              on userAddProp.UserId equals user.Id
                              join profPhoto in context.ProfilePhotos
                              on userAddProp.UserId equals profPhoto.UserId

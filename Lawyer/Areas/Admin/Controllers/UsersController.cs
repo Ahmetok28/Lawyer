@@ -11,7 +11,7 @@ using System.Security.Claims;
 namespace Lawyer.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("Admin/[controller]/[action]/{id?}/{TeamStatus?}")]
+    [Route("Admin/[controller]/[action]/{id?}")]
     public class UsersController : Controller
     {
         private readonly IUserAdditioanlPropertiesService _userAdditioanalPropertiesService;
@@ -72,5 +72,24 @@ namespace Lawyer.Areas.Admin.Controllers
 
             return RedirectToAction("UpdateUserRoles", "Users", routeValues);
         }
+      
+        public IActionResult UserDelete(int id)
+        {
+            var value=_userService.Get(id).Data;
+            value.Status = false;
+            var result =_userService.Update(value);
+            if (result.Success)
+            {
+                return RedirectToAction("Users", "Users");
+            }
+            return BadRequest("Silme işlemi başarısız oldu");
+        }
+    //    [HttpPost]
+    //    public IActionResult DeleteUser(User user)
+    //    {
+            
+
+    //        return RedirectToAction("UpdateUserRoles", "Users");
+    //    }
     }
 }
