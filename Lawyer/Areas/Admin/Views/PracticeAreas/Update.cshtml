@@ -11,11 +11,11 @@
 <hr />
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="Update">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input readonly="readonly" asp-for="Id" class="form-control" />
+
+                <input type="hidden" readonly="readonly" asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,14 +36,14 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Resim</label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+
+                <input type="hidden" readonly="readonly" asp-for="Image" class="form-control" />
+
             </div>
             <div class="form-group">
                 <label>Ana Sayfadaki Logosu</label>
                 <select asp-for="LogoImage" class="form-control">
-                    
+
                     <option value="/Images/PracticaAreaLogos/service-icon1.png">service-icon1</option>
                     <option value="/Images/PracticaAreaLogos/service-icon-2.png">service-icon-2</option>
                     <option value="/Images/PracticaAreaLogos/service-icon-3.png">service-icon-3</option>
@@ -63,13 +63,22 @@
                     <option value="/Images/PracticaAreaLogos/shield.png">shield</option>
                     <option value="@Model.LogoImage" selected>Geçerli Logo</option>
                 </select>
-               
+
                 <span asp-validation-for="LogoImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Ana Sayfadaki Arkaplanı</label>
-                <input asp-for="BackgroundImage" class="form-control" />
-                <span asp-validation-for="BackgroundImage" class="text-danger"></span>
+
+                <input type="hidden" readonly="readonly" asp-for="BackgroundImage" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Çalışma Alanı Sayfası Resmi</label>
+                <input type="file" name="image" id="file" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Ana Sayfadaki Arkaplanı</label>
+                <input type="file" name="background" id="file" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Kaydet" class="btn btn-primary" />

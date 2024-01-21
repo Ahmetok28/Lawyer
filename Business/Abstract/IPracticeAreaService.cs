@@ -1,6 +1,7 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace Business.Abstract
 {
     public interface IPracticeAreaService
     {
-        IResult Add(PracticeArea practiceArea);
-        IResult Update(PracticeArea practiceArea);
+        IResult Add(IFormFile image, IFormFile background, PracticeArea practiceArea);
+        IResult Update(IFormFile image, IFormFile background, PracticeArea practiceArea);
         IResult Delete(PracticeArea practiceArea);
         IDataResult<PracticeArea> GetById(int id);
         IDataResult<List<PracticeArea>> GetAll();

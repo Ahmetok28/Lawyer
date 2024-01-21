@@ -18,20 +18,23 @@ namespace Lawyer.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-           
+
             return View(_practiceAreaService.GetAll().Data);
         }
         #region Çalışma Alanı Ekleme
         [HttpGet]
         public IActionResult Add(int id)
         {
-            
+
             return View(_practiceAreaService.GetById(id).Data);
-        } 
+        }
         [HttpPost]
-        public IActionResult Add(PracticeArea practiceArea)
+        public IActionResult Add(
+            [FromForm(Name = "image")]     IFormFile image,
+            [FromForm(Name = "background")] IFormFile background,           
+            PracticeArea practiceArea)
         {
-            _practiceAreaService.Add(practiceArea);
+            _practiceAreaService.Add(image,background,practiceArea);
             return RedirectToAction("Index");
         }
 
@@ -45,9 +48,12 @@ namespace Lawyer.Areas.Admin.Controllers
             return View(_practiceAreaService.GetById(id).Data);
         }
         [HttpPost]
-        public IActionResult Update(PracticeArea practiceArea)
+        public IActionResult Update(
+            [FromForm(Name = "image")] IFormFile image,
+            [FromForm(Name = "background")] IFormFile background,
+            PracticeArea practiceArea)
         {
-            _practiceAreaService.Update(practiceArea);
+            _practiceAreaService.Update(image,background,practiceArea);
             return RedirectToAction("Index");
         }
 
@@ -76,7 +82,7 @@ namespace Lawyer.Areas.Admin.Controllers
 
             return View(_practiceAreaService.GetById(id).Data);
         }
-       
+
 
         #endregion
     }

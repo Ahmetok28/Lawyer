@@ -114,16 +114,25 @@ app.UseCors(builder =>
 });
 
 app.UseHttpsRedirection();
-app.UseStatusCodePages(async context =>
-{
-    var response = context.HttpContext.Response;
 
-    if (response.StatusCode == (int)HttpStatusCode.Unauthorized ||
-            response.StatusCode == (int)HttpStatusCode.Forbidden)
-        response.Redirect("/Admin/Auth/Login");
-   
-});
-app.UseStatusCodePagesWithReExecute("/ErrorPages/PageNotFound","?code={0}");
+//app.UseStatusCodePages(async context =>
+//{
+//    var response = context.HttpContext.Response;
+
+//    if (response.StatusCode == (int)HttpStatusCode.Unauthorized ||
+//        response.StatusCode == (int)HttpStatusCode.Forbidden)
+//    {
+//        response.Redirect("/Admin/Auth/Login");
+//    }
+//    else if (response.StatusCode == (int)HttpStatusCode.NotFound)
+//    {
+//        response.Redirect("/ErrorPages/PageNotFound");
+//    }
+//    // Diðer durumlar için gerekirse ek kontroller ekleyebilirsiniz
+//});
+
+
+app.UseStatusCodePagesWithReExecute("/ErrorPages/PageNotFound","?statusCode={0}");
 
 app.UseSession();
 app.UseStaticFiles();

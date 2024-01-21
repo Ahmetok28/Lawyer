@@ -9,7 +9,7 @@
 
             @foreach (var service in Model)
             {
-                <a href="@Url.Action("PracticeAreas", "PracticeArea", new { id = service.Id })" class="service__box box-2 " style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('@service.BackgroundImage')">
+                <a href="@Url.Action("PracticeAreas", "PracticeArea", new { id = service.Id })" class="service__box box-2 " style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/Images/PracticeArea/@service.BackgroundImage')">
 
                     <img style="height:54px;width:54px; " src="@service.LogoImage" alt="Hizmet İkonu">
 

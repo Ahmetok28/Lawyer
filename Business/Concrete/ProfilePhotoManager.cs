@@ -69,7 +69,7 @@ namespace Business.Concrete
 
         public IResult Update(IFormFile formFile, ProfilePhoto profilePhoto)
         {
-            profilePhoto.ImagePath =  _fileHelper.Update(formFile, PathConstants.ProfilePhotoPath + profilePhoto.ImagePath, PathConstants.ProfilePhotoPath);
+            profilePhoto.ImagePath =  _fileHelper.Update(formFile,  profilePhoto.ImagePath, PathConstants.ProfilePhotoPath);
             _profilePhotoDal.Update(profilePhoto);
             return new SuccessResult();
         }

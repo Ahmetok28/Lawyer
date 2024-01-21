@@ -1,9 +1,9 @@
 ﻿<head>
     <link href="~/css/404notfoundpage/style404.css" rel="stylesheet" />
     <script src="~/scripts/parallax.js"></script>
-    
+
     <script src="~/scripts/jquery-3.6.4.min.js"></script>
-    <title>Sayfa Bulunamadı</title>
+    <title>Kişi Bulunamadı</title>
 
 </head>
 
@@ -70,25 +70,22 @@
 
         <div class="text">
             <article>
-                @if (ViewData["StatusCode"] != null)
-                {
-                    <p>Status Code: @ViewData["StatusCode"]</p>
-                }
-                <p>Olamaz! Galiba kayboldun. <br>Ana sayfaya dönmek istermisin?</p>
+              
+                <p>Ekip arkadaşımız galiba aramızdan ayrılmış :( <br>Ana sayfaya dönmek istermisin?</p>
                 <a href="/">
-                <span>
-                    
-                        <button >
+                    <span>
+
+                        <button>
                             Evet
                         </button>
-                  
-                </span>
+
+                    </span>
                 </a>
             </article>
         </div>
 
     </div>
-   
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var scene = document.getElementById('scene');
@@ -107,7 +104,7 @@
         });
     </script>
 
-    
+
 </section>
 
 

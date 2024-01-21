@@ -12,7 +12,7 @@
 <div class="row">
    
     <div class="col-md-8">
-        <form asp-action="Add">
+        <form asp-action="Add" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -32,11 +32,7 @@
                 </textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>Resim</label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label>Ana Sayfadaki Logosu</label>
                 
@@ -61,11 +57,15 @@
                 </select>
                 <span asp-validation-for="LogoImage" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>Ana Sayfadaki Arkaplanı</label>
-                <input asp-for="BackgroundImage" class="form-control" />
 
-                <span asp-validation-for="BackgroundImage" class="text-danger"></span>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Çalışma Alanı Sayfası Resmi</label>
+                <input type="file" name="image" id="file" class="form-control" />
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputEmail1">Ana Sayfadaki Arkaplanı</label>
+                <input type="file" name="background" id="file" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Ekle" class="btn btn-primary" />

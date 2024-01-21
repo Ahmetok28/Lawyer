@@ -1,9 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
+using Core.Entities.Concrete;
+using Core.Utilities.Business;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +19,12 @@ namespace Business.Concrete
     public class HomeTextManager:IHomeTextService
     {
         private readonly IHomeTextDal _homeTextDal;
+        IFileHelper _fileHelper;
 
-        public HomeTextManager(IHomeTextDal homeTextDal)
+        public HomeTextManager(IHomeTextDal homeTextDal, IFileHelper fileHelper)
         {
             _homeTextDal = homeTextDal;
+            _fileHelper = fileHelper;
         }
         [SecuredOperation("Admin,Moderator")]
         public IResult Add(HomeText homeText)
@@ -38,10 +44,27 @@ namespace Business.Concrete
             return  new SuccessDataResult<HomeText>( _homeTextDal.GetAll().First());
         }
         [SecuredOperation("Admin,Moderator")]
-        public IResult Update(HomeText homeText)
+        public IResult Update(IFormFile file ,HomeText homeText)
         {
+            var check = IfImageIsNull(file);
+
+           
+
+            if (check.Success)
+            {
+                homeText.BackroundImage = _fileHelper.Update(file, PathConstants.UIHomePage + homeText.BackroundImage, PathConstants.UIHomePage);
+            }
+            
             _homeTextDal.Update(homeText);
             return new SuccessResult(Messages.SuccesfullyUpdated);
+        }
+        private IResult IfImageIsNull(IFormFile file)
+        {
+            if (file == null)
+            {
+                return new ErrorResult(); ;
+            }
+            return new SuccessResult();
         }
     }
 }

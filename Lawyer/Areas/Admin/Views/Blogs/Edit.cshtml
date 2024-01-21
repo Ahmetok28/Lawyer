@@ -21,9 +21,9 @@
         <form asp-action="Edit" method="post">
             <div ></div>
             <div class="form-group">
-                <p> Id </p>
                 
-                <input readonly="readonly" asp-for="@Model.Item1.BlogId" class="form-control" name="BlogId" value="@Model.Item1.BlogId" />
+                
+                <input type="hidden" readonly="readonly" asp-for="@Model.Item1.BlogId" class="form-control" name="BlogId" value="@Model.Item1.BlogId" />
                 
             </div>
             <div class="form-group">

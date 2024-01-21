@@ -10,5 +10,7 @@ namespace Business.Constants
     {
         public static string ImagesPath = "wwwroot\\Images\\";
         public static string ProfilePhotoPath = "wwwroot\\Images\\ProfilePhotos\\";
+        public static string UIHomePage = "wwwroot\\Images\\UIHomePage\\";
+        public static string PracticeArea = "wwwroot\\Images\\PracticeArea\\";
     }
 }

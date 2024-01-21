@@ -29,9 +29,10 @@ namespace Lawyer.Areas.Admin.Controllers
             return View(_homeTextService.GetHomeText().Data);
         }
         [HttpPost]
-        public IActionResult EditHeader(HomeText homeText) 
-        {     
-            _homeTextService.Update(homeText);
+        public IActionResult EditHeader([FromForm] IFormFile file,HomeText homeText) 
+        {
+           
+            _homeTextService.Update(file,homeText);
             return RedirectToAction("Index");
         }  
         [HttpGet]
@@ -40,9 +41,9 @@ namespace Lawyer.Areas.Admin.Controllers
             return View(_aboutTextService.GetAboutText().Data);
         }
         [HttpPost]
-        public IActionResult EditAbout(AboutText aboutText) 
+        public IActionResult EditAbout(IFormFile file, AboutText aboutText) 
         {
-            _aboutTextService.Update(aboutText);
+            _aboutTextService.Update(file,aboutText);
             return RedirectToAction("Index");
         }    
     }

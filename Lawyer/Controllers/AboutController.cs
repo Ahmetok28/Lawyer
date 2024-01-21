@@ -31,8 +31,13 @@ namespace Lawyer.Controllers
         }
         public IActionResult AboutMe(int id)
         {
-          var value=  _teamService.GetByIdDto(id).Data;
-           return View(value);
+            var value=  _teamService.GetByIdDto(id);
+
+            if (value.Data == null)
+            {
+                return RedirectToAction("AuthorNotFound", "ErrorPages");
+            }
+            return View(value.Data);
         }
     }
 }

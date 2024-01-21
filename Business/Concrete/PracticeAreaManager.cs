@@ -1,10 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
+using Core.Entities.Concrete;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +19,17 @@ namespace Business.Concrete
     public class PracticeAreaManager:IPracticeAreaService
     {
         private readonly IPracticeAreaDal _practiceAreaDal;
-
-        public PracticeAreaManager(IPracticeAreaDal practiceAreaDal)
+        IFileHelper _fileHelper;
+        public PracticeAreaManager(IPracticeAreaDal practiceAreaDal, IFileHelper fileHelper)
         {
             _practiceAreaDal = practiceAreaDal;
+            _fileHelper = fileHelper;
         }
         [SecuredOperation("Admin,Moderator")]
-        public IResult Add(PracticeArea practiceArea)
+        public IResult Add(IFormFile image, IFormFile background, PracticeArea practiceArea)
         {
+            practiceArea.Image =  _fileHelper.Upload(image, PathConstants.PracticeArea);
+            practiceArea.BackgroundImage =  _fileHelper.Upload(background, PathConstants.PracticeArea);
             _practiceAreaDal.Add(practiceArea);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
@@ -51,10 +57,32 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("Admin,Moderator")]
-        public IResult Update(PracticeArea practiceArea)
+        public IResult Update(IFormFile image, IFormFile backgroud, PracticeArea practiceArea)
         {
+            var checkImage=IfImageIsNull(image);
+            var checkBackGround=IfImageIsNull(backgroud);
+
+            if (checkImage.Success)
+            {
+                practiceArea.Image =_fileHelper.Update(image, practiceArea.Image, PathConstants.PracticeArea);
+            }  
+            if (checkBackGround.Success)
+            {
+                practiceArea.BackgroundImage =  _fileHelper.Update(backgroud, practiceArea.BackgroundImage, PathConstants.PracticeArea);
+            } 
+
+
             _practiceAreaDal.Update(practiceArea);
             return new SuccessResult(Messages.SuccesfullyUpdated);
+        }
+
+        private IResult IfImageIsNull(IFormFile file)
+        {
+            if (file == null)
+            {
+                return new ErrorResult(); ;
+            }
+            return new SuccessResult();
         }
     }
 }

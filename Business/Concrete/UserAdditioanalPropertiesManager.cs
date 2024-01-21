@@ -57,7 +57,7 @@ namespace Business.Concrete
 
         public IDataResult<UserForTeamDTO> GetByIdDto(int id)
         {
-            return new SuccessDataResult<UserForTeamDTO>(_userAdditionalPropertiesDal.GetUserDetailsByFilter(x => x.UserId == id));
+            return new SuccessDataResult<UserForTeamDTO>(_userAdditionalPropertiesDal.GetUserDetailsByFilter(x => x.UserId == id && x.TeamStatus == true));
         }
 
         public IDataResult< UserAdditionalProperties> GetByUserId(int userId)
