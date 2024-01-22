@@ -1,4 +1,5 @@
-﻿@model UserForTeamDTO
+﻿@using Core.Entities.Concrete;
+@model Tuple< UserForTeamDTO,List<UserOperationClaim>>
 @{
     ViewData["Title"] = "UpdateUserRoles";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -11,7 +12,7 @@
             <li class="breadcrumb-item"><a href="/Admin">Admin Anasayfa</a></li>
             <li class="breadcrumb-item">Kullanıcı</li>
             <li class="breadcrumb-item active">Profili Düzenle</li>
-            <li class="breadcrumb-item active">@Model.FullName</li>
+            <li class="breadcrumb-item active">@Model.Item1.FullName</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -23,14 +24,14 @@
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                    <img src="~/Images/ProfilePhotos/@Model.ProfliePhoto" alt="Profile" class="rounded-circle">
-                    <h2>@Model.FullName</h2>
-                    <h3>@Model.Profession</h3>
+                    <img src="~/Images/ProfilePhotos/@Model.Item1.ProfliePhoto" alt="Profile" class="rounded-circle">
+                    <h2>@Model.Item1.FullName</h2>
+                    <h3>@Model.Item1.Profession</h3>
                     <div class="social-links mt-2">
-                        <a href="@Model.Twitter" class="twitter"><i class="bi bi-twitter"></i></a>
-                        <a href="@Model.Facebook" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="@Model.Instagram" class="instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="@Model.Linkedln" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        <a href="@Model.Item1.Twitter" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="@Model.Item1.Facebook" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="@Model.Item1.Instagram" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="@Model.Item1.Linkedln" class="linkedin"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -61,20 +62,20 @@
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <h5 class="card-title">Hakkımda</h5>
-                            <p class="small fst-italic">@Model.AboutUser</p>
+                            <p class="small fst-italic">@Model.Item1.AboutUser</p>
 
                             <h5 class="card-title">Profile Detayları</h5>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">İsim</div>
-                                <div class="col-lg-9 col-md-8">@Model.FullName</div>
+                                <div class="col-lg-9 col-md-8">@Model.Item1.FullName</div>
                             </div>
 
 
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Meslek</div>
-                                <div class="col-lg-9 col-md-8">@Model.Profession</div>
+                                <div class="col-lg-9 col-md-8">@Model.Item1.Profession</div>
                             </div>
 
 
@@ -82,29 +83,29 @@
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Telefon</div>
-                                <div class="col-lg-9 col-md-8">@Model.PhoneNumber</div>
+                                <div class="col-lg-9 col-md-8">@Model.Item1.PhoneNumber</div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">E Posta</div>
-                                <div class="col-lg-9 col-md-8">@Model.Mail</div>
+                                <div class="col-lg-9 col-md-8">@Model.Item1.Mail</div>
                             </div>
 
                         </div>
 
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-                            
+
                             <!-- Profile Edit Form -->
                             <form asp-action="UpdateUserTeamMember" asp-controller="Users" asp-area="Admin" method="post">
                                 <p>Takım üyesi olarak seçtiğininiz kullanıcının gerekli bilgilerini eksiksiz olarak doldurduğundan emin olduktan sonra ekip üyesi olarak güncelleyin.</p>
                                 <img class="newimage" width="50%" height="auto" src="~/images/admininfos/admininfoteam.png" />
-                                
+
                                 <div class="row mb-3">
                                     <label for="TeamStatus" class="col-md-4 col-lg-3 col-form-label">Takım Üyesi </label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input type="hidden" asp-for="UserId" name="UserId" value="@Model.UserId" />
-                                        <input type="checkbox" asp-for="TeamStatus" name="TeamStatus" checked="@Model.TeamStatus" />
+                                        <input type="hidden" asp-for="@Model.Item1.UserId" name="UserId" value="@Model.Item1.UserId" />
+                                        <input type="checkbox" asp-for="@Model.Item1.TeamStatus" name="TeamStatus" checked="@Model.Item1.TeamStatus" />
 
 
                                     </div>
@@ -114,40 +115,31 @@
                                     <button class="btn btn-primary" type="submit">Değişiklikleri Kaydet</button>
                                 </div>
                             </form><!-- End Profile Edit Form -->
-                           
+
                         </div>
 
 
 
                         <div class="tab-pane fade pt-3" id="profile-Roles">
-                            <!-- Change Password Form -->
-                            <form>
+                            <!-- Change Role Form -->
 
-                                <div class="row mb-3">
-                                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Geçerli Şifre</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="password" type="password" class="form-control" id="currentPassword">
+                            <form method="post" asp-action="UpdateUserRoles" >
+                                    <div>
+                                        <h3>Kullanıcı Rolleri</h3>
+                                   
+                                        @foreach (var role in ViewBag.Roles)
+                                        {
+                                            <label>
+                                            <input type="checkbox" name="selectedRoles" value="@role.Id" @(Model.Item2.Any(ur => ur.OperationClaimId == role.Id) ? "checked" : "") />>
+                                                @role.Name
+                                            </label>
+                                        }
                                     </div>
-                                </div>
 
-                                <div class="row mb-3">
-                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Yeni Şifre</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="newpassword" type="password" class="form-control" id="newPassword">
-                                    </div>
-                                </div>
+                                    <input type="hidden" name="userId" value="@Model.Item1.UserId" />
 
-                                <div class="row mb-3">
-                                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Yeni Şifre Tekrar</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Şifreyi Değiştir</button>
-                                </div>
-                            </form><!-- End Change Password Form -->
+                                    <button type="submit">Kaydet</button>
+                                </form><!-- End Change Role Form -->
 
                         </div>
 

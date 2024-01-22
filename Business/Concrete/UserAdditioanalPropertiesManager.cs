@@ -59,12 +59,16 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<UserForTeamDTO>(_userAdditionalPropertiesDal.GetUserDetailsByFilter(x => x.UserId == id && x.TeamStatus == true));
         }
+         public IDataResult<UserForTeamDTO> GetByIdDtoForAdminPanel(int id)
+        {
+            return new SuccessDataResult<UserForTeamDTO>(_userAdditionalPropertiesDal.GetUserDetailsByFilter(x => x.UserId == id));
+        }
 
         public IDataResult< UserAdditionalProperties> GetByUserId(int userId)
         {
            return new SuccessDataResult<UserAdditionalProperties>( _userAdditionalPropertiesDal.Get(x=>x.UserId==userId));
         }
-        [SecuredOperation("Admin")]
+        [SecuredOperation("Admin,Moderator,Editor,Yazar,User")]
         public IResult Update(UserAdditionalProperties userAdditional)
         {
            _userAdditionalPropertiesDal.Update(userAdditional);

@@ -54,6 +54,12 @@ namespace Business.Concrete
                 Status = true
             };
             _userService.Add(user);
+
+            _claimService.Add(new UserOperationClaim
+            {
+                UserId = user.Id,
+                OperationClaimId = 4
+            }) ;
             _additioanlPropertiesService.Add(new UserAdditionalProperties
             {
                 UserId= user.Id,
@@ -100,6 +106,29 @@ namespace Business.Concrete
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+        }
+
+        public IResult ChangePassword(ChangePasswordDTO changePassword)
+        {
+            var userToCheck = _userService.GetByMail(changePassword.Email).Data;
+            if (userToCheck == null)
+            {
+                return new ErrorResult(Messages.EMailNotMatch);
+            }
+            if (!HashingHelper.VerifyPasswordHash(changePassword.CurrentPassword, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            {
+                return new ErrorResult(Messages.PasswordNotMatch);
+            }
+
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(changePassword.NewPassword, out passwordHash, out passwordSalt);
+           
+            userToCheck.PasswordHash = passwordHash;
+            userToCheck.PasswordSalt = passwordSalt;
+            
+           _userService.Update(userToCheck);
+
+            return new SuccessResult(Messages.PasswordchangeSuccessful);
         }
     }
 }

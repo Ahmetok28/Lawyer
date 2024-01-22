@@ -21,6 +21,7 @@ namespace Business.Abstract
         IDataResult<List<UserForTeamDTO>> GetAllDetails();
         IDataResult<List<UserForTeamDTO>> GetAllIfTeamMemberExistsDto();
         IDataResult<UserForTeamDTO> GetByIdDto(int id);
+        IDataResult<UserForTeamDTO> GetByIdDtoForAdminPanel(int id);
 
 
 

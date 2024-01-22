@@ -36,6 +36,11 @@ namespace Lawyer.Areas.Admin.Controllers
                 // Kullanıcı "Admin" rolüne sahipse, admin sayfasını göster
                 return View();
             }
+            else if (User.IsInRole("User"))
+            {
+                
+                return View();
+            }
             else
             {
                 // Kullanıcı "Admin" rolüne sahip değilse, başka bir sayfaya yönlendir

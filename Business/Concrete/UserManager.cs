@@ -93,7 +93,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<UserDto>>(_userDal.GetUserDetails());
         }
-        [SecuredOperation("Admin")]
+        [SecuredOperation("Admin,Moderator,Editor,Yazar,User")]
         public IResult Update(User user)
         {
             _userDal.Update(user);

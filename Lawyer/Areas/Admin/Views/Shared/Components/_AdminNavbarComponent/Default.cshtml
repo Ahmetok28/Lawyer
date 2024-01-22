@@ -10,7 +10,11 @@
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
         <li class="dropdown-header">
             <h6>@Model.Name</h6>
-            <span>@Model.Profession</span>
+            @if (Model.Profession!=null)
+            {
+                <span>@Model.Profession</span>
+            }
+            
         </li>
         <li>
             <hr class="dropdown-divider">

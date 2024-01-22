@@ -21,7 +21,11 @@ namespace Lawyer.Areas.Admin.ViewComponents.Default
             var userId = (User as ClaimsPrincipal)?.FindFirstValue(ClaimTypes.NameIdentifier);
             var userRole = (User as ClaimsPrincipal)?.IsInRole("Admin");
             ViewBag.Admin = userRole;
-            var values = _userAdditioanlProperties.GetByIdDto(Convert.ToInt32(userId)).Data;
+            var values = _userAdditioanlProperties.GetByIdDtoForAdminPanel(Convert.ToInt32(userId)).Data;
+            if (values.Profession==null)
+            {
+                values.Profession = "";
+            }
             var navbarView = new NavbarViewModel
             {
                 Name = values.FullName,

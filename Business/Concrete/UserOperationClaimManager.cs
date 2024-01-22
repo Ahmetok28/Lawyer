@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Bussines.BusinessAspects.Autofac;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -25,6 +26,8 @@ namespace Business.Concrete
             _claimDal.Add(claim);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
+
+       
 
         public IResult AddUser(User user)
         {
@@ -68,6 +71,22 @@ namespace Business.Concrete
             return new SuccessDataResult<List<UserOperationClaim>>(_claimDal.GetAll(c => c.UserId == id));
         }
 
+        public IResult AddClaim(int userId, int roleId)
+        {
+            _claimDal.Add(new UserOperationClaim
+            {
+                UserId = userId,
+                OperationClaimId = roleId
+            });
+            return new SuccessResult(Messages.SuccesfullyAdded);
+        }
+        public IResult RemoveAllClaimsByUserId(int userId)
+        {
+           _claimDal.RemoveAllByUserId(userId);
+            return new SuccessResult();
+        }
+
+        [SecuredOperation("Admin")]
         public IResult Update(UserOperationClaim claim)
         {
             _claimDal.Update(claim);

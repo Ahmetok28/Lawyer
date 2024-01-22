@@ -26,6 +26,9 @@ namespace Business.Constants
         public static string EmailInvalid = "E-Posta Geçersiz";
 
         public static string AuthorizationDenied =  "Yetkiniz Yok";
-    
+
+        public static string PasswordNotMatch = "Eski Sifreniz Dogru Degil";
+        public static string EMailNotMatch = "Email Eslesmedi";
+        public static string PasswordchangeSuccessful = "Sifre Basariyla Degistirildi";
     }
 }
