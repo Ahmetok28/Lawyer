@@ -64,12 +64,12 @@ namespace Lawyer.Areas.Admin.Controllers
         }
        
         [HttpPost]
-        public IActionResult Add(Blog blog)
+        public IActionResult Add(IFormFile image, Blog blog)
         {
             blog.CreatedDate = DateTime.Now;
             string userId =User.FindFirstValue(ClaimTypes.NameIdentifier);
             blog.AuthorId= Convert.ToInt32(userId);
-            _blogService.Add(blog);            
+            _blogService.Add(image,blog);            
             return RedirectToAction("Index");
         }
 
@@ -84,12 +84,12 @@ namespace Lawyer.Areas.Admin.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult Edit(Blog blog)
+        public IActionResult Edit(IFormFile image, Blog blog)
         {
             if (ModelState.IsValid)
             {
 
-                 _blogService.Update(blog);
+                 _blogService.Update(image,blog);
                 // _blogService.Update başarı veya başarısızlık durumunu belirten bir mesaj döndürüyorsa
                 return RedirectToAction("Index"); // Başarı durumunda Index'e yönlendir
             }

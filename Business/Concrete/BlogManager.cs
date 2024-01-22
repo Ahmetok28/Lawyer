@@ -1,10 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +18,18 @@ namespace Business.Concrete
     public class BlogManager : IBlogService
     {
         IBlogDal _blogDal;
+        IFileHelper _fileHelper;
 
-        public BlogManager(IBlogDal blogDal)
+        public BlogManager(IBlogDal blogDal, IFileHelper fileHelper)
         {
             _blogDal = blogDal;
+            _fileHelper = fileHelper;
         }
         [SecuredOperation("Admin,Moderator")]
-        public IResult Add(Blog blog)
+        public IResult Add(IFormFile image, Blog blog)
         {
-           _blogDal.Add(blog);
+            blog.PhotoUrl= _fileHelper.Upload(image, PathConstants.Blogs);
+            _blogDal.Add(blog);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
 
@@ -68,8 +73,14 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("Admin,Moderator")]
-        public IResult Update(Blog blog)
+        public IResult Update(IFormFile image, Blog blog)
         {
+            var check=IfImageIsNull(image);
+            if (check.Success)
+            {
+                blog.PhotoUrl = blog.PhotoUrl = _fileHelper.Update(image, PathConstants.Blogs+ blog.PhotoUrl, PathConstants.Blogs);
+            }
+           
             _blogDal.Update(blog);
             return new SuccessResult(Messages.SuccesfullyUpdated);
         }
@@ -122,6 +133,15 @@ namespace Business.Concrete
           .ToList();
 
             return new SuccessDataResult<List<BlogDTO>>(latestBlogs, "En son bloglar getirildi");
+        }
+
+        private IResult IfImageIsNull(IFormFile file)
+        {
+            if (file == null)
+            {
+                return new ErrorResult(); ;
+            }
+            return new SuccessResult();
         }
     }
 }

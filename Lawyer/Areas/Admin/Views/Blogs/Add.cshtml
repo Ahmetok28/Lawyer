@@ -18,7 +18,7 @@
 </div>
 <div class="row">
     <div class="col-md-10">
-        <form asp-action="Add" method="post">
+        <form asp-action="Add" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
            
@@ -63,12 +63,16 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p> Fotoğraf </p>
-                <label asp-for="PhotoUrl" class="control-label"></label>
-                <input asp-for="PhotoUrl" class="form-control" name="PhotoUrl" />
-                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+                
+               
+                <input type="hidden" readonly="readonly" asp-for="PhotoUrl" class="form-control" name="PhotoUrl" />
+               
             </div>
          
+            <div class="form-group">
+                <label for="exampleInputEmail1">Blog Resmi</label>
+                <input type="file" name="image" id="file" class="form-control" />
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Kaydet</button>
             </div>

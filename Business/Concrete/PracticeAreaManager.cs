@@ -64,11 +64,11 @@ namespace Business.Concrete
 
             if (checkImage.Success)
             {
-                practiceArea.Image =_fileHelper.Update(image, practiceArea.Image, PathConstants.PracticeArea);
+                practiceArea.Image =_fileHelper.Update(image, PathConstants.PracticeArea + practiceArea.Image, PathConstants.PracticeArea);
             }  
             if (checkBackGround.Success)
             {
-                practiceArea.BackgroundImage =  _fileHelper.Update(backgroud, practiceArea.BackgroundImage, PathConstants.PracticeArea);
+                practiceArea.BackgroundImage =  _fileHelper.Update(backgroud,PathConstants.PracticeArea+ practiceArea.BackgroundImage, PathConstants.PracticeArea);
             } 
 
 

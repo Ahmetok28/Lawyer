@@ -5,7 +5,7 @@
         <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
             <div class="thumb">
                 <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.First().Id">
-                    <img class="img-fluid" src="~/Blog/img/post/preview.png" alt="">
+                    <img style="width:60px;height:60px;" class="img-fluid" src="~/Images/Blogs/@Model.First().ImageUrl" alt="">
                 </a>
             </div>
             <div class="arrow">
@@ -52,7 +52,7 @@
             </div>
             <div class="thumb">
                 <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.Last().Id">
-                    <img class="img-fluid" src="~/Blog/img/post/next.png" alt="">
+                    <img style="width:60px;height:60px;" class="img-fluid" src="~/Images/Blogs/@Model.Last().ImageUrl" alt="">
                 </a>
             </div>
         </div>

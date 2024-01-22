@@ -11,7 +11,7 @@
             }
             @if (item.ImageUrl != null)
             {
-                <img src="@item.ImageUrl" alt="post">
+                <img style="width:80px;height:80px;" src="~/Images/Blogs/@item.ImageUrl" alt="post">
             }
              <div class="media-body">
             <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@item.Id">
