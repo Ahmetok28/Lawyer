@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.DTOs;
+using Lawyer.Helpers;
 using Lawyer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace Lawyer.Controllers
             _blogCommentService = blogCommentService;
         }
 
-        public IActionResult Index(int categoryid, int pageNumber = 1)
+        public IActionResult Index(int categoryid, string ara="", int pageNumber = 1)
         {
             List<BlogViewModel> blogs;
             int pageSize = 4;
@@ -29,6 +30,17 @@ namespace Lawyer.Controllers
             else
             {
                 blogs = BlogViewModelConverter(_blogService.GetBlogDetailsByCategoryId(categoryid).Data);
+            }
+
+            if (!string.IsNullOrEmpty(ara))
+            {
+                var normalizedSearchString = ara.ToLowerInvariant();
+                blogs = blogs
+              .Where(b => HtmlUtilities.StripHtml(b.Title).ToLowerInvariant().Contains(normalizedSearchString) ||
+                          HtmlUtilities.StripHtml(b.Content).ToLowerInvariant().Contains(normalizedSearchString) ||
+                          HtmlUtilities.StripHtml(b.DescriptionForSearch).ToLowerInvariant().Contains(normalizedSearchString))
+              .ToList();
+
             }
 
             // Sayfalama işlemleri
@@ -44,7 +56,8 @@ namespace Lawyer.Controllers
         }
 
         public IActionResult SingleBlog(int id)
-        {            
+        {
+            
             
             return View(_blogService.GetBlogDetailsById(id).Data);
         }
@@ -65,6 +78,8 @@ namespace Lawyer.Controllers
                     Description = !string.IsNullOrEmpty(item.BlogDescription) && item.BlogDescription.Length > 200
                                           ? item.BlogDescription[..350]
                                           : item.BlogDescription,
+                    DescriptionForSearch= item.BlogDescription,
+                    Content= item.BlogContent,
                     Author = item.AuthorFullName,
                     ImageUrl = item.BlogPhoto,
                     CreatedDateDays = item.BlogCreatedDate.ToString("dd"),

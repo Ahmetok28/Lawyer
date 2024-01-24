@@ -1,0 +1,15 @@
+﻿<aside class="single_sidebar_widget search_widget">
+    <form asp-controller="Blog" asp-action="Index" method="get">
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder='Ara'
+                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ara'" name="ara">
+                <div class="input-group-append">
+                    <button class="btn" type="button"><i class="ion-ios-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Ara</button>
+        
+    </form>
+</aside>

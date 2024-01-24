@@ -241,7 +241,11 @@ h6 {
 # Profie Page
 --------------------------------------------------------------*/
 .profile .profile-card img {
-  max-width: 120px;
+  max-width: 270px;
+
+}
+.my-rounded-circle {
+    border-radius: 5% !important;
 }
 
 .profile .profile-card h2 {

@@ -2,7 +2,7 @@
 
 namespace Lawyer.ViewComponents.Default
 {
-    public class _SponsorsPartial : ViewComponent
+    public class _SearchBlogPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

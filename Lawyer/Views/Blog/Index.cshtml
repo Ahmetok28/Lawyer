@@ -75,7 +75,7 @@
                                             <img  class="card-img rounded-0" src="~/Images/Blogs/@item.ImageUrl" alt="blog resmi">
                                         }
 
-                                        <a href="#" class="blog_item_date">
+                                        <a  href="#" class="blog_item_date">
                                             <h3>@item.CreatedDateDays</h3>
                                             <p>@item.CreatedDateMonths</p>
                                         </a>
@@ -103,12 +103,14 @@
 
 
                     </div>
-
+                  
                     <div class="col-md-12">
+                        
                         <nav class="blog-pagination justify-content-center d-flex" ">
+                           
                             <ul class="pagination">
                                 <li class="page-item @(ViewBag.PageNumber == 1 ? "disabled" : "")">
-                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber - 1 })">
+                                    <a  class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber - 1 })">
                                         <i class="ion-ios-arrow-back"></i>
                                     </a>
                                 </li>
@@ -119,7 +121,7 @@
                                 </li>
                                 }
                                 <li class="page-item @(ViewBag.PageNumber == ViewBag.TotalPages ? "disabled" : "")">
-                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber + 1})">
+                                    <a  class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber + 1})">
                                         <i class="ion-ios-arrow-forward"></i>
                                     </a>
 
@@ -133,20 +135,7 @@
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <!--  Ara -->
-                        <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='Ara'
-                                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ara'">
-                                        <div class="input-group-append">
-                                            <button class="btn" type="button"><i class="ion-ios-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Ara</button>
-                            </form>
-                        </aside>
+                        @await Component.InvokeAsync("_SearchBlogPartial")
                         <!--  Blog Kategorileri -->
                         @await Component.InvokeAsync("_BlogCategoryPartial")
                         <!--  Son Bloglar -->
