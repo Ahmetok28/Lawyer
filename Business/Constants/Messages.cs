@@ -30,5 +30,7 @@ namespace Business.Constants
         public static string PasswordNotMatch = "Eski Sifreniz Dogru Degil";
         public static string EMailNotMatch = "Email Eslesmedi";
         public static string PasswordchangeSuccessful = "Sifre Basariyla Degistirildi";
+
+        public static string MailAlreadyExist = "Bu Mail Zaten Kayıtlı";
     }
 }

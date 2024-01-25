@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Core.Utilities.Mail;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,5 +41,7 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<WhyChooseLogo> WhyChooseLogos { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<FooterSocialAndSaying>? FooterSocialAndSayings { get; set; }
+        public DbSet<EmailConfiguration> EmailConfiguration { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
     }
 }

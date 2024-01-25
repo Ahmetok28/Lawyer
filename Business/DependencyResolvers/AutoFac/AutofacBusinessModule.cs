@@ -93,6 +93,12 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<ProfilePhotoManager>().As<IProfilePhotoService>().SingleInstance();
             builder.RegisterType<EfProfilePhotoDal>().As<IProfilePhotoDal>().SingleInstance();
 
+            builder.RegisterType<EMailConfigurationManager>().As<IEmailConfigurationService>().SingleInstance();
+            builder.RegisterType<EfEmailConfigurationDal>().As<IEmailConfigurationDal>().SingleInstance();
+            
+            builder.RegisterType<SuscriberManager>().As<ISuscriberService>().SingleInstance();
+            builder.RegisterType<EfSuscriberDal>().As<ISuscriberDal>().SingleInstance();
+
             builder.RegisterType<FileHeplerManager>().As<IFileHelper>().SingleInstance();
 
 

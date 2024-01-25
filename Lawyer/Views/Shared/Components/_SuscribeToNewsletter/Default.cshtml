@@ -1,0 +1,17 @@
+﻿
+
+<aside class="single_sidebar_widget newsletter_widget">
+    <h4 class="widget_title">Bültene Abone Olun</h4>
+    <p>Yayınlanan Blogları Kaçırmayın!</p>
+    <hr />
+    <form asp-action="SuscribeNewsletter" asp-controller="Mail" method="post">
+        <div class="form-group">
+            <input name="EMail" type="email" class="form-control" onfocus="this.placeholder = ''"
+                   onblur="this.placeholder = 'E Posta adresinizi yazın'" placeholder='E Posta adresinizi yazın' required>
+        </div>
+        <button class="button rounded-0 primary-bg text-white w-100 btn_1"
+                type="submit">
+            Abone Ol
+        </button>
+    </form>
+</aside>

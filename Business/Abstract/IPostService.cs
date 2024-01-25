@@ -10,5 +10,5 @@ namespace Business.Abstract
         IResult Update(Post post);
         IDataResult<List<Post>> GetAll();
          IDataResult<Post> GetById(int id);
-    }
+    } 
 }
