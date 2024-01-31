@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Mail
 {
-    public interface IMailService
+    public class EmailAddress
     {
-         Task SendEmail(MailMessage mail,EmailConfiguration mailConfig);
+        public string? Name { get; set; }
+        public string Address { get; set; }
     }
 }

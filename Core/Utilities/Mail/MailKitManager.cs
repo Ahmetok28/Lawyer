@@ -10,15 +10,13 @@ namespace Core.Utilities.Mail
 {
     public class MailKitManager : IMailService
     {
-        public void SendEmailAsync(MailMessage mail, EmailConfiguration mailConfig)
+        public Task SendEmail(MailMessage mail, EmailConfiguration mailConfig)
         {
             MimeMessage mimeMessage = new MimeMessage();
-
             MailboxAddress mailboxAddressFrom = new MailboxAddress(mailConfig.Sender, mailConfig.SenderEmail);
-
             mimeMessage.From.Add(mailboxAddressFrom);
 
-            MailboxAddress mailboxAddressTo = new MailboxAddress("User", mail.ToMailAddress);
+            MailboxAddress mailboxAddressTo = new MailboxAddress("User", mail.ToMailAddres);
             mimeMessage.To.Add(mailboxAddressTo);
 
             var bodyBuilder = new BodyBuilder();
@@ -32,6 +30,7 @@ namespace Core.Utilities.Mail
             client.Authenticate(mailConfig.SenderEmail, mailConfig.SenderPassword);
             client.Send(mimeMessage);
             client.Disconnect(true);
+            return Task.CompletedTask;
         }
     }
 }

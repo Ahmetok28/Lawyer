@@ -5,6 +5,7 @@ using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Mail;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Conrete.EntityFramework;
@@ -100,6 +101,9 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<EfSuscriberDal>().As<ISuscriberDal>().SingleInstance();
 
             builder.RegisterType<FileHeplerManager>().As<IFileHelper>().SingleInstance();
+
+            builder.RegisterType<MailKitManager>().As<IMailService>().SingleInstance();
+
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

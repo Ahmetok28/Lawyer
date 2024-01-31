@@ -10,7 +10,9 @@ namespace Core.Utilities.Mail
     public class MailMessage 
     {
       
-        public string ToMailAddress { get; set; }
+       
+        public string? ToAddresses { get; set; }
+        public string? ToMailAddres { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
     }

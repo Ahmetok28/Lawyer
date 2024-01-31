@@ -2,11 +2,13 @@
 using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
 using Core.Utilities.Helpers.FileHelper;
+using Core.Utilities.Mail;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,35 +21,42 @@ namespace Business.Concrete
     {
         IBlogDal _blogDal;
         IFileHelper _fileHelper;
+        IMailService _mailService;
+        IEmailConfigurationService _emailConfigurationService;
+        ISuscriberService _suscriberService;
 
-        public BlogManager(IBlogDal blogDal, IFileHelper fileHelper)
+        public BlogManager(IBlogDal blogDal, IFileHelper fileHelper, IEmailConfigurationService emailConfigurationService, ISuscriberService suscriberService, IMailService mailService)
         {
             _blogDal = blogDal;
             _fileHelper = fileHelper;
+            _emailConfigurationService = emailConfigurationService;
+            _suscriberService = suscriberService;
+            _mailService = mailService;
         }
         [SecuredOperation("Admin,Moderator")]
         public IResult Add(IFormFile image, Blog blog)
         {
-            blog.PhotoUrl= _fileHelper.Upload(image, PathConstants.Blogs);
+            blog.PhotoUrl = _fileHelper.Upload(image, PathConstants.Blogs);
             _blogDal.Add(blog);
+            Task.Run(() => SendEmailsToSuscribers(blog.Title)); 
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
 
-        public IDataResult< Blog> BlogGetById(int id)
+        public IDataResult<Blog> BlogGetById(int id)
         {
-            return  new SuccessDataResult<Blog>( _blogDal.Get(x => x.BlogId == id)) ;
+            return new SuccessDataResult<Blog>(_blogDal.Get(x => x.BlogId == id));
         }
         [SecuredOperation("Admin,Moderator")]
         public IResult Delete(Blog blog)
         {
             _blogDal.Delete(blog);
-            return new SuccessResult(Messages.SuccesfullyDeleted) ;
+            return new SuccessResult(Messages.SuccesfullyDeleted);
         }
 
-       
-        public IDataResult< List<Blog>> GetAll()
+
+        public IDataResult<List<Blog>> GetAll()
         {
-           return new SuccessDataResult<List<Blog>>( _blogDal.GetAll());    
+            return new SuccessDataResult<List<Blog>>(_blogDal.GetAll());
         }
 
         public IDataResult<List<BlogDTO>> GetAllBlogDetails()
@@ -57,30 +66,30 @@ namespace Business.Concrete
 
         public IDataResult<BlogDTO> GetBlogDetailsById(int id)
         {
-            return new SuccessDataResult<BlogDTO>(_blogDal.GetBlogDetailsByFilter(x=>x.BlogId==id));
-        } 
+            return new SuccessDataResult<BlogDTO>(_blogDal.GetBlogDetailsByFilter(x => x.BlogId == id));
+        }
         public IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryId(int id)
         {
-            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x => x.CategoryId==id));
-        } 
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x => x.CategoryId == id));
+        }
         public IDataResult<List<BlogDTO>> GetBlogDetailsByAuthorId(int id)
         {
-            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x=>x.AuthorId==id));
-        } 
-        public IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryAndAuthorId(int catId,int authId)
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x => x.AuthorId == id));
+        }
+        public IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryAndAuthorId(int catId, int authId)
         {
-            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x=>x.CategoryId==catId && x.AuthorId==authId));
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x => x.CategoryId == catId && x.AuthorId == authId));
         }
 
         [SecuredOperation("Admin,Moderator")]
         public IResult Update(IFormFile image, Blog blog)
         {
-            var check=IfImageIsNull(image);
+            var check = IfImageIsNull(image);
             if (check.Success)
             {
-                blog.PhotoUrl = blog.PhotoUrl = _fileHelper.Update(image, PathConstants.Blogs+ blog.PhotoUrl, PathConstants.Blogs);
+                blog.PhotoUrl = blog.PhotoUrl = _fileHelper.Update(image, PathConstants.Blogs + blog.PhotoUrl, PathConstants.Blogs);
             }
-           
+
             _blogDal.Update(blog);
             return new SuccessResult(Messages.SuccesfullyUpdated);
         }
@@ -142,6 +151,31 @@ namespace Business.Concrete
                 return new ErrorResult(); ;
             }
             return new SuccessResult();
+        }
+
+        private async void SendEmailsToSuscribers(string blogName)
+        {
+            var users = _suscriberService.GetAll().Data;// Veritabanından kullanıcıları çek
+
+            EmailConfiguration mailconfig = _emailConfigurationService.Get().Data;
+
+
+
+            foreach (var user in users)
+            {
+                var message = new MailMessage
+                {
+                    Body = blogName + " İsiminde " + "yeni bir blog eklenmiştir. Blogu incelemek için tıklayın.",
+                    Subject = "Yeni Blog Eklendi",
+                    ToMailAddres = user.EMail
+                };
+
+
+               await _mailService.SendEmail(message, mailconfig);
+                
+
+
+            }
         }
     }
 }
