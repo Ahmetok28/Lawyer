@@ -10,7 +10,8 @@
         {
             @foreach (var item in Model)
             {
-                <a class="dropdown-item" href="/PracticeArea/PracticeAreas/@item.Id">@item.Name</a>
+                <a class="dropdown-item" href="@item.SeoUrl">@item.Name</a>
+                
             }
         }
     </div>

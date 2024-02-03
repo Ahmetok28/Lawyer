@@ -2,6 +2,7 @@
 using Business.Concrete;
 using DataAccess.Conrete.EntityFramework;
 using Entities.Concrete;
+using MailKit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lawyer.Controllers
@@ -24,6 +25,7 @@ namespace Lawyer.Controllers
         public IActionResult PracticeAreas(int id)
         {
            var value= _practiceAreaService.GetById(id).Data;
+          
             return View(value);
         } 
        

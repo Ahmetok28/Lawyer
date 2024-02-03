@@ -16,6 +16,7 @@ using Autofac.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using System.Net;
+using Lawyer.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
     builder.RegisterModule(new AutofacBusinessModule());
 });
 builder.Services.AddHttpClient();
+builder.Services.AddTransient<Lawyer.Helpers.RouteValueTransformer>();
 builder.Services.AddCors();
 #region Token Options
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -142,28 +144,28 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints => { endpoints.MapDynamicControllerRoute<RouteValueTransformer>("{**url}"); });
 
-//Home/Index
-app.UseEndpoints(endpoints =>
-{
-    app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Default}/{action=Index}/{id?}");
-});
+////Home/Index
+//app.UseEndpoints(endpoints =>
+//{
+//    app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Default}/{action=Index}/{id?}");
+//});
 
 
+////Admin /
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapAreaControllerRoute(
+//        name: "Admin",
+//        areaName: "Admin",
+//        pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
 
-//Admin /
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapAreaControllerRoute(
-        name: "Admin",
-        areaName: "Admin",
-        pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+//    );
 
-    );
-
-});
+//});
 
 
 
