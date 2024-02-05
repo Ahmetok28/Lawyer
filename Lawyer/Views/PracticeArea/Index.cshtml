@@ -41,7 +41,7 @@
 
                 @foreach (var service in Model)
                 {
-                    <a href="@Url.Action("PracticeAreas", "PracticeArea", new { id = service.Id })" class="service__box box-2 " style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/Images/PracticeArea/@service.BackgroundImage')">
+                    <a href="/@service.SeoUrl" class="service__box box-2 " style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/Images/PracticeArea/@service.BackgroundImage')">
 
                         <img style="height:54px;width:54px; " src="@service.LogoImage" alt="Hizmet İkonu">
 
@@ -103,8 +103,8 @@
         </div>
     </section> <!-- .section -->*@
     <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-
+    @*<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+*@
 
     <script src="~/judge-master/js/jquery.min.js"></script>
     <script src="~/judge-master/js/jquery-migrate-3.0.1.min.js"></script>

@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Business.Constants;
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
@@ -26,7 +27,7 @@
             <div class="container">
                 <div class="">
                     <h2>Hakkımızda</h2>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>Hakkımızda<i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="/">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>Hakkımızda<i class="ion-ios-arrow-forward"></i></span></p>
                 </div>
             </div>
         </section>
@@ -78,7 +79,7 @@
                             <div class="block-number"></div>
                             <h3 class="text-normal">Alanında</h3>
                             <p class="h5 h5-smaller text-style-4">Uzman</p>
-                            <p>@ViewBag.v1.TeamText</p><a class="link link-group link-group-animated link-bold link-secondary" href="/Contact/Index"><span>İletişim</span><span class="novi-icon icon icon-xxs icon-primary fa fa-angle-right"></span></a>
+                            <p>@ViewBag.v1.TeamText</p><a class="link link-group link-group-animated link-bold link-secondary" href="/@UrlConstants.Contact"><span>İletişim</span><span class="novi-icon icon icon-xxs icon-primary fa fa-angle-right"></span></a>
                         </div>
                     </div>
                 </div>

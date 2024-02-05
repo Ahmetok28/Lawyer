@@ -18,6 +18,7 @@ namespace Entities.Concrete
         public string Description { get; set; }
         public string Content { get; set; }
         public string? PhotoUrl { get; set; }      
+        public string? SeoUrl { get; set; }      
         public DateTime CreatedDate { get; set; }
 
         

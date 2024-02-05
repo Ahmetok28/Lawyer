@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using DataAccess.Migrations;
 using Entities.Concrete;
+using Lawyer.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lawyer.ViewComponents.Default
@@ -20,6 +22,9 @@ namespace Lawyer.ViewComponents.Default
 
         public IViewComponentResult Invoke()
         {
+            var urlmodel = new UrlModelView();
+            ViewBag.Urls=urlmodel.GetUrlModel();
+            
             ViewBag.Social = _officeSocialService.Get().Data;
             var practiceAreas = _practiceAreaService.GetAll().Data;
             var contact = _contactPageService.GetContactPage().Data;

@@ -40,6 +40,7 @@ namespace DataAccess.Conrete.EntityFramework
                                  Twitter = userAddProp.Twitter,
                                  Instagram = userAddProp.Instagram,
                                  Linkedln = userAddProp.Linkedln,
+                                 SeoUrl= userAddProp.SeoUrl,
                                  TeamStatus= userAddProp.TeamStatus,
 
 
@@ -75,6 +76,7 @@ namespace DataAccess.Conrete.EntityFramework
                                  Twitter = userAddProp.Twitter,
                                  Instagram = userAddProp.Instagram,
                                  Linkedln = userAddProp.Linkedln,
+                                 SeoUrl=userAddProp.SeoUrl,
                                  TeamStatus = userAddProp.TeamStatus,
                                  
 

@@ -144,28 +144,36 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints => { endpoints.MapDynamicControllerRoute<RouteValueTransformer>("{**url}"); });
+app.UseEndpoints(endpoints => {
+   
+    endpoints.MapDynamicControllerRoute<RouteValueTransformer>("{**url}");
+    endpoints.MapControllerRoute(
+        name: "BlogCategory",
+        pattern: "bloglar/kategori/{categoryid}/{action=Index}",
+        defaults: new { controller = "Blog", action = "Index" }
+    );
+});
 
-////Home/Index
-//app.UseEndpoints(endpoints =>
-//{
-//    app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Default}/{action=Index}/{id?}");
-//});
+//Home/Index
+app.UseEndpoints(endpoints =>
+{
+    app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Default}/{action=Index}/{id?}");
+});
 
 
-////Admin /
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapAreaControllerRoute(
-//        name: "Admin",
-//        areaName: "Admin",
-//        pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+//Admin /
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+        name: "Admin",
+        areaName: "Admin",
+        pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
 
-//    );
+    );
 
-//});
+});
 
 
 

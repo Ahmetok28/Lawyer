@@ -12,8 +12,9 @@ namespace Entities.DTOs
         public int BlogId { get; set; }
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }  
-        public string AuthorFullName { get; set; }      
-       
+        public string AuthorFullName { get; set; }
+        public string SeoUrl { get; set; }
+        public string AuthorSeoUrl { get; set; }
         public string CategoryName { get; set; }
         public string BlogTitle { get; set; }
         public string BlogDescription { get; set; }

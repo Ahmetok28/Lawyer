@@ -11,6 +11,9 @@
         public string Author { get; set; }
         public string ImageUrl { get; set; }
         public string CreatedDateDays { get; set; }
+        public string SeoUrl { get; set; }
+        public string AuthorSeoUrl { get; set; }
+        
         public string CreatedDateMonths { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Lawyer.Controllers
             _blogCommentService = blogCommentService;
         }
 
-        public IActionResult Index(int categoryid, string ara="", int pageNumber = 1)
+        public IActionResult Index( int categoryid, string ara="", int pageNumber = 1)
         {
             List<BlogViewModel> blogs;
             int pageSize = 4;
@@ -33,8 +33,7 @@ namespace Lawyer.Controllers
             }
 
             if (!string.IsNullOrEmpty(ara))
-            {
-                var normalizedSearchString = ara.ToLowerInvariant();
+            {                var normalizedSearchString = ara.ToLowerInvariant();
                 blogs = blogs
               .Where(b => HtmlUtilities.StripHtml(b.Title).ToLowerInvariant().Contains(normalizedSearchString) ||
                           HtmlUtilities.StripHtml(b.Content).ToLowerInvariant().Contains(normalizedSearchString) ||
@@ -82,6 +81,8 @@ namespace Lawyer.Controllers
                     Content= item.BlogContent,
                     Author = item.AuthorFullName,
                     ImageUrl = item.BlogPhoto,
+                    SeoUrl=item.SeoUrl,
+                    AuthorSeoUrl=item.AuthorSeoUrl,
                     CreatedDateDays = item.BlogCreatedDate.ToString("dd"),
                     CreatedDateMonths = item.BlogCreatedDate.ToString("MMM"),
 

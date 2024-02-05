@@ -7,10 +7,10 @@
     <div class="block-21 mb-4 d-flex">
         <a class="blog-img mr-4" style="background-image: url(/judge-master/images/image_1.jpg);"></a>
         <div class="text">
-            <h3 class="heading"><a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@item.BlogId">@item.BlogTitle</a></h3>
+            <h3 class="heading"><a href="/@item.SeoUrl">@item.BlogTitle</a></h3>
             <div class="meta">
                 <div><a><span class="icon-calendar"></span> @item.BlogCreatedDate.ToString("dd/MMMM/yyyy")</a></div><br>
-                <div><a asp-action="AboutMe" asp-controller="About" asp-route-id="@item.AuthorId"><span class="icon-person"></span> @item.AuthorFullName</a></div>
+                <div><a href="/@item.AuthorSeoUrl"><span class="icon-person"></span> @item.AuthorFullName</a></div>
 
             </div>
         </div>

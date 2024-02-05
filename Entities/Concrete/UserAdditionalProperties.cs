@@ -16,6 +16,7 @@ namespace Entities.Concrete
         public string? Twitter { get; set; }
         public string? Linkedln { get; set; }
         public bool TeamStatus { get; set; }
+        public string? SeoUrl { get; set; }
 
     }
 }

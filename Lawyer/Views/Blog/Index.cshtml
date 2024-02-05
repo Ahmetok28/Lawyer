@@ -45,7 +45,7 @@
                     <div class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
                             <h2 style="font-size:48px">Blog</h2>
-                            <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index" style="font-size:17px;  color:black;">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span style="font-size:17px">Bloglar<i class="ion-ios-arrow-forward"></i></span></p>
+                            <p class="breadcrumbs"><span class="mr-2"><a href="/" style="font-size:17px;  color:black;">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span style="font-size:17px">Bloglar<i class="ion-ios-arrow-forward"></i></span></p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                                     </div>
 
                                     <div class="blog_details">
-                                        <a class="d-inline-block" asp-action="SingleBlog" asp-route-id="@item.Id">
+                                        <a class="d-inline-block" href="/@item.SeoUrl">
                                             <h2>@item.Title</h2>
                                         </a>
                                         <p>
@@ -90,7 +90,7 @@
                                         </p>
                                         <ul class="blog-info-link">
                                             <li><a><i class=""></i> Yazar</a></li>
-                                            <li><a asp-action="AboutMe" asp-controller="About" asp-route-id="@item.AuthorId"><i class="far fa-user"></i> @item.Author</a></li>
+                                            <li><a href="/@item.AuthorSeoUrl"><i class="far fa-user"></i> @item.Author</a></li>
 
                                         </ul>
                                     </div>

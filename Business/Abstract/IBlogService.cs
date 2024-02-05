@@ -22,6 +22,7 @@ namespace Business.Abstract
         IDataResult<BlogDTO> GetBlogDetailsById(int id);
         IDataResult<List<BlogDTO>> GetBlogDetailsByAuthorId(int id);
         IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryId(int id);
+        IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryName(string name);
         IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryAndAuthorId(int catId,int authId);
         IDataResult<Blog> BlogGetById(int id);
         IDataResult<List<Blog>> PrevAndNextBlogs(int id);

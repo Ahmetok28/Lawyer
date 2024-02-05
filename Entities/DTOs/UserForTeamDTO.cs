@@ -24,6 +24,7 @@ namespace Entities.DTOs
         public string? Instagram { get; set; }
         public string? Twitter { get; set; }
         public string? Linkedln { get; set; }
+        public string? SeoUrl { get; set; }
         public bool TeamStatus { get; set; }
 
     }

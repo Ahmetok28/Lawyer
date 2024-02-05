@@ -50,7 +50,7 @@
                     <ul>
                         @foreach (var item in Model.Item1)
                         {
-                            <li><a asp-action="PracticeAreas" asp-controller="PracticeArea" asp-route-id="@item.Id">@item.Name</a></li>
+                            <li><a href="/@item.SeoUrl">@item.Name</a></li>
                         }
                     </ul>
                 </div>
@@ -87,10 +87,10 @@
                                 <div class="footer_menu">
                                     <ul>
                                         <li><a href="/">Anasayfa</a></li>
-                                        <li><a href="/About">Hakkımızda</a></li>
-                                        <li><a href="/PracticeArea">Çalışma Alanları</a></li>
-                                        <li><a href="/Blog">Bloglar</a></li>
-                                        <li><a href="/Contact">İletişim</a></li>
+                                        <li><a href="/@ViewBag.Urls.About">Hakkımızda</a></li>
+                                        <li><a href="/@ViewBag.Urls.PracticeArea">Çalışma Alanları</a></li>
+                                        <li><a href="/@ViewBag.Urls.Blog">Bloglar</a></li>
+                                        <li><a href="/@ViewBag.Urls.Contact">İletişim</a></li>
                                     </ul>
                                 </div>
                             </div>

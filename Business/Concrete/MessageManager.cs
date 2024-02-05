@@ -20,7 +20,7 @@ namespace Business.Concrete
         {
             _messageDal = messageDal;
         }
-        [SecuredOperation("Admin,Moderator")]
+       
         public IResult Add(Message message)
         {
            _messageDal.Add(message);

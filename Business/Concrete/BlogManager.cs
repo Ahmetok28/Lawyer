@@ -177,5 +177,10 @@ namespace Business.Concrete
 
             }
         }
+
+        public IDataResult<List<BlogDTO>> GetBlogDetailsByCategoryName(string name)
+        {
+            return new SuccessDataResult<List<BlogDTO>>(_blogDal.GetAllBlogDetails(x => x.CategoryName == name));
+        }
     }
 }

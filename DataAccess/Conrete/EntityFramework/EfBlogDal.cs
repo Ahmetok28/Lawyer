@@ -17,6 +17,8 @@ namespace DataAccess.Conrete.EntityFramework
                               on blog.CategoryId equals category.Id
                               join auth in context.Users
                               on blog.AuthorId equals auth.Id
+                              join userAddProp in context.UserProperties
+                              on auth.Id equals userAddProp.UserId
                               select new BlogDTO
                               {
                                   BlogId = blog.BlogId,
@@ -24,7 +26,8 @@ namespace DataAccess.Conrete.EntityFramework
                                   AuthorId = auth.Id,
                                   CategoryName = category.Name,
                                   AuthorFullName = auth.FirstName + " " + auth.LastName,
-                                  
+                                  SeoUrl=blog.SeoUrl,
+                                  AuthorSeoUrl=userAddProp.SeoUrl,
                                   BlogContent = blog.Content,
                                   BlogCreatedDate = blog.CreatedDate,
                                   BlogDescription = blog.Description,
@@ -46,15 +49,18 @@ namespace DataAccess.Conrete.EntityFramework
                               on blog.CategoryId equals category.Id
                               join auth in context.Users
                               on blog.AuthorId equals auth.Id
-                              select new BlogDTO
+                             join userAddProp in context.UserProperties
+                            on auth.Id equals userAddProp.UserId
+                             select new BlogDTO
                               {
                                   BlogId = blog.BlogId,
                                   CategoryId = category.Id,
                                   AuthorId = auth.Id,
                                   CategoryName = category.Name,
                                   AuthorFullName = auth.FirstName +" "+ auth.LastName,
-
-                                  BlogContent = blog.Content,
+                                  SeoUrl=blog.SeoUrl,
+                                 AuthorSeoUrl = userAddProp.SeoUrl,
+                                 BlogContent = blog.Content,
                                   BlogCreatedDate = blog.CreatedDate,
                                   BlogDescription = blog.Description,
                                   BlogTitle = blog.Title,

@@ -1,4 +1,5 @@
-﻿
+﻿@using Business.Constants;
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,19 +35,19 @@
             <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
                 <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" aria-current="page" asp-action="Index" asp-controller="Default" >Anasayfa</a>
+                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" aria-current="page" href="/" >Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link"asp-action="Index" asp-controller="About">Hakkımızda</a>
+                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" href="/@UrlConstants.About">Hakkımızda</a>
                     </li>
                     <li class="nav-item">
-                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" asp-action="Index" asp-controller="PracticeArea">Çalışma Alanlarımız</a>
+                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" href="/@UrlConstants.PracticeArea">Çalışma Alanlarımız</a>
                     </li>
                     <li class="nav-item">
-                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" asp-action="Index" asp-controller="Blog">Bloglar</a>
+                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" href="/@UrlConstants.Blog">Bloglar</a>
                     </li>
                     <li class="nav-item">
-                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" asp-action="Index" asp-controller="Contact" >İletişim</a>
+                        <a style="font-size:16px; font-family:Roboto, sans-serif;" class="nav-link" href="/@UrlConstants.Contact">İletişim</a>
                     </li>
 
                 </ul>
