@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public string LogoImage { get; set; }
         public string BackgroundImage { get; set; }
         public string SeoUrl { get; set; }
-        public string Url { get; set; }
+       
        
       
     }

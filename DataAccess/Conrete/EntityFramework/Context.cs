@@ -18,14 +18,15 @@ namespace DataAccess.Conrete.EntityFramework
             optionsBuilder.UseSqlServer(@"Server=MACHINA;Database=LawyerDb;Trusted_Connection=true;TrustServerCertificate=True");
         }
 
-        public DbSet<HomeText> HomeTexts { get; set; }
-        public DbSet<AboutText> AboutTexts { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<HomeText>? HomeTexts { get; set; }
+        public DbSet<AboutText>? AboutTexts { get; set; }
+        public DbSet<HomeButtons>? HomeButtons { get; set; }
+        public DbSet<Contact>? Contacts { get; set; }
         public DbSet<Team>? Teams { get; set; }
-        public DbSet<PracticeArea> Practices { get; set; }
-        public DbSet<HomeServices> HomeServices { get; set; }
-        public DbSet<Section> Sections { get; set; }
-        public DbSet<Message> Messages { get; set; }
+        public DbSet<PracticeArea>? Practices { get; set; }
+        public DbSet<HomeServices>? HomeServices { get; set; }
+        public DbSet<Section>? Sections { get; set; }
+        public DbSet<Message>? Messages { get; set; }
         public DbSet<ContactPage>? ContactPage { get; set; }
         public DbSet<Blog>? Blogs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
@@ -43,5 +44,6 @@ namespace DataAccess.Conrete.EntityFramework
         public DbSet<FooterSocialAndSaying>? FooterSocialAndSayings { get; set; }
         public DbSet<EmailConfiguration> EmailConfiguration { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
+        public DbSet<WebMetaSetting>? WebMetaSettings { get; set; }
     }
 }

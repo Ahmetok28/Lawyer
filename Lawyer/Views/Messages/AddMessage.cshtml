@@ -1,21 +1,21 @@
-﻿<form class="rd-mailform form-modern" data-form-output="form-output-global" data-form-type="contact" method="post" asp-action="AddMessage" asp-controller="Message" >
+﻿<form class="rd-mailform form-modern" data-form-output="form-output-global" data-form-type="contact" method="post" asp-action="AddMessage" asp-controller="Message" id="myForm">
     <div class="row row-30">
         <div class="col-md-6">
             <div class="form-wrap">
-                <input class="form-input" id="username" type="text"  name="Name" placeholder="Adınız">
+                <input class="form-input" id="username" type="text" name="Name" placeholder="Adınız" required>
 
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-wrap">
-                <input class="form-input" id="phone-number" type="text" name="PhoneNumber" placeholder="Telefon Numaranız">
+                <input class="form-input" id="phone-number" type="text" name="PhoneNumber" placeholder="Telefon Numaranız" required>
 
             </div>
             <br />
         </div>
         <div class="col-md-6">
             <div class="form-wrap">
-                <input class="form-input" id="email" type="email"  name="Email" placeholder="E-Posta Adresiz">
+                <input class="form-input" id="email" type="email" name="Email" placeholder="E-Posta Adresiz" required>
 
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="col-sm-12">
             <div class="form-wrap">
                 <div class="textarea">
-                    <textarea class="form-input" id="message" name="Content" placeholder="Mesajınızı Girin"></textarea>
+                    <textarea class="form-input" id="message" name="Content" placeholder="Mesajınızı Girin" required></textarea>
 
                 </div>
             </div>
@@ -52,15 +52,25 @@
         </div>
     </div>
 </form>
+<div class="snackbars" id="form-output-global"><p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>Lütfen tüm alanları doldurunuz!</span></p></div>
+<script>
+    document.getElementById('myForm').addEventListener('submit', function (event) {
+        var username = document.getElementById('username').value;
+        var phoneNumber = document.getElementById('phone-number').value;
+        var email = document.getElementById('email').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
 
+        if (username.trim() === '' || phoneNumber.trim() === '' || email.trim() === '' || subject === 'USA' || message.trim() === '') {
+            document.querySelector('.snackbars').classList.add('active');
+            event.preventDefault(); // Formun gönderilmesini engelle
 
-
-
-
-
-
-
-
+            setTimeout(function () {
+                snackbars.classList.remove('active');
+            }, 3000);
+        }
+    });
+</script>
 
 
 

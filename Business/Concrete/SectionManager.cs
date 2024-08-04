@@ -19,12 +19,12 @@ namespace Business.Concrete
         {
             _sectionDal = sectionDal;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Add(Section section)
         {
             throw new NotImplementedException();
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Delete(Section section)
         {
             throw new NotImplementedException();
@@ -39,7 +39,7 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<List<Section>>( _sectionDal.GetAll(x=>x.PracticeAreaId==id));
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Update(Section section)
         {
             throw new NotImplementedException();

@@ -19,19 +19,19 @@ namespace Business.Concrete
         {
             _postDal = postDal;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Add(Post post)
         {
            _postDal.Add(post);
             return new SuccessResult();
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Update(Post post)
         {
             _postDal.Update(post);
             return new SuccessResult();
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Delete(Post post)
         {
             _postDal.Delete(post);

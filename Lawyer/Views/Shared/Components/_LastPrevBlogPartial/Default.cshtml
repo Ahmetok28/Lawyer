@@ -4,18 +4,18 @@
     <div class="row">
         <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
             <div class="thumb">
-                <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.First().Id">
+                <a href="/@Model.First().SeoUrl">
                     <img style="width:60px;height:60px;" class="img-fluid" src="~/Images/Blogs/@Model.First().ImageUrl" alt="">
                 </a>
             </div>
             <div class="arrow">
-                <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.First().Id">
+                <a href="/@Model.First().SeoUrl">
                     <span class="lnr text-white ion-ios-arrow-back"></span>
                 </a>
             </div>
             <div class="detials">
                 <p>Önceki Blog</p>
-                 <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.First().Id">
+                <a href="/@Model.First().SeoUrl">
                     @if (@Model.First().Title.Length < 43)
                     {
                         <h4>@Model.First().Title</h4>
@@ -33,7 +33,7 @@
         <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
             <div class="detials">
                 <p>Sonraki Blog</p>
-                <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.Last().Id">
+                <a href="/@Model.Last().SeoUrl">
                     @if (@Model.Last().Title.Length < 43)
                     {
                         <h4>@Model.Last().Title</h4>
@@ -46,12 +46,12 @@
                 </a>
             </div>
             <div class="arrow">
-                <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.Last().Id">
+                <a href ="/@Model.Last().SeoUrl" >
                     <span class="lnr text-white ion-ios-arrow-forward"></span>
                 </a>
             </div>
             <div class="thumb">
-                <a asp-action="SingleBlog" asp-controller="Blog" asp-route-id="@Model.Last().Id">
+                <a href ="/@Model.Last().SeoUrl">
                     <img style="width:60px;height:60px;" class="img-fluid" src="~/Images/Blogs/@Model.Last().ImageUrl" alt="">
                 </a>
             </div>

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lawyer.Areas.Admin.Controllers
@@ -7,6 +8,7 @@ namespace Lawyer.Areas.Admin.Controllers
     [Area("Admin")]
 
     [Route("Admin/[controller]/[action]/{id?}")]
+    [Authorize]
     public class BlogCategoriesController : Controller
     {
         private readonly IBlogCategoryService _blogCategoryService;

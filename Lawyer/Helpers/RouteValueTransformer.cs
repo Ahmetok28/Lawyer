@@ -7,6 +7,8 @@ using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Lawyer.Models;
+using Castle.Core.Internal;
+using System.Text.RegularExpressions;
 
 namespace Lawyer.Helpers
 {
@@ -34,7 +36,7 @@ namespace Lawyer.Helpers
                 values.Remove("url");
                 return values;
             }
-            if (values["url"]!=null && UrlExistAdmin(url))
+            if (values["url"] != null && UrlExistAdmin(url))
             {
                 values.Remove("url");
                 return values;
@@ -113,7 +115,7 @@ namespace Lawyer.Helpers
                 return values;
 
             }
-            if (url.StartsWith("bloglar/"))
+            if (Regex.Match(url, @"bloglar/kategori/(\d+)/?$").Success)
             {
                 int categoryId = GetCategoryIdFromUrl(url);
 
@@ -146,7 +148,7 @@ namespace Lawyer.Helpers
 
 
             using Context context = new Context();
-            PracticeArea practiceArea = await context.Practices.FirstOrDefaultAsync(x => x.Url == url || x.SeoUrl == url);
+            PracticeArea practiceArea = await context.Practices.FirstOrDefaultAsync(x =>  x.SeoUrl == url);
             if (practiceArea != null)
             {
                 if (values["page"] == null) { values["page"] = "1"; }
@@ -212,6 +214,10 @@ namespace Lawyer.Helpers
 
         private bool UrlExistAdmin(string url)
         {
+            if (url.IsNullOrEmpty())
+            {
+                return false;
+            }
             var segments = url.Split('/');
             return  segments.Contains("Admin");
         }

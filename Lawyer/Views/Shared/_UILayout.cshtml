@@ -1,7 +1,7 @@
 ﻿
 @{
     
-    var model = ViewData["Model1"] as List<PracticeAreaDTO>; // Veya ViewBag.YourModel şeklinde alabilirsiniz
+    var model = ViewData["Model1"] as List<PracticeAreaDTO>; 
     var m2 = ViewBag.Model2;
 } 
 
@@ -10,7 +10,7 @@
 <html lang="en">
 
     @await Html.PartialAsync("/Views/LayoutPartial/_HeadPartial.cshtml")
-
+    @await Component.InvokeAsync("_HeadPartial")
 <link href="~/css/layoutstyle.css" rel="stylesheet" />
 <body >
 

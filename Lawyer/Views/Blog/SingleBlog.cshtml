@@ -1,58 +1,32 @@
 ﻿@model BlogDTO
 @{
-    ViewData["Title"] ="Index";
+    ViewData["Title"] =Model.BlogTitle;
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
 
-
-    <!-- Bootstrap CSS -->
-    @* <link rel="stylesheet" href="css/bootstrap.min.css">*@
+ 
     <!-- animate CSS -->
     <link rel="stylesheet" href="~/Blog/css/animate.css">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="~/Blog/css/owl.carousel.min.css">
-    @*    <!-- themify CSS -->
-    <link rel="stylesheet" href="~/Blog/css/themify-icons.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="~/Blog/css/flaticon.css">*@
+  
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="~/Blog/css/magnific-popup.css">
     <!-- swiper CSS -->
     <link rel="stylesheet" href="~/Blog/css/slick.css">
     <link rel="stylesheet" href="~/Blog/css/gijgo.min.css">
     <link rel="stylesheet" href="~/Blog/css/nice-select.css">
-    @*  <link rel="stylesheet" href="~/Blog/css/all.css">*@
+  
     <!-- style CSS -->
     <link rel="stylesheet" href="~/Blog/css/BlogStyle.css">
     <link rel="stylesheet" href="~/judge-master/css/ionicons.min.css">
 
     
-    <!-- Bootstrap CSS -->
-   @* <link rel="stylesheet" href="css/bootstrap.min.css">*@
-    <!-- animate CSS -->
-   @* <link rel="stylesheet" href="~/Blog/css/animate.css">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="~/Blog/css/owl.carousel.min.css">
-    <!-- themify CSS -->
-    <link rel="stylesheet" href="~/Blog/css/themify-icons.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="~/Blog/css/flaticon.css">
-    <!-- font awesome CSS -->
-    <link rel="stylesheet" href="~/Blog/css/magnific-popup.css">
-    <!-- swiper CSS -->
-    <link rel="stylesheet" href="~/Blog/css/slick.css">
-    <link rel="stylesheet" href="~/Blog/css/gijgo.min.css">
-    <link rel="stylesheet" href="~/Blog/css/nice-select.css">
-    <link rel="stylesheet" href="~/Blog/css/all.css">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="~/Blog/css/style.css">
-    <link rel="stylesheet" href="~/judge-master/css/ionicons.min.css">*@
+ 
 </head>
 
 
@@ -66,7 +40,7 @@
                     <div class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
                             <h2 style="font-size:48px">@Model.BlogTitle</h2>
-                            <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index" style="font-size:17px; color:black;">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span><a style="font-size:17px;  color:black;" href="/Blog/Index">Bloglar</a><i class="ion-ios-arrow-forward"></i></span></p>
+                            <p class="breadcrumbs"><span class="mr-2"><a href="/" style="font-size:17px; color:black;">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span><a style="font-size:17px;  color:black;" href="/bloglar">Bloglar</a><i class="ion-ios-arrow-forward"></i></span></p>
                         </div>
                     </div>
                 </div>

@@ -6,4 +6,5 @@ namespace DataAccess.Conrete.EntityFramework
 {
     public class EfAboutPageDal : EfEntityRepositoryBase<AboutPage, Context>, IAboutPageDal
     {
-    }}
+    }
+}

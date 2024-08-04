@@ -68,7 +68,7 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<UserAdditionalProperties>( _userAdditionalPropertiesDal.Get(x=>x.UserId==userId));
         }
-        [SecuredOperation("Admin,Moderator,Editor,Yazar,User")]
+        [SecuredOperation("Admin,Editor,Yazar,User")]
         public IResult Update(UserAdditionalProperties userAdditional)
         {
            _userAdditionalPropertiesDal.Update(userAdditional);

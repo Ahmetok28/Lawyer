@@ -15,5 +15,5 @@ namespace Business.Abstract
         IResult Update(IFormFile file, AboutText aboutText);
         IResult Delete(AboutText aboutText);
         IDataResult<AboutText> GetAboutText();
-    } 
+    }
 }

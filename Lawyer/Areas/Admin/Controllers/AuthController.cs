@@ -16,9 +16,11 @@ namespace Lawyer.Areas.Admin.Controllers
     public class AuthController : Controller
     {
         private IAuthService _authService;
+       
         public AuthController(IAuthService authService)
         {
             _authService = authService;
+         
         }
 
         public IActionResult Index()
@@ -45,6 +47,7 @@ namespace Lawyer.Areas.Admin.Controllers
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
+                
                 SaveToken(result.Data);
                 //return RedirectToRoute("Admin");
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });

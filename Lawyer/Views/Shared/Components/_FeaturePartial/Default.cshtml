@@ -1,23 +1,32 @@
-﻿<section class="features">
+﻿@model HomeButtons
+
+<section class="features">
 
     <div class="wrapper">
 
         <div class="features__container">
-
-            <div class="feature__box">
-                <img src="~/Av. site Template/img/call-1.png" alt="Call-one">
-                <a href="">Bizimle İletişime Geçin</a>
+            @if (Model.Button1 != null)
+            {
+                <div class="feature__box">
+                    <img src="~/Av. site Template/img/call-1.png" alt="Call-one">
+                    <a href="@Model.Button1Link">@Model.Button1</a>
             </div>
-
-            <div class="feature__box">
-                <img src="~/Av. site Template/img/call-3.png" alt="Call-one">
-                <a href="">Adaletiniz İçin Savaşalım</a>
+            }
+            @if (Model.Button2 != null)
+            {
+                <div class="feature__box">
+                    <img src="~/Av. site Template/img/call-3.png" alt="Call-one">
+                    <a href="@Model.Button2Link">@Model.Button2</a>
             </div>
-
-            <div class="feature__box">
+            }
+            @if (Model.Button3!=null)
+            {
+                <div class="feature__box">
                 <img src="~/Av. site Template/img/call-2.png" alt="Call-one">
-                <a href="">Zaferi Birlikte Kazanalım!</a>
+                <a href="@Model.Button3Link">@Model.Button3</a>
             </div>
+            }
+            
             
         </div>
 

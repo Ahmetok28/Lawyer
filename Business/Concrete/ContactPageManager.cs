@@ -21,13 +21,13 @@ namespace Business.Concrete
         {
             _locationdal = locationdal;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Add(ContactPage location)
         {
             _locationdal.Add(location);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Delete(ContactPage location)
         {
             _locationdal.Delete(location);
@@ -50,7 +50,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ContactPage>>( _locationdal.GetAll());
         }
 
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Update(ContactPage location)
         {
             _locationdal.Update(location);

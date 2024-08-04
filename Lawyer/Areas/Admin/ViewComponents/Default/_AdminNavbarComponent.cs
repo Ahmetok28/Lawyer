@@ -19,7 +19,8 @@ namespace Lawyer.Areas.Admin.ViewComponents.Default
         public IViewComponentResult Invoke()
         {
             var userId = (User as ClaimsPrincipal)?.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userRole = (User as ClaimsPrincipal)?.IsInRole("Admin");
+            var userRole = (User as ClaimsPrincipal)?.IsInRole("Admin");            
+            ViewBag.Editor = (User as ClaimsPrincipal)?.IsInRole("Editor");
             ViewBag.Admin = userRole;
             var values = _userAdditioanlProperties.GetByIdDtoForAdminPanel(Convert.ToInt32(userId)).Data;
             if (values.Profession==null)

@@ -32,6 +32,7 @@ namespace Lawyer.Helpers
                             ? blog.Title[..wordCount]
                             : blog.Title,
                 ImageUrl = blog.PhotoUrl,
+                SeoUrl = blog.SeoUrl,
                 CreatedDate = blog.CreatedDate.ToString("dd MMMM yyyy")
             };
         }

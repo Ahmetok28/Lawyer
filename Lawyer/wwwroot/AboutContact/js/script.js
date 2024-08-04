@@ -1011,122 +1011,178 @@
 		 * RD Mailform
 		 * @version      3.2.0
 		 */
-		if (document.querySelectorAll('.rd-mailform').length) {
-			document.querySelectorAll('.rd-mailform').forEach(function (form, index) {
-				var formHasCaptcha = false;
 
-				$(form).attr('novalidate', 'novalidate').ajaxForm({
-					beforeSubmit: function (arr, $form, options) {
-						var inputs = $form.find("[data-constraints]"),
-							output = $("#" + $form.attr("data-form-output")),
-							captcha = $form.find('.recaptcha'),
-							captchaFlag = true;
+		// Form gönderme iþlemini gerçekleþtiren event listener
+$('.rd-mailform').on('submit', function(e) {
+    e.preventDefault(); // Formun normal submit iþlemini engelle
 
-						output.removeClass("active error success");
+    var form = $(this);
 
-						if (isValidated(inputs, captcha)) {
-							// veify reCaptcha
-							if (captcha.length) {
-								var captchaToken = captcha.find('.g-recaptcha-response').val(),
-									captchaMsg = {
-										'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
-										'CPT002': 'Something wrong with google reCaptcha'
-									};
+    // AJAX çaðrýsýný yap
+    $.ajax({
+        url: form.attr('action'),
+        method: form.attr('method'),
+        data: form.serialize(), // Form verilerini al
+        success: function(response) {
+            var output = $("#" + form.attr("data-form-output")),
+                select = form.find('select');
 
-								formHasCaptcha = true;
+            form.addClass('success').removeClass('form-in-process');
 
-								$.ajax({
-									method: "POST",
-									url: "bat/reCaptcha.php",
-									data: { 'g-recaptcha-response': captchaToken },
-									async: false
-								})
-									.done(function (responceCode) {
-										if (responceCode !== 'CPT000') {
-											if (output.hasClass("snackbars")) {
-												output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
+            var result = response.message; // Cevabýn 'message' alanýný al
 
-												setTimeout(function () {
-													output.removeClass("active");
-												}, 3500);
+            output.text(result);
 
-												captchaFlag = false;
-											} else {
-												output.html(captchaMsg[responceCode]);
-											}
+            if (result) {
+                if (output.hasClass("snackbars")) {
+                    output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + result + '</span></p>');
+                } else {
+                    output.addClass("active success");
+                }
+            } else {
+                if (output.hasClass("snackbars")) {
+                    output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + result + '</span></p>');
+                } else {
+                    output.addClass("active error");
+                }
+            }
 
-											output.addClass("active");
-										}
-									});
-							}
+            form.clearForm();
 
-							if (!captchaFlag) {
-								return false;
-							}
+            if (select.length) {
+                select.select2("val", "");
+            }
 
-							$form.addClass('form-in-process');
+            form.find('input, textarea').trigger('blur');
 
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
-								output.addClass("active");
-							}
-						} else {
-							return false;
-						}
-					},
-					error: function (result) {
-						var output = $("#" + $(form).attr("data-form-output"));
+            setTimeout(function () {
+                output.removeClass("active error success");
+                form.removeClass('success');
+            }, 3500);
+        },
+        error: function(xhr, status, error) {
+            // Hata durumunu iþle (isteðin baþarýsýz olduðu durum)
+            console.error(error); // Hata konsola yazdýrýlýyor, isteðin neden baþarýsýz olduðunu görmek için faydalýdýr
+        }
+    });
+});
 
-						output.text(result);
-						$(form).removeClass('form-in-process');
+		//if (document.querySelectorAll('.rd-mailform').length) {
+		//	document.querySelectorAll('.rd-mailform').forEach(function (form, index) {
+		//		var formHasCaptcha = false;
 
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
-					},
-					success: function (result) {
-						var output = $("#" + $(form).attr("data-form-output")),
-							select = $(form).find('select');
+		//		$(form).attr('novalidate', 'novalidate').ajaxForm({
+		//			beforeSubmit: function (arr, $form, options) {
+		//				var inputs = $form.find("[data-constraints]"),
+		//					output = $("#" + $form.attr("data-form-output")),
+		//					captcha = $form.find('.recaptcha'),
+		//					captchaFlag = true;
 
-						$(form).addClass('success').removeClass('form-in-process');
+		//				output.removeClass("active error success");
 
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
+		//				if (isValidated(inputs, captcha)) {
+		//					// veify reCaptcha
+		//					if (captcha.length) {
+		//						var captchaToken = captcha.find('.g-recaptcha-response').val(),
+		//							captchaMsg = {
+		//								'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
+		//								'CPT002': 'Something wrong with google reCaptcha'
+		//							};
 
-						/*result = result.length === 5 ? result : 'MF255';*/
-						output.text(result);
+		//						formHasCaptcha = true;
 
-						if (result) {
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + result + '</span></p>');
-							} else {
-								output.addClass("active success");
-							}
-						} else {
-							if (output.hasClass("snackbars")) {
-								output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + result + '</span></p>');
-							} else {
-								output.addClass("active error");
-							}
-						}
+		//						$.ajax({
+		//							method: "POST",
+		//							url: "bat/reCaptcha.php",
+		//							data: { 'g-recaptcha-response': captchaToken },
+		//							async: false
+		//						})
+		//							.done(function (responceCode) {
+		//								if (responceCode !== 'CPT000') {
+		//									if (output.hasClass("snackbars")) {
+		//										output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
 
-						$(form).clearForm();
+		//										setTimeout(function () {
+		//											output.removeClass("active");
+		//										}, 3500);
 
-						if (select.length) {
-							select.select2("val", "");
-						}
+		//										captchaFlag = false;
+		//									} else {
+		//										output.html(captchaMsg[responceCode]);
+		//									}
 
-						$(form).find('input, textarea').trigger('blur');
+		//									output.addClass("active");
+		//								}
+		//							});
+		//					}
 
-						setTimeout(function () {
-							output.removeClass("active error success");
-							$(form).removeClass('success');
-						}, 3500);
-					}
-				});
-			});
-		}
+		//					if (!captchaFlag) {
+		//						return false;
+		//					}
+
+		//					$form.addClass('form-in-process');
+
+		//					if (output.hasClass("snackbars")) {
+		//						output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
+		//						output.addClass("active");
+		//					}
+		//				} else {
+		//					return false;
+		//				}
+		//			},
+		//			error: function (result) {
+		//				var output = $("#" + $(form).attr("data-form-output"));
+
+		//				output.text(result);
+		//				$(form).removeClass('form-in-process');
+
+		//				if (formHasCaptcha) {
+		//					grecaptcha.reset();
+		//				}
+		//			},
+		//			success: function (result) {
+		//				var output = $("#" + $(form).attr("data-form-output")),
+		//					select = $(form).find('select');
+
+		//				$(form).addClass('success').removeClass('form-in-process');
+
+		//				if (formHasCaptcha) {
+		//					grecaptcha.reset();
+		//				}
+
+		//				/*result = result.length === 5 ? result : 'MF255';*/
+		//				output.text(result);
+
+		//				if (result) {
+		//					if (output.hasClass("snackbars")) {
+		//						output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + result + '</span></p>');
+		//					} else {
+		//						output.addClass("active success");
+		//					}
+		//				} else {
+		//					if (output.hasClass("snackbars")) {
+		//						output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + result + '</span></p>');
+		//					} else {
+		//						output.addClass("active error");
+		//					}
+		//				}
+
+		//				$(form).clearForm();
+
+		//				if (select.length) {
+		//					select.select2("val", "");
+		//				}
+
+		//				$(form).find('input, textarea').trigger('blur');
+
+		//				setTimeout(function () {
+		//					output.removeClass("active error success");
+		//					$(form).removeClass('success');
+		//				}, 3500);
+		//			}
+		//		});
+		//	});
+		//}
 
 		
 		/**

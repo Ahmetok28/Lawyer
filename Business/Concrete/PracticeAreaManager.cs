@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
+using Core.Aspect.Autofac.Caching;
 using Core.Entities.Concrete;
 using Core.Utilities.Helpers.FileHelper;
+using Core.Utilities.Helpers.UrlHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -25,26 +27,31 @@ namespace Business.Concrete
             _practiceAreaDal = practiceAreaDal;
             _fileHelper = fileHelper;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
+        [CacheRemoveAspect("IPracticeAreaService.Get")]
         public IResult Add(IFormFile image, IFormFile background, PracticeArea practiceArea)
         {
             practiceArea.Image =  _fileHelper.Upload(image, PathConstants.PracticeArea);
             practiceArea.BackgroundImage =  _fileHelper.Upload(background, PathConstants.PracticeArea);
+
+            practiceArea.SeoUrl = UrlConstants.PracticeArea + "/" + FriendlyUrlHelper.GetFriendlyTitle(practiceArea.Name);
             _practiceAreaDal.Add(practiceArea);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
+        [CacheRemoveAspect("IPracticeAreaService.Get")]
         public IResult Delete(PracticeArea practiceArea)
         {
             _practiceAreaDal.Delete(practiceArea);
             return new SuccessResult(Messages.SuccesfullyDeleted);
         }
 
-       
+        [CacheAspect]
         public IDataResult< List<PracticeArea>> GetAll()
         {
             return new SuccessDataResult<List<PracticeArea>>( _practiceAreaDal.GetAll());
         }
+        [CacheAspect]
         public IDataResult<List<PracticeAreaDTO>> GetTitleAndId()
         {
             var value= _practiceAreaDal.GetAll().Select(x => new PracticeAreaDTO { Id = x.Id, Name = x.Name }).ToList();
@@ -56,7 +63,8 @@ namespace Business.Concrete
            return new SuccessDataResult<PracticeArea>( _practiceAreaDal.Get(x=>x.Id == id));
         }
 
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
+        [CacheRemoveAspect("IPracticeAreaService.Get")]
         public IResult Update(IFormFile image, IFormFile backgroud, PracticeArea practiceArea)
         {
             var checkImage=IfImageIsNull(image);
@@ -69,9 +77,9 @@ namespace Business.Concrete
             if (checkBackGround.Success)
             {
                 practiceArea.BackgroundImage =  _fileHelper.Update(backgroud,PathConstants.PracticeArea+ practiceArea.BackgroundImage, PathConstants.PracticeArea);
-            } 
+            }
 
-
+            practiceArea.SeoUrl = UrlConstants.PracticeArea + "/" + FriendlyUrlHelper.GetFriendlyTitle(practiceArea.Name);
             _practiceAreaDal.Update(practiceArea);
             return new SuccessResult(Messages.SuccesfullyUpdated);
         }

@@ -26,13 +26,13 @@ namespace Business.Concrete
             _homeTextDal = homeTextDal;
             _fileHelper = fileHelper;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Add(HomeText homeText)
         {
             _homeTextDal.Add(homeText);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Delete(HomeText homeText)
         {
             _homeTextDal.Delete(homeText);
@@ -42,8 +42,8 @@ namespace Business.Concrete
         public IDataResult< HomeText> GetHomeText()
         {
             return  new SuccessDataResult<HomeText>( _homeTextDal.GetAll().First());
-        }
-        [SecuredOperation("Admin,Moderator")]
+        }   
+        [SecuredOperation("Admin,Editor")]
         public IResult Update(IFormFile file ,HomeText homeText)
         {
             var check = IfImageIsNull(file);

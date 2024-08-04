@@ -20,7 +20,7 @@ namespace Business.Concrete
         {
             _blogCategoryDal = blogCategoryDal;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor,Yazar")]
         public IResult Add(BlogCategory blogCategory)
         {
             _blogCategoryDal.Add(blogCategory);
@@ -31,7 +31,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<BlogCategory>(_blogCategoryDal.Get(x => x.Id == id));
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor,Yazar")]
         public IResult Delete(BlogCategory blogCategory)
         {
             _blogCategoryDal.Delete(blogCategory);
@@ -43,7 +43,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<BlogCategory>>(_blogCategoryDal.GetAll());
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor,Yazar")]
         public IResult Update(BlogCategory blogCategory)
         {
             _blogCategoryDal.Update(blogCategory);

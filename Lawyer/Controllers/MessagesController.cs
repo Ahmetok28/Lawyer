@@ -33,8 +33,14 @@ namespace Lawyer.Controllers
             message.SendTime= Convert.ToDateTime(DateTime.Now);
             message.Status = false;
             message.IsImportant= false;
-            _messageService.Add(message);
-            return Ok("Mesajınız Gönderildi.");
+
+            var result=_messageService.Add(message);
+            if (result.Success)
+            {
+                return Ok(result.Message.ToString());
+            }
+            return BadRequest(result.Message.ToString());
+           
         }
     }
 }

@@ -1,37 +1,42 @@
 ﻿@model List<BlogViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
     <!-- Bootstrap CSS -->
-    @* <link rel="stylesheet" href="css/bootstrap.min.css">*@
     <!-- animate CSS -->
     <link rel="stylesheet" href="~/Blog/css/animate.css">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="~/Blog/css/owl.carousel.min.css">
-@*    <!-- themify CSS -->
-    <link rel="stylesheet" href="~/Blog/css/themify-icons.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="~/Blog/css/flaticon.css">*@
+
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="~/Blog/css/magnific-popup.css">
     <!-- swiper CSS -->
     <link rel="stylesheet" href="~/Blog/css/slick.css">
     <link rel="stylesheet" href="~/Blog/css/gijgo.min.css">
     <link rel="stylesheet" href="~/Blog/css/nice-select.css">
-  @*  <link rel="stylesheet" href="~/Blog/css/all.css">*@
+
     <!-- style CSS -->
     <link rel="stylesheet" href="~/Blog/css/BlogStyle.css">
     <link rel="stylesheet" href="~/judge-master/css/ionicons.min.css">
+
+    <style>
+        .small-screen .pagination .page-link {
+            padding: 0.25rem 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .small-screen .pagination .page-item {
+            margin: 0 0.1rem;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -58,42 +63,41 @@
     <section class="blog_area section_padding">
         <div class="container">
             <div class="row">
+                
                 <div class="col-lg-8">
                     <div class="blog_left_sidebar">
 
                         @foreach (var item in Model)
                         {
+                            var imagePath = string.IsNullOrEmpty(item.ImageUrl) ? "Images/blogDef.jpg" : "Images/Blogs/" + item.ImageUrl;
+                            // Veritabanındaki yolun geçerli olup olmadığını kontrol eden bir fonksiyon yazmak zor olabilir.
+                            // Bu nedenle resmin yüklenememesi durumunda da bir default resim gösterebiliriz.
                             <div class="col-md-6">
                                 <article class="blog_item">
                                     <div class="blog_item_img">
-                                        @if (item.ImageUrl == null)
-                                        {
-                                            <img class="card-img rounded-0" src="~/Blog/img/blog/single_blog_1.png" alt="">
-                                        }
-                                        @if (item.ImageUrl != null)
-                                        {
-                                            <img  class="card-img rounded-0" src="~/Images/Blogs/@item.ImageUrl" alt="blog resmi">
-                                        }
-
-                                        <a  href="#" class="blog_item_date">
+                                        <div class="image-container" style="width: 373.03px; height: 279.77px;">
+                                            <img class="card-img rounded-0" src="@imagePath" alt="blog resmi" style="width: 373.03px; height: 279.77px;" onerror="this.onerror=null;this.src='Images/blogDef.jpg';">
+                                        </div>
+                                        <a href="#" class="blog_item_date">
                                             <h3>@item.CreatedDateDays</h3>
                                             <p>@item.CreatedDateMonths</p>
                                         </a>
                                     </div>
-
-                                    <div class="blog_details">
-                                        <a class="d-inline-block" href="/@item.SeoUrl">
-                                            <h2>@item.Title</h2>
-                                        </a>
-                                        <p>
-                                            @Html.Raw( @item.Description)...
-                                        </p>
-                                        <ul class="blog-info-link">
-                                            <li><a><i class=""></i> Yazar</a></li>
-                                            <li><a href="/@item.AuthorSeoUrl"><i class="far fa-user"></i> @item.Author</a></li>
-
-                                        </ul>
+                                    <div class="text-container" style="width: 373.03px; height: 463.89px; ">
+                                        <div class="blog_details">
+                                            <a class="d-inline-block" href="/@item.SeoUrl">
+                                                <h2>@item.Title</h2>
+                                            </a>
+                                            <p>
+                                                @Html.Raw(@item.Description)...
+                                            </p>
+                                            <ul class="blog-info-link">
+                                                <li><a><i class=""></i> Yazar</a></li>
+                                                <li><a href="/@item.AuthorSeoUrl"><i class="far fa-user"></i> @item.Author</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                   
                                 </article>
                             </div>
                         }
@@ -102,36 +106,62 @@
 
 
 
+
                     </div>
-                  
-                    <div class="col-md-12">
-                        
-                        <nav class="blog-pagination justify-content-center d-flex" ">
-                           
+
+
+
+                    <div class="col-lg-8">
+                        <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
                                 <li class="page-item @(ViewBag.PageNumber == 1 ? "disabled" : "")">
-                                    <a  class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber - 1 })">
+                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber - 1 })">
                                         <i class="ion-ios-arrow-back"></i>
                                     </a>
                                 </li>
-                                @for (int i = 1; i <= Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize); i++)
+
+                                @if (ViewBag.PageNumber >= 4 && ViewBag.PageNumber < ViewBag.TotalPages - 1)
                                 {
-                                <li class="page-item @(i == ViewBag.PageNumber ? "active" : "")">
-                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = i })">@i</a>
-                                </li>
+                                    @for (int i = ViewBag.PageNumber - 2; i <= Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize); i++)
+                                    {
+                                        <li class="page-item @(i == ViewBag.PageNumber ? "active" : "")">
+                                            <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = i })">@i</a>
+                                        </li>
+                                    }
+                                }
+                                @if (ViewBag.PageNumber >= ViewBag.TotalPages - 1)
+                                {
+                                    @for (int i = ViewBag.PageNumber - 3; i <= Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize); i++)
+                                    {
+                                        <li class="page-item @(i == ViewBag.PageNumber ? "active" : "")">
+                                            <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = i })">@i</a>
+                                        </li>
+                                    }
+                                }
+                                @if (ViewBag.PageNumber < 4)
+                                {
+                                    @for (int i = 1; i <= Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize); i++)
+                                    {
+                                        <li class="page-item @(i == ViewBag.PageNumber ? "active" : "")">
+                                            <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = i })">@i</a>
+                                        </li>
+                                    }
                                 }
                                 <li class="page-item @(ViewBag.PageNumber == ViewBag.TotalPages ? "disabled" : "")">
-                                    <a  class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber + 1})">
+                                    <a class="page-link" href="@Url.Action("Index", new { categoryid = ViewBag.CategoryId, pageNumber = ViewBag.PageNumber + 1 })">
                                         <i class="ion-ios-arrow-forward"></i>
                                     </a>
-
                                 </li>
                             </ul>
                         </nav>
-
                     </div>
 
+
+
                 </div>
+
+                
+
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <!--  Ara -->
@@ -140,24 +170,61 @@
                         @await Component.InvokeAsync("_BlogCategoryPartial")
                         <!--  Son Bloglar -->
                         @await Component.InvokeAsync("_RecentBlogPartial")
-                         <!--  Son Bloglar -->
+                        <!--  Son Bloglar -->
                         @await Component.InvokeAsync("_SuscribeToNewsletter")
 
 
 
 
 
-                       
+
                     </div>
                 </div>
+
+
             </div>
         </div>
     </section>
     <!--================Blog Area =================-->
     <!-- jquery plugins here-->
     <!-- jquery -->
-   
-    <script src="Blog/js/jquery-1.12.1.min.js"></script>
+
+    <script>
+    function adjustPagination() {
+        var screenWidth = window.innerWidth;
+        var pagination = document.querySelector('.pagination');
+        var pageItems = pagination.querySelectorAll('.page-item');
+        var body = document.body;
+
+        if (screenWidth <= 1024) {
+            body.classList.add('small-screen');
+            
+            // En fazla 5 buton göstermek için sayfa numaralarını gizle
+            for (var i = 1; i < pageItems.length - 1; i++) {
+                if (i > 5) {
+                    pageItems[i].style.display = 'none';
+                } else {
+                    pageItems[i].style.display = 'inline';
+                }
+            }
+        } else {
+            body.classList.remove('small-screen');
+
+            // Tüm sayfa numaralarını göster
+            for (var i = 1; i < pageItems.length - 1; i++) {
+                pageItems[i].style.display = 'inline';
+            }
+        }
+    }
+
+    window.onload = adjustPagination;
+    window.onresize = adjustPagination;
+</script>
+
+
+    <script src="~/Blog/js/jquery-1.12.1.min.js"></script>
+
+    <script src="~/Blog/js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="~/Blog/js/popper.min.js"></script>
     <!-- bootstrap js -->
@@ -177,21 +244,21 @@
     <!-- custom js -->
     <script src="~/Blog/js/custom.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var blogDetailsElements = document.querySelectorAll('.blog_details');
+    @* <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var blogDetailsElements = document.querySelectorAll('.blog_details');
 
-            var maxHeight = 0;
-            blogDetailsElements.forEach(function (element) {
-                var elementHeight = element.offsetHeight;
-                maxHeight = Math.max(maxHeight, elementHeight);
-            });
+    var maxHeight = 0;
+    blogDetailsElements.forEach(function (element) {
+    var elementHeight = element.offsetHeight;
+    maxHeight = Math.max(maxHeight, elementHeight);
+    });
 
-            blogDetailsElements.forEach(function (element) {
-                element.style.height = maxHeight + 'px';
-            });
-        });
-    </script>
+    blogDetailsElements.forEach(function (element) {
+    element.style.height = maxHeight + 'px';
+    });
+    });
+    </script>*@
 
 
 </body>

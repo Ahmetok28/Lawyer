@@ -1,8 +1,8 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace Lawyer.Areas.Admin.Controllers
@@ -10,6 +10,7 @@ namespace Lawyer.Areas.Admin.Controllers
     [Area("Admin")]
 
     [Route("Admin/[controller]/[action]/{id?}")]
+    [Authorize(Roles = "Admin,Yazar")]
     public class BlogsController : Controller
     {
         private readonly IBlogService _blogService;
@@ -86,16 +87,12 @@ namespace Lawyer.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(IFormFile image, Blog blog)
         {
-            if (ModelState.IsValid)
-            {
+           
 
                  _blogService.Update(image,blog);
-                // _blogService.Update başarı veya başarısızlık durumunu belirten bir mesaj döndürüyorsa
-                return RedirectToAction("Index"); // Başarı durumunda Index'e yönlendir
-            }
-
-            // ModelState geçerli değilse, görünümü geçerlilik hataları ile birlikte geri döndür
-            return View();
+                
+                return RedirectToAction("Index");
+          
         }
 
         [HttpGet]

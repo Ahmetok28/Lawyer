@@ -1,0 +1,61 @@
+﻿@model Entities.Concrete.HomeButtons
+
+@{
+    ViewData["Title"] = "EditButtons";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>EditButtons</h1>
+
+<h4>HomeButtons</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditButtons">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input  readonly="readonly" asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Button1" class="control-label"></label>
+                <input asp-for="Button1" class="form-control" />
+                <span asp-validation-for="Button1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Button2" class="control-label"></label>
+                <input asp-for="Button2" class="form-control" />
+                <span asp-validation-for="Button2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Button3" class="control-label"></label>
+                <input asp-for="Button3" class="form-control" />
+                <span asp-validation-for="Button3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Button1Link" class="control-label"></label>
+                <input asp-for="Button1Link" class="form-control" />
+                <span asp-validation-for="Button1Link" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Button2Link" class="control-label"></label>
+                <input asp-for="Button2Link" class="form-control" />
+                <span asp-validation-for="Button2Link" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Button3Link" class="control-label"></label>
+                <input asp-for="Button3Link" class="form-control" />
+                <span asp-validation-for="Button3Link" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

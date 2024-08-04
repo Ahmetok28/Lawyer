@@ -21,13 +21,13 @@ namespace Business.Concrete
         {
             _contactDal = contactDal;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Add(Contact contact)
         {
             _contactDal.Add(contact);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Delete(Contact contact)
         {
             _contactDal.Delete(contact);
@@ -38,7 +38,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Contact>( ReplacePhoneNumber(_contactDal.GetAll().First()));
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
         public IResult Update(Contact contact)
         {
             _contactDal.Update(contact);

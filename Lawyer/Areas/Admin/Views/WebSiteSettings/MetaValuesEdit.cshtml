@@ -1,0 +1,41 @@
+﻿@model Entities.Concrete.WebMetaSetting
+
+@{
+    ViewData["Title"] = "MetaValuesEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>MetaValuesEdit</h1>
+
+<h4>WebMetaSetting</h4>
+<hr />
+<div class="row">
+    <div class="col-md-9">
+        <form asp-action="MetaValuesEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input readonly="readonly" type="hidden" asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetaValues" class="control-label"></label>
+
+                <textarea asp-for="MetaValues" name="MetaValues" id="MetaValues" rows="10" cols="150"> 
+                
+                @ViewBag.v1
+            </textarea>
+                <span asp-validation-for="MetaValues" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri Dön</a>
+</div>
+
+

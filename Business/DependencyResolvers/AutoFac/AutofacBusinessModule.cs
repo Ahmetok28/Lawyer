@@ -82,6 +82,9 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<AboutPageManager>().As<IAboutPageService>().SingleInstance();
             builder.RegisterType<EfAboutPageDal>().As<IAboutPageDal>().SingleInstance();
             
+            builder.RegisterType<MetaSettingManager>().As<IWebMetaSettingService>().SingleInstance();
+            builder.RegisterType<EfMetaValuesDal>().As<IMetaValuesDal>().SingleInstance();
+            
             builder.RegisterType<WhyChooseLogoManager>().As<IWhyChooseLogoService>().SingleInstance();
             builder.RegisterType<EfWhyChooseLogoDal>().As<IWhyChooseLogoDal>().SingleInstance(); 
             
@@ -98,7 +101,10 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<EfEmailConfigurationDal>().As<IEmailConfigurationDal>().SingleInstance();
             
             builder.RegisterType<SuscriberManager>().As<ISuscriberService>().SingleInstance();
-            builder.RegisterType<EfSuscriberDal>().As<ISuscriberDal>().SingleInstance();
+            builder.RegisterType<EfSuscriberDal>().As<ISuscriberDal>().SingleInstance(); 
+            
+            builder.RegisterType<HomeButtonManager>().As<IHomeButtonsService>().SingleInstance();
+            builder.RegisterType<EfHomeButtonDal>().As<IHomeButtonDal>().SingleInstance();
 
             builder.RegisterType<FileHeplerManager>().As<IFileHelper>().SingleInstance();
 

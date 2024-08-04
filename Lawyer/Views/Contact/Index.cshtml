@@ -1,7 +1,7 @@
 ﻿@using Microsoft.Web.Helpers;
 @using Lawyer.Models;
 @{
-    ViewData["Title"] = "Index";
+    
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
@@ -33,7 +33,7 @@
             <div class="container">
                 <div class="">
                     <h2>İletişim</h2>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>İletişim<i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="/">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>İletişim<i class="ion-ios-arrow-forward"></i></span></p>
                 </div>
             </div>
         </section>
@@ -47,7 +47,7 @@
                                 <div class="col-md-10 col-lg-12">
                                     <h3>Bize Nasıl Ulaşabilirsiniz ?</h3>
                                     <p class="text-secondary">
-                                        Eğer herhangi bir sorunuz varsa, sadece iletişim formunu doldurun ve kısa sürede size cevap vereceğiz. Eğer yakınımızda yaşıyorsanız, ofislerimizde bizi ziyaret edebilirsiniz.
+                                       @Model.ContactPageData.PageText
 
                                     </p>
                                 </div>

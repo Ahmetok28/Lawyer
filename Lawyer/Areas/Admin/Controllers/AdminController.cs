@@ -27,25 +27,23 @@ namespace Lawyer.Areas.Admin.Controllers
 
         public IActionResult Index(string filter)
         {
+
+
             ViewBag.Msg = _messageService.GetAll().Data.Count;
             ViewBag.Blogs =_blogService.GetAll().Data.Count;
             ViewBag.Areas =_practiceArea.GetAll().Data.Count;
             ViewBag.Messages =GetFilteredMessages(filter);
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin")|| User.IsInRole("Editor")|| User.IsInRole("Yazar"))
             {
                 // Kullanıcı "Admin" rolüne sahipse, admin sayfasını göster
                 return View();
             }
-            else if (User.IsInRole("User"))
-            {
-                
-                return View();
-            }
+            
             else
             {
                 // Kullanıcı "Admin" rolüne sahip değilse, başka bir sayfaya yönlendir
                 
-                return RedirectToAction("AccessDenied", "Account"); // Örneğin, erişim reddedildi sayfasına yönlendirilebilir.
+                return RedirectToAction("Index", "Users"); // Örneğin, erişim reddedildi sayfasına yönlendirilebilir.
             }
         }
 

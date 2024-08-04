@@ -1,0 +1,107 @@
+﻿<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " href="/Admin">
+                <i class="bi bi-grid"></i>
+                <span>Özet</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+        @if (ViewBag.Admin || ViewBag.Yazar)
+        {
+            <!-- Start Contents -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>İçerik Düzenle</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a asp-controller="Blogs" asp-action="Index" asp-area="Admin">
+                            <i class="bi bi-circle"></i><span>Bloglar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Blogs" asp-action="Add" asp-area="Admin">
+                            <i class="bi bi-circle"></i><span>Blog Ekle</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="BlogCategories" asp-action="Index" asp-area="Admin">
+                            <i class="bi bi-circle"></i><span>Blog Kategorileri</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="PracticeAreas" asp-action="Index" asp-area="Admin">
+                            <i class="bi bi-circle"></i><span>Çalışma Alanlarımız</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <!-- End Contents -->
+        }
+ 
+        @if (ViewBag.Admin || ViewBag.Editor)
+        {
+            <!-- End Pages Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Sayfaları Düzenle</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-action="Index" asp-controller="HomePages" asp-area="Admin">
+                        <i class="bi bi-circle"></i><span>Ana Sayfa </span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="AboutPage" asp-area="Admin">
+                        <i class="bi bi-circle"></i><span>Hakkımızda</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-action="Index" asp-controller="ContactPage" asp-area="Admin">
+                        <i class="bi bi-circle"></i><span>İletişim</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="FooterSocialAndSaying" asp-area="Admin">
+                        <i class="bi bi-circle"></i><span>Footer Sosyal Medya ve Söz</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Pages Nav -->
+        }
+        @if (ViewBag.User)
+        {
+                <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Profilimi Düzenle</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a asp-action="Index" asp-controller="Users" asp-area="Admin">
+                            <i class="bi bi-circle"></i><span>Profilim </span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
+        }
+        
+
+
+
+
+
+
+
+
+
+    </ul>
+
+</aside>

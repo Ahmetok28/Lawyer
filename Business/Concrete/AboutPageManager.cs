@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Bussines.BusinessAspects.Autofac;
+using Core.Aspect.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,24 +21,28 @@ namespace Business.Concrete
         {
             _aboutPageDal = aboutPageDal;
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
+        [CacheRemoveAspect("IAboutPageService.Get")]
         public IResult Add(AboutPage aboutPage)
         {
             _aboutPageDal.Add(aboutPage);
             return new SuccessResult(Messages.SuccesfullyAdded);
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
+        [CacheRemoveAspect("IAboutPageService.Get")]
         public IResult Delete(AboutPage aboutPage)
         {
             _aboutPageDal.Delete(aboutPage);
             return new SuccessResult(Messages.SuccesfullyDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<AboutPage> GetAboutPage()
         {
            return new SuccessDataResult<AboutPage>(_aboutPageDal.GetAll().First());
         }
-        [SecuredOperation("Admin,Moderator")]
+        [SecuredOperation("Admin,Editor")]
+        [CacheRemoveAspect("IAboutPageService.Get")]
         public IResult Update(AboutPage aboutPage)
         {
            _aboutPageDal.Update(aboutPage);

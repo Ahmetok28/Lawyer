@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
@@ -45,8 +46,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\Blogs\" />
-    <Folder Include="wwwroot\Images\UIHomePage\" />
+    <Folder Include="Areas\Admin\Helpers\" />
+    <Folder Include="wwwroot\richtexteditor\richtexteditor\dialogs\skins\gray\" />
+    <Folder Include="wwwroot\richtexteditor\rtetemp\" />
+    <Folder Include="wwwroot\richtexteditor\uploads\Member\" />
+    <Folder Include="wwwroot\richtexteditor\uploads\Users\Terry\" />
+    <Folder Include="wwwroot\richtexteditor\uploads\Users\Tim\" />
   </ItemGroup>
 
 </Project>

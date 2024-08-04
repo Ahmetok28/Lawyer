@@ -37,13 +37,15 @@ namespace Core.Extensions
             string message = "Internal Server Error";
             if (e.GetType() == typeof(ValidationException))
             {
-                message = e.Message;
+                
+                message = "Validasyon Hatası";
+                httpContext.Response.StatusCode = (int)HttpStatusCode.OK;
             }
 
             return httpContext.Response.WriteAsync(new ErrorDetails
             {
                 StatusCode = httpContext.Response.StatusCode,
-                Message = e.Message,
+                Message =message,
             }.ToString());
         }
     }

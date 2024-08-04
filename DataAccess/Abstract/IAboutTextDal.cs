@@ -5,5 +5,5 @@ namespace DataAccess.Abstract
 {
     public interface IAboutTextDal : IEntityRepository<AboutText>
     {
-    } 
+    }
 }

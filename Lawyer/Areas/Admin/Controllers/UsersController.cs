@@ -4,6 +4,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Security.JWT;
 using Entities.DTOs;
 using Lawyer.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,6 +13,7 @@ namespace Lawyer.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]/{id?}")]
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly IUserAdditioanlPropertiesService _userAdditioanalPropertiesService;
@@ -50,7 +52,8 @@ namespace Lawyer.Areas.Admin.Controllers
             var tuple= new Tuple<UserForTeamDTO,List<UserOperationClaim>>(userAddProp, userRoles);
 
             return View(tuple);
-        } [HttpPost]
+        } 
+        [HttpPost]
         public IActionResult UpdateUserRoles(List<int> selectedRoles, int userId)
         {
             _userOperationClaimService.RemoveAllClaimsByUserId(userId);
